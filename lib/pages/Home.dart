@@ -68,7 +68,7 @@ class _HomeState extends State<Home> {
           image_carousel,
           SizedBox(height: 20.0),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
                 "  Today's Menu",
@@ -78,7 +78,6 @@ class _HomeState extends State<Home> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 150.0),
               OutlineButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/food');

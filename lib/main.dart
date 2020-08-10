@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rcapp/pages/Home.dart';
 import 'package:rcapp/services/auth.dart';
 import 'pages/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/models/user.dart';
+import 'pages/Food.dart';
+import 'pages/booking_calendar.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,6 +17,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: wrapper(),
+        routes: {
+
+          '/food': (context) => Food(),
+          '/bookingcalendar': (context) => Calendar(),
+        },
       ),
     );
   }

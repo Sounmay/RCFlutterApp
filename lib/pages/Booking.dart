@@ -151,13 +151,26 @@ class _BookingState extends State<Booking> {
         body: new ListView(
           children: <Widget>[
             SizedBox(height: 30.0),
-            Text(
-              " Lounges",
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  " Lounges",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                OutlineButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/bookingcalendar');
+                    },
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    color: Colors.grey,
+                    child: Text('Book')),
+              ],
             ),
             SizedBox(height: 10.0),
             image_carousel1,
