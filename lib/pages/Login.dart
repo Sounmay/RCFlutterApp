@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
                     ),
                     SizedBox(height: 7.0),
                     Text(
-                      'Rourkela club now delivers food at yoour doorstep',
+                      'Rourkela club now delivers food at your doorstep',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.grey,

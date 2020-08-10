@@ -42,7 +42,7 @@ class _NavigationBarState extends State<NavigationBar> {
           BottomNavigationBarItem(
               icon: Icon(Icons.book),
               title: Text('Booking'),
-              backgroundColor: Colors.black),
+              backgroundColor: Colors.deepOrange),
         ],
       ),
     );
