@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "837629068033",
+    "firebase_url": "https://rcapp-95c86.firebaseio.com",
+    "project_id": "rcapp-95c86",
+    "storage_bucket": "rcapp-95c86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837629068033:android:b9f9ad5f62ba1c2ef31100",
+        "android_client_info": {
+          "package_name": "com.sounmaymishra.rcapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837629068033-ir6fbtgkakg9irvjvhoj675an3u6ni8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUJNwuPaddturoTLNsJXYXB_wMb1-AUJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837629068033-ir6fbtgkakg9irvjvhoj675an3u6ni8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
