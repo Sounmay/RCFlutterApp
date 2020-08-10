@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "837629068033",
-    "firebase_url": "https://rcapp-95c86.firebaseio.com",
-    "project_id": "rcapp-95c86",
-    "storage_bucket": "rcapp-95c86.appspot.com"
+    "project_number": "433660739407",
+    "firebase_url": "https://rcapp-de25c.firebaseio.com",
+    "project_id": "rcapp-de25c",
+    "storage_bucket": "rcapp-de25c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:837629068033:android:b9f9ad5f62ba1c2ef31100",
+        "mobilesdk_app_id": "1:433660739407:android:719770e06797fb89130f3a",
         "android_client_info": {
-          "package_name": "com.sounmaymishra.rcapp"
+          "package_name": "com.flutter.rcapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "837629068033-ir6fbtgkakg9irvjvhoj675an3u6ni8o.apps.googleusercontent.com",
+          "client_id": "433660739407-fk81st9lddi06arc3toggnlcb311li30.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBUJNwuPaddturoTLNsJXYXB_wMb1-AUJc"
+          "current_key": "AIzaSyBZ2nQ3CT4od1Pt09Wj8wyyyC5JkWVD7tM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "837629068033-ir6fbtgkakg9irvjvhoj675an3u6ni8o.apps.googleusercontent.com",
+              "client_id": "433660739407-fk81st9lddi06arc3toggnlcb311li30.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
