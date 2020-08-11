@@ -17,11 +17,14 @@ class _HomeState extends State<Home> {
         child: new Carousel(
           boxFit: BoxFit.cover,
           images: [
-            AssetImage('assets/1.jpg'),
-            AssetImage('assets/2.jpg'),
-            AssetImage('assets/3.jpg'),
-            AssetImage('assets/4.jpg'),
-            AssetImage('assets/5.jpg'),
+            AssetImage('assets/23.jpg'),
+            AssetImage('assets/19.jpg'),
+            AssetImage('assets/20.jpg'),
+            AssetImage('assets/21.jpg'),
+            AssetImage('assets/22.jpg'),
+            AssetImage('assets/18.jpg'),
+            AssetImage('assets/24.jpg'),
+            AssetImage('assets/25.jpg'),
           ],
           autoplay: true,
           animationCurve: Curves.fastOutSlowIn,
@@ -47,7 +50,7 @@ class _HomeState extends State<Home> {
         child: new Carousel(
           boxFit: BoxFit.cover,
           images: [
-            AssetImage('assets/1.jpg'),
+            AssetImage('assets/9.jpg'),
             AssetImage('assets/2.jpg'),
             AssetImage('assets/3.jpg'),
           ],
