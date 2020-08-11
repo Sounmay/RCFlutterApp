@@ -27,7 +27,7 @@ class _CalendarState extends State<Calendar> {
       ),
       body: new ListView(
         children: <Widget>[
-          TableCalendar(calendarController: _controller,)
+          TableCalendar(calendarController: _controller,),
         ],
       ),
     );
