@@ -1,12 +1,4 @@
-import 'package:rcapp/pages/Food.dart';
-
-class FoodList{
-  final String id;
-  final String Name;
-  final double price;
-
-  FoodList({this.id, this.Name, this.price});
-}
+import 'package:rcapp/models/food_model.dart';
 
 final foodlist = [
   FoodList(

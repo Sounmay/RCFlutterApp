@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:rcapp/pages/Add_Food.dart';
 import 'package:rcapp/pages/Food_List.dart';
+import 'package:rcapp/models/food_model.dart';
+
 
 class Food extends StatefulWidget {
   @override
