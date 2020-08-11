@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:rcapp/pages/Add_Food.dart';
-import 'package:rcapp/pages/Food_List.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rcapp/models/food_model.dart';
-
+import 'package:rcapp/pages/Food_List.dart';
 
 class Food extends StatefulWidget {
   @override
@@ -11,7 +10,6 @@ class Food extends StatefulWidget {
 }
 
 class _FoodState extends State<Food> {
-
   List<FoodList> _foodlist = foodlist;
 
   int FQty = 0;
@@ -22,6 +20,7 @@ class _FoodState extends State<Food> {
   @override
   Widget build(BuildContext context) {
     Widget image_carousel2 = new Container(
+        padding: EdgeInsets.all(10),
         height: 150.0,
         child: new Carousel(
           boxFit: BoxFit.cover,
@@ -33,6 +32,8 @@ class _FoodState extends State<Food> {
           autoplay: false,
           animationCurve: Curves.fastOutSlowIn,
           animationDuration: Duration(milliseconds: 1000),
+          borderRadius: true,
+          indicatorBgPadding: 10.0,
         ));
     return Scaffold(
       appBar: AppBar(
@@ -49,9 +50,12 @@ class _FoodState extends State<Food> {
                   this.cusSearchBar = TextField(
                     textInputAction: TextInputAction.go,
                     decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Search for a food",
-                        hintStyle: TextStyle(fontSize: 20.0, fontStyle: FontStyle.italic, color: Colors.white),
+                      border: InputBorder.none,
+                      hintText: "Search for a food",
+                      hintStyle: TextStyle(
+                          fontSize: 20.0,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.white),
                     ),
                     style: TextStyle(
                       color: Colors.white,
@@ -69,7 +73,6 @@ class _FoodState extends State<Food> {
       ),
       body: new ListView(
         children: <Widget>[
-          //_children[_currentIndex],
           SizedBox(height: 10.0),
           Text(
             "Today's Menu",
@@ -84,7 +87,7 @@ class _FoodState extends State<Food> {
           SizedBox(height: 10.0),
           Container(
             margin: new EdgeInsets.symmetric(horizontal: 20),
-            child:Text(
+            child: Text(
               "Menu",
               style: TextStyle(
                 color: Colors.deepOrange,
@@ -92,21 +95,145 @@ class _FoodState extends State<Food> {
               ),
             ),
           ),
-          Column(
-            children: _foodlist.map(_buildFoodItems).toList(),
-          ),
+          ListPage()
         ],
       ),
     );
   }
 }
 
-Widget _buildFoodItems(FoodList foodList){
-  return Container(
-    child: AddFood(
-      id: foodList.id,
-      Name: foodList.Name,
-      price: foodList.price,
-    ),
-  );
+class Quantity extends StatefulWidget {
+  @override
+  _QuantityState createState() => _QuantityState();
+}
+
+class _QuantityState extends State<Quantity> {
+  int FQty = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.remove,
+          ),
+          onPressed: () {
+            setState(() {
+              if (FQty > 0) {
+                FQty -= 1;
+              }
+            });
+          },
+        ),
+        Text(
+          '$FQty',
+          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.add,
+          ),
+          onPressed: () {
+            setState(() {
+              FQty += 1;
+            });
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class ListPage extends StatefulWidget {
+  @override
+  _ListPageState createState() => _ListPageState();
+}
+
+class _ListPageState extends State<ListPage> {
+  Future _data;
+
+  Future getPosts() async {
+    var firestore = Firestore.instance;
+    QuerySnapshot qn = await firestore.collection("chinese").getDocuments();
+    print(qn);
+    return qn.documents;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _data = getPosts();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FutureBuilder(
+          future: _data,
+          builder: (_, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: Text("Loading"),
+              );
+            } else {
+              return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (_, index) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.radio_button_checked,
+                                    color: Colors.green,
+                                  ),
+                                ),
+                                Text(
+                                  '${snapshot.data[index].data["item"]}',
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Quantity()
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              margin:
+                              new EdgeInsets.symmetric(horizontal: 50.0),
+                              child: Text(
+                                '₹' + '${snapshot.data[index].data["price"]}',
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10.0),
+                        const Divider(
+                          color: Colors.grey,
+                          height: 2,
+                          thickness: 1,
+                          indent: 5,
+                          endIndent: 5,
+                        ),
+                      ],
+                    );
+                  });
+            }
+          }),
+    );
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rcapp/pages/order_card.dart';
 
 class Cart extends StatefulWidget {
   @override
@@ -8,6 +9,19 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+        appBar: AppBar(
+          elevation: 10.0,
+          backgroundColor: Colors.deepOrange,
+          title: Text('Cart'),
+      ),
+      body: new ListView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          SizedBox(height: 30),
+          OrderCard(),
+      ],
+    ),
+    );
   }
 }

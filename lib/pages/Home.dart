@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
               ),
               OutlineButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/food');
+                    Navigator.pushNamed(context, '/cart');
                   },
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0)),
