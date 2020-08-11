@@ -3,6 +3,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rcapp/CustomWidget/foot_category.dart';
 import 'package:rcapp/CustomWidget/menu_category.dart';
+import 'package:rcapp/pages/Search.dart';
 
 class Food extends StatefulWidget {
   @override
