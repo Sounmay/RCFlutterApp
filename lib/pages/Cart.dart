@@ -19,7 +19,7 @@ class _CartState extends State<Cart> {
         scrollDirection: Axis.vertical,
         children: <Widget>[
           SizedBox(height: 30),
-          // OrderCard(),
+          OrderCard(),
       ],
     ),
     );
