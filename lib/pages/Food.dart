@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:rcapp/models/food_model.dart';
-import 'package:rcapp/pages/Food_List.dart';
+import 'package:rcapp/CustomWidget/foot_category.dart';
+import 'package:rcapp/CustomWidget/menu_category.dart';
 
 class Food extends StatefulWidget {
   @override
@@ -10,8 +10,6 @@ class Food extends StatefulWidget {
 }
 
 class _FoodState extends State<Food> {
-  List<FoodList> _foodlist = foodlist;
-
   int FQty = 0;
 
   Icon cusIcon = Icon(Icons.search);
@@ -72,27 +70,44 @@ class _FoodState extends State<Food> {
         ],
       ),
       body: new ListView(
+        padding: EdgeInsets.all(10),
         children: <Widget>[
           SizedBox(height: 10.0),
-          Text(
-            "Today's Menu",
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
+          Container(
+            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+            child: Text(
+              "Today's Menu",
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           SizedBox(height: 10.0),
-          image_carousel2,
+          FoodCategory(),
           SizedBox(height: 10.0),
           Container(
-            margin: new EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
             child: Text(
-              "Menu",
+              "Categories",
               style: TextStyle(
-                color: Colors.deepOrange,
+                color: Colors.grey,
                 fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
+            ),
+          ),
+          SizedBox(height: 10.0),
+          MenuCategories(),
+          Container(
+            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+            child: Text(
+              'Chinese',
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.deepOrange,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           ListPage()
@@ -212,7 +227,7 @@ class _ListPageState extends State<ListPage> {
                           children: <Widget>[
                             Container(
                               margin:
-                              new EdgeInsets.symmetric(horizontal: 50.0),
+                                  new EdgeInsets.symmetric(horizontal: 50.0),
                               child: Text(
                                 '₹' + '${snapshot.data[index].data["price"]}',
                                 style: TextStyle(
