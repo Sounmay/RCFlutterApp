@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:rcapp/services/database.dart';
 
 class MenuCard extends StatelessWidget {
   final String categoryName;
   final String imagePath;
+  final int index;
 
-  MenuCard({this.categoryName, this.imagePath});
+  MenuCard({this.categoryName, this.imagePath, this.index});
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      Container(
+    return InkWell(
+      onTap: () {
+        menu = getPosts(index);
+      },
+      child: Column(children: <Widget>[
+        Container(
           width: 65,
           height: 65,
           margin: EdgeInsets.only(right: 10.0),
@@ -19,18 +25,20 @@ class MenuCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(6)),
-          child: null),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            '$categoryName',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          )
-        ],
-      ),
-    ]);
+          child: null,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              '$categoryName',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          ],
+        ),
+      ]),
+    );
   }
 }

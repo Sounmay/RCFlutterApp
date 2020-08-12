@@ -13,66 +13,20 @@ class Food extends StatefulWidget {
 class _FoodState extends State<Food> {
   int FQty = 0;
 
-  Icon cusIcon = Icon(Icons.search);
-  Widget cusSearchBar = Text("Menu");
 
   @override
   Widget build(BuildContext context) {
-    Widget image_carousel2 = new Container(
-        padding: EdgeInsets.all(10),
-        height: 150.0,
-        child: new Carousel(
-          boxFit: BoxFit.cover,
-          images: [
-            AssetImage('assets/6.jpg'),
-            AssetImage('assets/7.jpg'),
-            AssetImage('assets/8.jpg'),
-          ],
-          autoplay: false,
-          animationCurve: Curves.fastOutSlowIn,
-          animationDuration: Duration(milliseconds: 1000),
-          borderRadius: true,
-          indicatorBgPadding: 10.0,
-        ));
     return Scaffold(
-      appBar: AppBar(
-        elevation: 10.0,
-        backgroundColor: Colors.deepOrange,
-        title: cusSearchBar,
-        actions: <Widget>[
-          IconButton(
-            icon: cusIcon,
-            onPressed: () {
-              setState(() {
-                if (this.cusIcon.icon == Icons.search) {
-                  this.cusIcon = Icon(Icons.cancel);
-                  this.cusSearchBar = TextField(
-                    textInputAction: TextInputAction.go,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Search for a food",
-                      hintStyle: TextStyle(
-                          fontSize: 20.0,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.white),
-                    ),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                    ),
-                  );
-                } else {
-                  this.cusIcon = Icon(Icons.search);
-                  this.cusSearchBar = Text("Menu");
-                }
-              });
-            },
-          )
-        ],
-      ),
+       appBar: AppBar(
+         elevation: 10.0,
+         backgroundColor: Colors.deepOrange,
+         title: Text("Menu"),
+       ),
       body: new ListView(
         padding: EdgeInsets.all(10),
         children: <Widget>[
+          SizedBox(height: 10.0),
+          Search(),
           SizedBox(height: 10.0),
           Container(
             padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -99,18 +53,15 @@ class _FoodState extends State<Food> {
               ),
             ),
           ),
-          SizedBox(height: 10.0),
           MenuCategories(),
-          Container(
-            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-            child: Text(
+          SizedBox(height: 10.0),
+          Text(
               'Chinese',
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.deepOrange,
                   fontWeight: FontWeight.bold),
             ),
-          ),
           ListPage()
         ],
       ),
@@ -208,6 +159,7 @@ class _ListPageState extends State<ListPage> {
                             Row(
                               children: <Widget>[
                                 IconButton(
+                                  onPressed: () {},
                                   icon: Icon(
                                     Icons.radio_button_checked,
                                     color: Colors.green,

@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rcapp/pages/searchService.dart';
 
-
 class Search extends StatefulWidget {
   @override
   _SearchState createState() => _SearchState();
 }
 
 class _SearchState extends State<Search> {
-
   var queryResultSet = [];
   var tempSearchStore = [];
 
@@ -44,44 +42,40 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: Text('Firestore search'),
+    return Column(children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: TextField(
+          onChanged: (val) {
+            initiateSearch(val);
+          },
+          decoration: InputDecoration(
+              prefixIcon: IconButton(
+                color: Colors.black,
+                icon: Icon(Icons.arrow_back),
+                iconSize: 20.0,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              contentPadding: EdgeInsets.only(left: 25.0),
+              hintText: 'Search by item name',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(4.0))),
         ),
-        body: ListView(children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              onChanged: (val) {
-                initiateSearch(val);
-              },
-              decoration: InputDecoration(
-                  prefixIcon: IconButton(
-                    color: Colors.black,
-                    icon: Icon(Icons.arrow_back),
-                    iconSize: 20.0,
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  contentPadding: EdgeInsets.only(left: 25.0),
-                  hintText: 'Search by item nam',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4.0))),
-            ),
-          ),
-          SizedBox(height: 10.0),
-          GridView.count(
-              padding: EdgeInsets.only(left: 10.0, right: 10.0),
-              crossAxisCount: 2,
-              crossAxisSpacing: 4.0,
-              mainAxisSpacing: 4.0,
-              primary: false,
-              shrinkWrap: true,
-              children: tempSearchStore.map((element) {
-                return buildResultCard(element);
-              }).toList())
-        ]));
+      ),
+      SizedBox(height: 10.0),
+      GridView.count(
+          padding: EdgeInsets.only(left: 10.0, right: 10.0),
+          crossAxisCount: 2,
+          crossAxisSpacing: 4.0,
+          mainAxisSpacing: 4.0,
+          primary: false,
+          shrinkWrap: true,
+          children: tempSearchStore.map((element) {
+            return buildResultCard(element);
+          }).toList())
+    ]);
   }
 }
 
@@ -91,14 +85,12 @@ Widget buildResultCard(data) {
       elevation: 2.0,
       child: Container(
           child: Center(
-              child: Text(data['businessName'],
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                ),
-              )
-          )
-      )
-  );
+              child: Text(
+        data['businessName'],
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 20.0,
+        ),
+      ))));
 }

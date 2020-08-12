@@ -10,18 +10,21 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 10.0,
-          backgroundColor: Colors.deepOrange,
-          title: Text('Cart'),
+      appBar: AppBar(
+        elevation: 10.0,
+        backgroundColor: Colors.deepOrange,
+        title: Text('Cart'),
       ),
-      body: new ListView(
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          SizedBox(height: 30),
-          OrderCard(),
-      ],
-    ),
+      body: Container(
+        child: new ListView(
+          shrinkWrap: false,
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
+            SizedBox(height: 30),
+            OrderCard(),
+          ],
+        ),
+      ),
     );
   }
 }
