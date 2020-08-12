@@ -93,7 +93,7 @@ class _AdminOrderState extends State<AdminOrder> {
                         onPressed: () {},
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(10.0)),
-                        child: Text('View'),
+                        child: Text('Confirm'),
                         color: Colors.amber,
                       ),
                     )
