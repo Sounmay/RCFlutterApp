@@ -8,6 +8,7 @@ import 'package:rcapp/models/user.dart';
 import 'pages/Food.dart';
 import 'pages/booking_calendar.dart';
 import 'pages/Cart.dart';
+import 'pages/admin_order_confirm.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
           '/food': (context) => Food(),
           '/bookingcalendar': (context) => Calendar(),
           '/cart': (context) => Cart(),
+          '/adminorder' : (context) => AdminOrder(),
         },
       ),
     );

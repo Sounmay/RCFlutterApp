@@ -146,7 +146,7 @@ class _HomeState extends State<Home> {
               SizedBox(width: 130.0),
               OutlineButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/cart');
+                  Navigator.pushNamed(context, '/adminorder');
                 },
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(10.0)),
