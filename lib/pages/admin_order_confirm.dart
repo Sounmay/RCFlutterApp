@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class AdminOrder extends StatefulWidget {
@@ -89,14 +90,26 @@ class _AdminOrderState extends State<AdminOrder> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),
-                      child: OutlineButton(
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/orderdetails');
+                        },
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(10.0)),
+                        child: Text('View'),
+                        color: Colors.white,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: FlatButton(
                         onPressed: () {},
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(10.0)),
                         child: Text('Confirm'),
                         color: Colors.amber,
                       ),
-                    )
+                    ),
                   ],
                 ),
             ],
