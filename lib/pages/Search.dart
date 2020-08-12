@@ -28,7 +28,8 @@ class _SearchState extends State<Search> {
           queryResultSet.add(docs.documents[i].data);
         }
       });
-    } else {
+    }
+    else {
       tempSearchStore = [];
       queryResultSet.forEach((element) {
         if (element['item'].startsWith(capitalizedValue)) {
@@ -86,7 +87,7 @@ Widget buildResultCard(data) {
       child: Container(
           child: Center(
               child: Text(
-        data['businessName'],
+        data['item'],
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.black,
