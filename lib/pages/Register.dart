@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:rcapp/services/auth.dart';
 
@@ -14,6 +16,7 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
 
   // test field state
+  String name = '';
   String email = '';
   String password = '';
   String error = '';
@@ -47,6 +50,24 @@ class _RegisterState extends State<Register> {
                 SizedBox(height: 20.0),
                 TextFormField(
                     decoration: InputDecoration(
+                        hintText: 'Name',
+                        fillColor: Colors.white,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrange, width: 1.0),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrange, width: 3.0),
+                            borderRadius: BorderRadius.circular(10))),
+                    validator: (val) => val.isEmpty ? 'Enter your Name' : null,
+                    onChanged: (val) {
+                      setState(() => name = val);
+                    }),
+                SizedBox(height: 18.0),
+                TextFormField(
+                    decoration: InputDecoration(
                         hintText: 'Email',
                         fillColor: Colors.white,
                         filled: true,
@@ -62,7 +83,7 @@ class _RegisterState extends State<Register> {
                     onChanged: (val) {
                       setState(() => email = val);
                     }),
-                SizedBox(height: 20.0),
+                SizedBox(height: 18.0),
                 TextFormField(
                     decoration: InputDecoration(
                         hintText: 'Password',
@@ -83,11 +104,11 @@ class _RegisterState extends State<Register> {
                     onChanged: (val) {
                       setState(() => password = val);
                     }),
-                SizedBox(height: 20.0),
+                SizedBox(height: 18.0),
                 RaisedButton(
                   color: Colors.deepOrange,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                   child: Text(
                     'Register',
                     style: TextStyle(
@@ -100,8 +121,7 @@ class _RegisterState extends State<Register> {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
-                      dynamic result = await _auth.registerWithEmailAndPassword(
-                          email, password);
+                      dynamic result = await _auth.registerWithEmailAndPassword(name, email, password);
                       if (result == null) {
                         setState(() => error = 'please supply a valid email');
                       }

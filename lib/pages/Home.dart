@@ -14,10 +14,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    Widget image_carousel = new Container(
-        padding: EdgeInsets.all(10),
-        height: 200.0,
-        // decoration: BoxDecoration(borderRadius: BorderRadius.circular(200.0)),
+    Widget imageCarousel = new Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+        height: 180.0,
         child: new Carousel(
           boxFit: BoxFit.cover,
           images: [
@@ -35,34 +34,6 @@ class _HomeState extends State<Home> {
           animationDuration: Duration(milliseconds: 1000),
           borderRadius: true,
           indicatorBgPadding: 10.0,
-        ));
-
-    Widget image_carousel2 = new Container(
-        height: 150.0,
-        child: new Carousel(
-          boxFit: BoxFit.cover,
-          images: [
-            AssetImage('assets/6.jpg'),
-            AssetImage('assets/7.jpg'),
-            AssetImage('assets/8.jpg'),
-          ],
-          autoplay: false,
-          animationCurve: Curves.fastOutSlowIn,
-          animationDuration: Duration(milliseconds: 1000),
-        ));
-
-    Widget image_carousel3 = new Container(
-        height: 150.0,
-        child: new Carousel(
-          boxFit: BoxFit.cover,
-          images: [
-            AssetImage('assets/9.jpg'),
-            AssetImage('assets/2.jpg'),
-            AssetImage('assets/3.jpg'),
-          ],
-          autoplay: false,
-          animationCurve: Curves.fastOutSlowIn,
-          animationDuration: Duration(milliseconds: 1000),
         ));
 
     return Scaffold(
@@ -85,7 +56,47 @@ class _HomeState extends State<Home> {
               Text('Home'),
             ]),
       ),
-      drawer: Drawer(child: Text('hello')),
+      drawer: Drawer(
+        child: SafeArea(
+          child: Column(children: <Widget>[
+            Row(children: <Widget>[
+              CircleAvatar(
+                radius: 60.0,
+                backgroundImage: NetworkImage(
+                    'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
+                backgroundColor: Colors.transparent,
+              ),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Naiyar Imam',
+                      style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    Text(
+                      'Personal No. 3433243467',
+                      style: TextStyle(color: Colors.grey[700]),
+                    )
+                  ])
+            ]),
+            SizedBox(height: 20),
+            InkWell(
+                onTap: () {},
+                child: Text(
+                  'My Bookings',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                )),
+            SizedBox(height: 10),
+            InkWell(
+                onTap: () {},
+                child: Text(
+                  'Previous Orders',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                ))
+          ]),
+        ),
+      ),
       body: new ListView(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         children: <Widget>[
@@ -108,7 +119,7 @@ class _HomeState extends State<Home> {
                   )
                 ]),
           ),
-          image_carousel,
+          imageCarousel,
           SizedBox(height: 20.0),
           Text(
             "  Notice Board",
@@ -212,7 +223,7 @@ class _HomeListPageState extends State<HomeListPage> {
                     return Container(
                       margin: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
                       padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                       decoration: BoxDecoration(
                         color: Colors.blue[50],
                         borderRadius: BorderRadius.circular(8),

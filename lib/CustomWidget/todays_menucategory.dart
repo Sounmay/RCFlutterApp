@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rcapp/CustomWidget/todays_menucard.dart';
 import 'package:rcapp/data/todays_menu.dart';
 import 'package:rcapp/models/todays_menumodel.dart';
-import 'food_card.dart';
 
 class TodaysMenuCategory extends StatelessWidget {
   final List<TodaysMenu> _categories = todaymenucategories;
@@ -14,7 +14,7 @@ class TodaysMenuCategory extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: _categories.length,
         itemBuilder: (BuildContext context, int index) {
-          return FoodCard(
+          return TodayFoodCard(
             categoryName: _categories[index].categoryName,
             imagePath: _categories[index].imagePath,
             itemprice: _categories[index].itemprice,

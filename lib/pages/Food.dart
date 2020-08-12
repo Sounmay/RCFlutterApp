@@ -13,15 +13,17 @@ class Food extends StatefulWidget {
 class _FoodState extends State<Food> {
   int FQty = 0;
 
+  Icon cusIcon = Icon(Icons.search);
+  Widget cusSearchBar = Text("Menu");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-         elevation: 10.0,
-         backgroundColor: Colors.deepOrange,
-         title: Text("Menu"),
-       ),
+      appBar: AppBar(
+        elevation: 10.0,
+        backgroundColor: Colors.deepOrange,
+        title: Text("Menu"),
+      ),
       body: new ListView(
         padding: EdgeInsets.all(10),
         children: <Widget>[
@@ -56,12 +58,12 @@ class _FoodState extends State<Food> {
           MenuCategories(),
           SizedBox(height: 10.0),
           Text(
-              'Chinese',
-              style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.deepOrange,
-                  fontWeight: FontWeight.bold),
-            ),
+            'Chinese',
+            style: TextStyle(
+                fontSize: 18,
+                color: Colors.deepOrange,
+                fontWeight: FontWeight.bold),
+          ),
           ListPage()
         ],
       ),
@@ -79,36 +81,122 @@ class _QuantityState extends State<Quantity> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        IconButton(
-          icon: Icon(
-            Icons.remove,
+    if (FQty == 0) {
+      return InkWell(
+        onTap: () {
+          setState(() {
+            FQty++;
+          });
+        },
+        child: Container(
+          margin: EdgeInsets.fromLTRB(0, 0, 14, 0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Colors.grey, width: 0.1),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey, blurRadius: 2.0, offset: Offset(2.1, 2.2))
+            ],
           ),
-          onPressed: () {
-            setState(() {
-              if (FQty > 0) {
-                FQty -= 1;
-              }
-            });
-          },
+          height: 25,
+          width: 62,
+          child: Center(
+              child: Text('Add', style: TextStyle(color: Colors.deepOrange))),
         ),
-        Text(
-          '$FQty',
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-        ),
-        IconButton(
-          icon: Icon(
-            Icons.add,
+      );
+    } else {
+      return Row(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.deepOrange,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: Colors.grey, width: 0.1),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 2.0,
+                    offset: Offset(2.1, 2.2))
+              ],
+            ),
+            height: 25,
+            width: 30,
+            child: IconButton(
+              padding: EdgeInsets.all(0),
+              icon: Icon(
+                Icons.remove,
+                size: 18,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                setState(() {
+                  if (FQty > 0) {
+                    FQty -= 1;
+                  }
+                });
+              },
+            ),
           ),
-          onPressed: () {
-            setState(() {
-              FQty += 1;
-            });
-          },
-        ),
-      ],
-    );
+          Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: Colors.grey, width: 0.1),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 2.0,
+                    offset: Offset(2.1, 2.2))
+              ],
+            ),
+            height: 28,
+            width: 33,
+            child: Text(
+              '$FQty',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            ),
+          ),
+          // Text(
+          //   '$FQty',
+          //   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          // ),
+          Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.deepOrange,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: Colors.grey, width: 0.1),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 2.0,
+                    offset: Offset(2.1, 2.2))
+              ],
+            ),
+            height: 25,
+            width: 30,
+            child: IconButton(
+              padding: EdgeInsets.all(0),
+              icon: Icon(
+                Icons.add,
+                size: 18,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                setState(() {
+                  if (FQty > 0) {
+                    FQty += 1;
+                  }
+                });
+              },
+            ),
+          ),
+        ],
+      );
+    }
   }
 }
 
@@ -180,11 +268,11 @@ class _ListPageState extends State<ListPage> {
                           children: <Widget>[
                             Container(
                               margin:
-                                  new EdgeInsets.symmetric(horizontal: 50.0),
+                              new EdgeInsets.symmetric(horizontal: 50.0),
                               child: Text(
                                 '₹' + '${snapshot.data[index].data["price"]}',
                                 style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold),
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],

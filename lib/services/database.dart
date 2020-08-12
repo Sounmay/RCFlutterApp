@@ -7,7 +7,16 @@ class DatabaseService {
 
   //collection reference
   final CollectionReference foodCollection =
-      Firestore.instance.collection('food');
+  Firestore.instance.collection('food');
+
+  final CollectionReference userInfo =
+  Firestore.instance.collection('userInfo');
+
+  Future updateUserInfo(String name) async {
+    return await userInfo.document(uid).setData({
+      'name': name,
+    });
+  }
 
   Future updateUserData(String food, int price, int quantity) async {
     return await foodCollection.document(uid).setData({
@@ -17,10 +26,10 @@ class DatabaseService {
     });
   }
 
-  //get food stream
-  // Stream<QuerySnapshot> get food {
-  //   return foodCollection.snapshots()
-  // }
+//get food stream
+// Stream<QuerySnapshot> get food {
+//   return foodCollection.snapshots()
+// }
 
 }
 
@@ -30,6 +39,6 @@ Future menu;
 Future getPosts(numb) async {
   var firestore = Firestore.instance;
   QuerySnapshot qn =
-      await firestore.collection('${menucategories[numb]}').getDocuments();
+  await firestore.collection('${menucategories[numb]}').getDocuments();
   return qn.documents;
 }

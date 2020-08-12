@@ -24,10 +24,11 @@ class FoodCard extends StatelessWidget {
           children: <Widget>[
             Text(
               categoryName,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.white),
             ),
             Text(
               '₹' + '$itemprice',
+              style: TextStyle(color: Colors.white),
             )
           ],
         ));
