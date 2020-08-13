@@ -75,118 +75,119 @@ class _BookingState extends State<Booking> {
       ),
     );
 
-      Widget image_carousel2 = new Container(
-        height: 200.0,
-        child: new Carousel(
-          boxFit: BoxFit.cover,
-          images: [
-            Card(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/15.jpg'),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter,
-                  ),
+    Widget image_carousel2 = new Container(
+      height: 200.0,
+      child: new Carousel(
+        boxFit: BoxFit.cover,
+        images: [
+          Card(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/15.jpg'),
+                  fit: BoxFit.fitWidth,
+                  alignment: Alignment.topCenter,
                 ),
-                child: Text("Main Banquet",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+              ),
+              child: Text("Main Banquet",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            Card(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/16.jpg'),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter,
-                  ),
+          ),
+          Card(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/16.jpg'),
+                  fit: BoxFit.fitWidth,
+                  alignment: Alignment.topCenter,
                 ),
-                child: Text("Wedding Reception Hall",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+              ),
+              child: Text("Wedding Reception Hall",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            Card(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/17.jpg'),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter,
-                  ),
+          ),
+          Card(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/17.jpg'),
+                  fit: BoxFit.fitWidth,
+                  alignment: Alignment.topCenter,
                 ),
-                child: Text("Milar Reception Hall",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+              ),
+              child: Text("Milar Reception Hall",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-          ],
-          autoplay: true,
-          animationCurve: Curves.fastOutSlowIn,
-          animationDuration: Duration(milliseconds: 1000),
-        ),
-      );
+          ),
+        ],
+        autoplay: true,
+        animationCurve: Curves.fastOutSlowIn,
+        animationDuration: Duration(milliseconds: 1000),
+      ),
+    );
 
 
-      return Scaffold(
-        appBar: AppBar(
-          elevation: 10.0,
-          backgroundColor: Colors.deepOrange,
-          title: Text('Booking'),
-        ),
-        body: new ListView(
-          children: <Widget>[
-            SizedBox(height: 30.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  " Lounges",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        elevation: 10.0,
+        backgroundColor: Colors.deepOrange,
+        title: Text('Booking'),
+      ),
+      body: new ListView(
+        children: <Widget>[
+          SizedBox(height: 30.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                " Lounges",
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
                 ),
-                OutlineButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/bookingcalendar');
-                    },
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    color: Colors.grey,
-                    child: Text('Book')),
-              ],
-            ),
-            SizedBox(height: 10.0),
-            image_carousel1,
-            SizedBox(height: 50.0),
-            Text(
-              " Banquet Halls",
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
               ),
+              OutlineButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/bookingcalendar');
+                  },
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  color: Colors.grey,
+                  child: Text('Book')),
+            ],
+          ),
+          SizedBox(height: 10.0),
+          image_carousel1,
+          SizedBox(height: 50.0),
+          Text(
+            " Banquet Halls",
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
             ),
-            SizedBox(height: 10.0),
-            image_carousel2,
-          ],
-        ),
-      );
-    }
+          ),
+          SizedBox(height: 10.0),
+          image_carousel2,
+        ],
+      ),
+    );
   }
+}

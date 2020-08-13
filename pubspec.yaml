@@ -27,7 +27,11 @@ dependencies:
   carousel_slider: ^2.2.1
   firebase_auth: ^0.16.1
   cloud_firestore: ^0.13.7
-  table_calendar: ^2.2.3
+  table_calendar: ^2.2.1
+  firebase_helpers: ^0.1.8
+  google_maps_flutter: ^0.5.30
+  geolocator: ^5.3.2+2
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,6 +44,7 @@ dev_dependencies:
   provider: ^3.1.0
   firebase_auth: ^0.16.1
   cloud_firestore: ^0.13.7
+
 
 
 

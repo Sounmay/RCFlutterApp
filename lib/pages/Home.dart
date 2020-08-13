@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:rcapp/CustomWidget/todays_menucategory.dart';
@@ -12,8 +13,42 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
 
+  bool areYouadmin;
+  String userName;
+  String userNumber;
+
+  Future getAdmin() async {
+    try {
+      var userkaabba = (await FirebaseAuth.instance.currentUser()).uid;
+      var dat = await Firestore.instance
+          .collection("userInfo")
+          .document(userkaabba)
+          .get();
+      setState(() {
+        areYouadmin = dat.data["isAdmin"];
+        userName = dat.data["name"];
+        userNumber = dat.data["number"];
+      });
+      // .then((value) => value.data["IsAdmin"]);
+    } catch (e) {
+      print(e.toString());
+    }
+
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getAdmin();
+  }
+
   @override
   Widget build(BuildContext context) {
+    // final userData = Provider.of<UserData>(context);
+
+    // getAdmin();
+
     Widget imageCarousel = new Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         height: 180.0,
@@ -58,43 +93,71 @@ class _HomeState extends State<Home> {
       ),
       drawer: Drawer(
         child: SafeArea(
-          child: Column(children: <Widget>[
-            Row(children: <Widget>[
-              CircleAvatar(
-                radius: 60.0,
-                backgroundImage: NetworkImage(
-                    'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
-                backgroundColor: Colors.transparent,
-              ),
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Naiyar Imam',
-                      style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          child: Container(
+            height: 100,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(children: <Widget>[
+                    CircleAvatar(
+                      radius: 60.0,
+                      backgroundImage: NetworkImage(
+                          'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
+                      backgroundColor: Colors.transparent,
                     ),
-                    Text(
-                      'Personal No. 3433243467',
-                      style: TextStyle(color: Colors.grey[700]),
-                    )
-                  ])
-            ]),
-            SizedBox(height: 20),
-            InkWell(
-                onTap: () {},
-                child: Text(
-                  'My Bookings',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                )),
-            SizedBox(height: 10),
-            InkWell(
-                onTap: () {},
-                child: Text(
-                  'Previous Orders',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                ))
-          ]),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            '$userName',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          Text(
+                            'Personal No. $userNumber',
+                            style: TextStyle(color: Colors.grey[700]),
+                          ),
+                        ])
+                  ]),
+                  SizedBox(height: 20),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+                    child: InkWell(
+                        onTap: () {},
+                        child: Text(
+                          'My Bookings',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        )),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+                    child: InkWell(
+                        onTap: () {},
+                        child: Text(
+                          'Previous Orders',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        )),
+                  ),
+                  SizedBox(height: 10),
+                  AdminOption(areYouadmin: areYouadmin),
+                  SizedBox(height: 290),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+                    child: InkWell(
+                        onTap: () async {
+                          await _auth.signOut();
+                        },
+                        child: Text(
+                          'Sign Out',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        )),
+                  ),
+                ]),
+          ),
         ),
       ),
       body: new ListView(
@@ -110,7 +173,7 @@ class _HomeState extends State<Home> {
                     'Rourkela Club Menu',
                     style: TextStyle(
                         color: Colors.deepOrange,
-                        fontSize: 15,
+                        fontSize: 10,
                         decoration: TextDecoration.underline),
                   ),
                   IconButton(
@@ -129,7 +192,7 @@ class _HomeState extends State<Home> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           HomeListPage(),
           SizedBox(height: 10.0),
           Row(
@@ -146,7 +209,7 @@ class _HomeState extends State<Home> {
               SizedBox(width: 130.0),
               OutlineButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/adminorder');
+                  Navigator.pushNamed(context, '/food');
                 },
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(10.0)),
@@ -171,11 +234,6 @@ class _HomeState extends State<Home> {
           SizedBox(height: 50)
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await _auth.signOut();
-          },
-          child: Text('Sign Out')),
     );
   }
 }
@@ -260,5 +318,43 @@ class _HomeListPageState extends State<HomeListPage> {
             }
           }),
     );
+  }
+}
+
+class AdminOption extends StatefulWidget {
+  bool areYouadmin;
+  AdminOption({this.areYouadmin});
+  @override
+  _AdminOptionState createState() => _AdminOptionState();
+}
+
+class _AdminOptionState extends State<AdminOption> {
+  @override
+  Widget build(BuildContext context) {
+    if (isAdminglobal || widget.areYouadmin != null) {
+      return Container(
+        padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+        child: InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, '/adminorder');
+          },
+          child: Text(
+            'Admin Orders',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          ),
+        ),
+      );
+    } else if(isAdminglobal == null){
+      return Container(
+        padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+        child: InkWell(
+          onTap: () {},
+          child: Text(
+            null,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          ),
+        ),
+      );
+    }
   }
 }

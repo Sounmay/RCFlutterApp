@@ -11,6 +11,8 @@ import 'pages/booking_calendar.dart';
 import 'pages/Cart.dart';
 import 'pages/admin_order_confirm.dart';
 import 'pages/orderdetails.dart';
+import 'pages/add_event.dart';
+
 
 
 void main() => runApp(MyApp());
@@ -26,11 +28,12 @@ class MyApp extends StatelessWidget {
         routes: {
 
           '/food': (context) => Food(),
-          '/wrapper': (context) => wrapper(),
+          '/wrapper': (context) => Wrapper(),
           '/bookingcalendar': (context) => Calendar(),
           '/cart': (context) => Cart(),
           '/adminorder' : (context) => AdminOrder(),
           '/orderdetails' : (context) => OrderDetails(),
+          "/add_event": (context) => AddEventPage(),
         },
       ),
     );

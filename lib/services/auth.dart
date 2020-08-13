@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rcapp/models/user.dart';
 import 'package:rcapp/services/database.dart';
+
+var isAdminglobal = false;
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -16,16 +19,17 @@ class AuthService {
   }
 
   //sign in anon
-  Future signInAnon() async {
-    try {
-      AuthResult result = await _auth.signInAnonymously();
-      FirebaseUser user = result.user;
-      return _userFromFirebaseUser(user);
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
-  }
+  // Future signInAnon() async {
+  //   try {
+  //     AuthResult result = await _auth.signInAnonymously();
+  //     FirebaseUser user = result.user;
+
+  //     return _userFromFirebaseUser(user);
+  //   } catch (e) {
+  //     print(e.toString());
+  //     return null;
+  //   }
+  // }
 
   //sign with email and password
   Future signInWithEmailAndPassword(String email, String password) async {
@@ -33,6 +37,16 @@ class AuthService {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: (email), password: (password));
       FirebaseUser user = result.user;
+
+      var userkaabba = (await FirebaseAuth.instance.currentUser()).uid;
+      var dat = await Firestore.instance
+          .collection("userInfo")
+          .document(userkaabba)
+          .get()
+          .then((value) => value.data["isAdmin"]);
+
+      isAdminglobal = dat;
+
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -42,15 +56,26 @@ class AuthService {
 
   //register with email and pass
   Future registerWithEmailAndPassword(
-      String name, String email, String password) async {
+      String name, bool isAuth, String number, String email, String password) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: (email), password: (password));
       FirebaseUser user = result.user;
 
+
       //create a new document for the user with the uid
       await DatabaseService(uid: user.uid).updateUserData('chowmin', 100, 10);
-      await DatabaseService(uid: user.uid).updateUserInfo('$name');
+      await DatabaseService(uid: user.uid).updateUserInfo('$name', isAuth, '$number');
+
+      var userkaabba = user.uid;
+      var dat = await Firestore.instance
+          .collection("userInfo")
+          .document(userkaabba)
+          .get()
+          .then((value) => value.data["isAdmin"]);
+
+      isAdminglobal = dat;
+
 
       return _userFromFirebaseUser(user);
     } catch (e) {

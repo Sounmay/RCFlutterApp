@@ -55,7 +55,7 @@ class _SearchState extends State<Search> {
                 icon: Icon(Icons.arrow_back),
                 iconSize: 20.0,
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.pushNamed(context, '/food');
                 },
               ),
               contentPadding: EdgeInsets.only(left: 25.0),

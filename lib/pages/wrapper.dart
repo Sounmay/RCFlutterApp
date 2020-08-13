@@ -6,7 +6,7 @@ import 'package:rcapp/pages/NavigationBar.dart';
 import 'package:provider/provider.dart';
 
 
-class wrapper extends StatelessWidget {
+class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);

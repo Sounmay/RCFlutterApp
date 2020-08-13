@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:rcapp/services/auth.dart';
 
@@ -20,6 +18,7 @@ class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
   String error = '';
+  String number = '';
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +46,7 @@ class _RegisterState extends State<Register> {
                   'assets/login.png',
                   fit: BoxFit.contain,
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 15.0),
                 TextFormField(
                     decoration: InputDecoration(
                         hintText: 'Name',
@@ -64,6 +63,24 @@ class _RegisterState extends State<Register> {
                     validator: (val) => val.isEmpty ? 'Enter your Name' : null,
                     onChanged: (val) {
                       setState(() => name = val);
+                    }),
+                SizedBox(height: 18.0),
+                TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Personal No.',
+                        fillColor: Colors.white,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrange, width: 1.0),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrange, width: 3.0),
+                            borderRadius: BorderRadius.circular(10))),
+                    validator: (val) => val.isEmpty ? 'Enter your RSP Personal No.' : null,
+                    onChanged: (val) {
+                      setState(() => number = val);
                     }),
                 SizedBox(height: 18.0),
                 TextFormField(
@@ -121,7 +138,8 @@ class _RegisterState extends State<Register> {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
-                      dynamic result = await _auth.registerWithEmailAndPassword(name, email, password);
+                      dynamic result = await _auth.registerWithEmailAndPassword(
+                          name, false, number, email, password);
                       if (result == null) {
                         setState(() => error = 'please supply a valid email');
                       }

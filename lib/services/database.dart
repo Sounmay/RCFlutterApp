@@ -12,9 +12,11 @@ class DatabaseService {
   final CollectionReference userInfo =
   Firestore.instance.collection('userInfo');
 
-  Future updateUserInfo(String name) async {
+  Future updateUserInfo(String name, bool isAdmin, String number) async {
     return await userInfo.document(uid).setData({
       'name': name,
+      'isAdmin': isAdmin,
+      'number': number,
     });
   }
 
@@ -26,14 +28,10 @@ class DatabaseService {
     });
   }
 
-//get food stream
-// Stream<QuerySnapshot> get food {
-//   return foodCollection.snapshots()
-// }
 
 }
 
-//create menu object based on firebase
+// create menu object based on firebase
 Future menu;
 
 Future getPosts(numb) async {

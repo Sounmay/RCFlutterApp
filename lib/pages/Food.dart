@@ -20,6 +20,7 @@ class _FoodState extends State<Food> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 10.0,
         backgroundColor: Colors.deepOrange,
         title: Text("Menu"),
