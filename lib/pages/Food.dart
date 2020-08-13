@@ -23,6 +23,17 @@ class _FoodState extends State<Food> {
         elevation: 10.0,
         backgroundColor: Colors.deepOrange,
         title: Text("Menu"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+            ),
+            onPressed: (){
+              Navigator.pushNamed(context, '/cart');
+            },
+          )
+        ],
       ),
       body: new ListView(
         padding: EdgeInsets.all(10),

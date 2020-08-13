@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rcapp/pages/Cart.dart';
 import 'package:rcapp/pages/Home.dart';
+import 'package:rcapp/pages/welcome.dart';
 import 'package:rcapp/services/auth.dart';
 import 'pages/wrapper.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ import 'pages/Cart.dart';
 import 'pages/admin_order_confirm.dart';
 import 'pages/orderdetails.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,10 +22,11 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: wrapper(),
+        home: welcome(),
         routes: {
 
           '/food': (context) => Food(),
+          '/wrapper': (context) => wrapper(),
           '/bookingcalendar': (context) => Calendar(),
           '/cart': (context) => Cart(),
           '/adminorder' : (context) => AdminOrder(),

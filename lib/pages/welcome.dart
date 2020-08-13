@@ -10,7 +10,7 @@ class _welcomeState extends State<welcome> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamed(context, '/wrapper');
     });
     return Scaffold(
       backgroundColor: Colors.deepOrange,
