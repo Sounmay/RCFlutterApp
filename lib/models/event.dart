@@ -1,13 +1,14 @@
 import 'package:firebase_helpers/firebase_helpers.dart';
 
-class EventModel extends DatabaseItem{
+class EventModel extends DatabaseItem {
   final String id;
   final String name;
   final String personalno;
   final String Lounge;
   final DateTime eventDate;
 
-  EventModel({this.id,this.name, this.personalno, this.Lounge, this.eventDate}):super(id);
+  EventModel({this.id, this.name, this.personalno, this.Lounge, this.eventDate})
+      : super(id);
 
   factory EventModel.fromMap(Map data) {
     return EventModel(
@@ -18,7 +19,7 @@ class EventModel extends DatabaseItem{
     );
   }
 
-  factory EventModel.fromDS(String id, Map<String,dynamic> data) {
+  factory EventModel.fromDS(String id, Map<String, dynamic> data) {
     return EventModel(
       id: id,
       name: data['name'],
@@ -28,13 +29,13 @@ class EventModel extends DatabaseItem{
     );
   }
 
-  Map<String,dynamic> toMap() {
+  Map<String, dynamic> toMap() {
     return {
-      "name":name,
+      "name": name,
       "personal no": personalno,
       "Lounge": Lounge,
-      "event_date":eventDate,
-      "id":id,
+      "event_date": eventDate,
+      "id": id,
     };
   }
 }

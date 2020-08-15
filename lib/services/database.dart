@@ -12,6 +12,9 @@ class DatabaseService {
   final CollectionReference userInfo =
   Firestore.instance.collection('userInfo');
 
+  final CollectionReference confirmedOrders =
+  Firestore.instance.collection('confirmedOrders');
+
   Future updateUserInfo(String name, bool isAdmin, String number) async {
     return await userInfo.document(uid).setData({
       'name': name,
@@ -28,7 +31,21 @@ class DatabaseService {
     });
   }
 
-
+  Future confirmOrderofUser(String id, String name, String number, List item, List qty, int total, bool isConfirmed) async {
+    return await confirmedOrders
+        .document(uid)
+        .setData(
+        {
+          'id': id,
+          'name': name,
+          'number': number,
+          'item': item,
+          'quantity': qty,
+          'total': total,
+          'isConfirmed': isConfirmed
+        }
+    );
+  }
 }
 
 // create menu object based on firebase

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rcapp/CustomWidget/todays_menucategory.dart';
 import 'package:rcapp/services/auth.dart';
 
@@ -33,7 +34,6 @@ class _HomeState extends State<Home> {
     } catch (e) {
       print(e.toString());
     }
-
   }
 
   @override
@@ -95,68 +95,7 @@ class _HomeState extends State<Home> {
         child: SafeArea(
           child: Container(
             height: 100,
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(children: <Widget>[
-                    CircleAvatar(
-                      radius: 60.0,
-                      backgroundImage: NetworkImage(
-                          'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
-                      backgroundColor: Colors.transparent,
-                    ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            '$userName',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                          Text(
-                            'Personal No. $userNumber',
-                            style: TextStyle(color: Colors.grey[700]),
-                          ),
-                        ])
-                  ]),
-                  SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
-                    child: InkWell(
-                        onTap: () {},
-                        child: Text(
-                          'My Bookings',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        )),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
-                    child: InkWell(
-                        onTap: () {},
-                        child: Text(
-                          'Previous Orders',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        )),
-                  ),
-                  SizedBox(height: 10),
-                  AdminOption(areYouadmin: areYouadmin),
-                  SizedBox(height: 290),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
-                    child: InkWell(
-                        onTap: () async {
-                          await _auth.signOut();
-                        },
-                        child: Text(
-                          'Sign Out',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        )),
-                  ),
-                ]),
+            child: LoadingData(auth: _auth),
           ),
         ),
       ),
@@ -209,7 +148,7 @@ class _HomeState extends State<Home> {
               SizedBox(width: 130.0),
               OutlineButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/food');
+                  Navigator.pushNamed(context, '/address');
                 },
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(10.0)),
@@ -269,8 +208,19 @@ class _HomeListPageState extends State<HomeListPage> {
           future: _data,
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: Text("Loading"),
+              return Container(
+                height: 200,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SpinKitDoubleBounce(
+                        color: Colors.deepOrange,
+                        size: 38,
+                      ),
+                      SizedBox(height: 20),
+                      Text('LOADING',
+                          style: TextStyle(fontWeight: FontWeight.w500))
+                    ]),
               );
             } else {
               return ListView.builder(
@@ -331,7 +281,7 @@ class AdminOption extends StatefulWidget {
 class _AdminOptionState extends State<AdminOption> {
   @override
   Widget build(BuildContext context) {
-    if (isAdminglobal || widget.areYouadmin != null) {
+    if (isAdminglobal || widget.areYouadmin == true) {
       return Container(
         padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
         child: InkWell(
@@ -344,17 +294,140 @@ class _AdminOptionState extends State<AdminOption> {
           ),
         ),
       );
-    } else if(isAdminglobal == null){
+    } else if (isAdminglobal == null || isAdminglobal == false) {
       return Container(
         padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
         child: InkWell(
           onTap: () {},
           child: Text(
-            null,
+            ' ',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
         ),
       );
     }
+  }
+}
+
+class LoadingData extends StatefulWidget {
+  var auth;
+  LoadingData({this.auth});
+  @override
+  _LoadingDataState createState() => _LoadingDataState();
+}
+
+class _LoadingDataState extends State<LoadingData> {
+  Future _userData;
+
+  Future getAdmin() async {
+    var userkaabba = (await FirebaseAuth.instance.currentUser()).uid;
+    return await Firestore.instance
+        .collection("userInfo")
+        .document(userkaabba)
+        .get();
+    // setState(() {
+    //   areYouadmin = dat.data["isAdmin"];
+    //   userName = dat.data["name"];
+    //   userNumber = dat.data["number"];
+    // });
+    // .then((value) => value.data["IsAdmin"]);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _userData = getAdmin();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final AuthService _auth = AuthService();
+
+    return Container(
+        child: FutureBuilder(
+            future: _userData,
+            builder: (_, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Container(
+                  height: 200,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        SpinKitDoubleBounce(
+                          color: Colors.deepOrange,
+                          size: 38,
+                        ),
+                        SizedBox(height: 20),
+                        Text('LOADING',
+                            style: TextStyle(fontWeight: FontWeight.w500))
+                      ]),
+                );
+              } else {
+                return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(children: <Widget>[
+                        CircleAvatar(
+                          radius: 60.0,
+                          backgroundImage: NetworkImage(
+                              'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
+                          backgroundColor: Colors.transparent,
+                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                '${snapshot.data["name"]}',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              Text(
+                                'Personal No. ${snapshot.data["number"]}',
+                                style: TextStyle(color: Colors.grey[700]),
+                              ),
+                            ])
+                      ]),
+                      SizedBox(height: 20),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+                        child: InkWell(
+                            onTap: () {},
+                            child: Text(
+                              'My Bookings',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+                        child: InkWell(
+                            onTap: () {},
+                            child: Text(
+                              'Previous Orders',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                      SizedBox(height: 10),
+                      AdminOption(areYouadmin: snapshot.data["isAdmin"]),
+                      SizedBox(height: 290),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+                        child: InkWell(
+                            onTap: () async {
+                              await _auth.signOut();
+                            },
+                            child: Text(
+                              'Sign Out',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ]);
+              }
+            }));
   }
 }

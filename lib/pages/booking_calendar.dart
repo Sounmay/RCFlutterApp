@@ -39,6 +39,7 @@ class _CalendarState extends State<Calendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
         title: Text('Lounge Booking Calendar'),
       ),
       body: StreamBuilder<List<EventModel>>(
@@ -124,6 +125,7 @@ class _CalendarState extends State<Calendar> {
         }
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepOrange,
         child: Text('Book',
         style: TextStyle(
             color: Colors.white

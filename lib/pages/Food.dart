@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rcapp/CustomWidget/foot_category.dart';
 import 'package:rcapp/CustomWidget/menu_category.dart';
 import 'package:rcapp/pages/Search.dart';
+import 'package:rcapp/pages/storeData.dart';
+
+var cartList = [];
+
+class Orders {
+  final String item;
+  final int price;
+  final int quantity;
+
+  Orders(this.item, this.price, this.quantity);
+}
+
+Orders newOrder;
 
 class Food extends StatefulWidget {
   @override
@@ -11,8 +25,6 @@ class Food extends StatefulWidget {
 }
 
 class _FoodState extends State<Food> {
-  int FQty = 0;
-
   Icon cusIcon = Icon(Icons.search);
   Widget cusSearchBar = Text("Menu");
 
@@ -30,7 +42,7 @@ class _FoodState extends State<Food> {
               Icons.shopping_cart,
               color: Colors.white,
             ),
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, '/cart');
             },
           )
@@ -89,16 +101,20 @@ class Quantity extends StatefulWidget {
 }
 
 class _QuantityState extends State<Quantity> {
-  int FQty = 0;
+  bool isChecked = false;
+
+  void toggle() {
+    setState(() {
+      isChecked = !isChecked;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (FQty == 0) {
+    if (!isChecked) {
       return InkWell(
         onTap: () {
-          setState(() {
-            FQty++;
-          });
+          toggle();
         },
         child: Container(
           margin: EdgeInsets.fromLTRB(0, 0, 14, 0),
@@ -118,95 +134,27 @@ class _QuantityState extends State<Quantity> {
         ),
       );
     } else {
-      return Row(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.deepOrange,
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: Colors.grey, width: 0.1),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 2.0,
-                    offset: Offset(2.1, 2.2))
-              ],
-            ),
-            height: 25,
-            width: 30,
-            child: IconButton(
-              padding: EdgeInsets.all(0),
-              icon: Icon(
-                Icons.remove,
-                size: 18,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                setState(() {
-                  if (FQty > 0) {
-                    FQty -= 1;
-                  }
-                });
-              },
-            ),
+      return InkWell(
+        onTap: () {
+          toggle();
+        },
+        child: Container(
+          margin: EdgeInsets.fromLTRB(0, 0, 14, 0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Colors.grey, width: 0.1),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey, blurRadius: 2.0, offset: Offset(2.1, 2.2))
+            ],
           ),
-          Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: Colors.grey, width: 0.1),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 2.0,
-                    offset: Offset(2.1, 2.2))
-              ],
-            ),
-            height: 28,
-            width: 33,
-            child: Text(
-              '$FQty',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-            ),
-          ),
-          // Text(
-          //   '$FQty',
-          //   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-          // ),
-          Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.deepOrange,
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: Colors.grey, width: 0.1),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 2.0,
-                    offset: Offset(2.1, 2.2))
-              ],
-            ),
-            height: 25,
-            width: 30,
-            child: IconButton(
-              padding: EdgeInsets.all(0),
-              icon: Icon(
-                Icons.add,
-                size: 18,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                setState(() {
-                  if (FQty > 0) {
-                    FQty += 1;
-                  }
-                });
-              },
-            ),
-          ),
-        ],
+          height: 25,
+          width: 66,
+          child: Center(
+              child:
+              Text('Remove', style: TextStyle(color: Colors.deepOrange))),
+        ),
       );
     }
   }
@@ -227,6 +175,27 @@ class _ListPageState extends State<ListPage> {
     return qn.documents;
   }
 
+  StoreData storeData = StoreData();
+
+  int _cartBadge = 0;
+
+  void addToCart(DocumentSnapshot post) async {
+    String item = await post.data["item"];
+    int price = await post.data["price"];
+    // if ((cartList.singleWhere((element) => element.item == item,
+    //         orElse: () => null)) !=
+    //     null) {
+    //   return;
+    // } else {
+    //   cartList.add(Orders(item, price, 1));
+    // }
+    storeData.StoreFoodDetails(item, price, 1);
+    setState(() {
+      ++_cartBadge;
+    });
+    print(item);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -242,62 +211,81 @@ class _ListPageState extends State<ListPage> {
           future: _data,
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: Text("Loading"),
+              return Container(
+                height: 200,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SpinKitDualRing(
+                        color: Colors.deepOrange,
+                        size: 38,
+                      ),
+                      SizedBox(height: 20),
+                      Text('LOADING',
+                          style: TextStyle(fontWeight: FontWeight.w500))
+                    ]),
               );
             } else {
               return ListView.builder(
                   shrinkWrap: true,
                   itemCount: snapshot.data.length,
                   itemBuilder: (_, index) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.radio_button_checked,
-                                    color: Colors.green,
+                    return ListTile(
+                      onTap: () {
+                        addToCart(snapshot.data[index]);
+                      },
+                      title: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  IconButton(
+                                    onPressed: () {
+                                      addToCart(snapshot.data[index]);
+                                    },
+                                    icon: Icon(
+                                      Icons.radio_button_unchecked,
+                                      color: Colors.green,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  '${snapshot.data[index].data["item"]}',
+                                  Text(
+                                    '${snapshot.data[index].data["item"]}',
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              Quantity()
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Container(
+                                margin:
+                                new EdgeInsets.symmetric(horizontal: 50.0),
+                                child: Text(
+                                  '₹' + '${snapshot.data[index].data["price"]}',
                                   style: TextStyle(
-                                      fontSize: 17,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                              ],
-                            ),
-                            Quantity()
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              margin:
-                              new EdgeInsets.symmetric(horizontal: 50.0),
-                              child: Text(
-                                '₹' + '${snapshot.data[index].data["price"]}',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10.0),
-                        const Divider(
-                          color: Colors.grey,
-                          height: 2,
-                          thickness: 1,
-                          indent: 5,
-                          endIndent: 5,
-                        ),
-                      ],
+                            ],
+                          ),
+                          SizedBox(height: 10.0),
+                          const Divider(
+                            color: Colors.grey,
+                            height: 2,
+                            thickness: 1,
+                            indent: 5,
+                            endIndent: 5,
+                          ),
+                        ],
+                      ),
                     );
                   });
             }
