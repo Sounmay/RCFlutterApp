@@ -541,7 +541,7 @@ class _ListPageState extends State<ListPage> {
                   SizedBox(width: 20),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, "/allmenu");
+                      Navigator.pushNamed(context, "/cart");
                     },
                     child: Container(
                       height: 100.0,
