@@ -17,7 +17,7 @@ class DatabaseService {
   final CollectionReference breakfastmenufoods =
   Firestore.instance.collection('Breakfast');
   final CollectionReference chinesefoods =
-  Firestore.instance.collection('chinese');
+  Firestore.instance.collection('Chinese');
   final CollectionReference biryanifoods =
   Firestore.instance.collection('Biryani');
   final CollectionReference starterfoods =
