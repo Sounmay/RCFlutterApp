@@ -13,17 +13,17 @@ class AddressModel extends DatabaseItem {
 
   factory AddressModel.fromMap(Map data) {
     return AddressModel(
-      houseno: data['houseno'],
-      streetname: data['streetname'],
-      area: data['area'],
-      city: data['city'],
-      pincode: data['pincode']
+        houseno: data['houseno'],
+        streetname: data['streetname'],
+        area: data['area'],
+        city: data['city'],
+        pincode: data['pincode']
     );
   }
 
   factory AddressModel.fromDS(String id, Map<String, dynamic> data) {
     return AddressModel(
-      id: id,
+        id: id,
         houseno: data['houseno'],
         streetname: data['streetname'],
         area: data['area'],

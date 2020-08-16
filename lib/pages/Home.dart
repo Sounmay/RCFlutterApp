@@ -146,7 +146,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(width: 130.0),
-              OutlineButton(
+             /* OutlineButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/address');
                 },
@@ -154,7 +154,7 @@ class _HomeState extends State<Home> {
                     borderRadius: new BorderRadius.circular(10.0)),
                 child: Text('View'),
                 color: Colors.amber,
-              ),
+              ), */
             ],
           ),
           SizedBox(height: 7.0),
@@ -169,7 +169,11 @@ class _HomeState extends State<Home> {
             ),
           ),
           SizedBox(height: 10.0),
-          TodaysMenuCategory(),
+          Container(
+            height: 150,
+            decoration: BoxDecoration(color: Colors.blue[50]),
+            child: Center(child: Text('No Events')),
+          ),
           SizedBox(height: 50)
         ],
       ),
@@ -300,7 +304,7 @@ class _AdminOptionState extends State<AdminOption> {
         child: InkWell(
           onTap: () {},
           child: Text(
-            ' ',
+            'Notification',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
         ),
@@ -413,7 +417,7 @@ class _LoadingDataState extends State<LoadingData> {
                       ),
                       SizedBox(height: 10),
                       AdminOption(areYouadmin: snapshot.data["isAdmin"]),
-                      SizedBox(height: 290),
+                      SizedBox(height: 10),
                       Container(
                         padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
                         child: InkWell(

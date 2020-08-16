@@ -18,11 +18,11 @@ class EventDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(event.name, style: Theme.of(context).textTheme.display1,),
+            Text("Room : " + event.Lounge, style: Theme.of(context).textTheme.display1,),
             SizedBox(height: 20.0),
-            Text(event.personalno),
+            Text("Booked by : " + event.name),
             SizedBox(height: 20.0),
-            Text(event.Lounge),
+            Text("Personal Number : " + event.personalno),
 
           ],
         ),

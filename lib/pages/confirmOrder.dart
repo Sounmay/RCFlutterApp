@@ -20,12 +20,13 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
 
   void updateTotal() {
     Map<String, int> foodDetail = storeData.retrieveFoodDetails();
+    Map<String, int> foodqtyDetail = storeData.retrieveQtyDetails();
 
     setState(() {
       foodDetail.forEach((k, v) => total = total + v);
       foodDetail.forEach((k, v) => totalquantity = totalquantity + v);
       foodDetail.forEach((key, value) => itemList.add(key));
-      foodDetail.forEach((key, value) => quantityList.add(value));
+      foodqtyDetail.forEach((key, value) => quantityList.add(value));
     });
   }
 
@@ -45,9 +46,10 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
 
     var userName = _dat.data["name"];
     var number = _dat.data["number"];
+    var address = _dat.data["address"];
 
     DatabaseService().confirmOrderofUser(
-        user.uid, userName, number, itemList, quantityList, total, false);
+        user.uid, userName, number, address, itemList, quantityList, total, false);
 
     storeData.resetStore();
     updateTotal();
@@ -70,11 +72,12 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                   children: <Widget>[
                     IconButton(
                       icon: Icon(Icons.radio_button_checked),
+                      color: Colors.green,
                     ),
                     Text('CASH ON DELIVERY')
                   ],
                 )),
-            InkWell(
+            /* InkWell(
               onTap: () {
                 Navigator.pushNamed(context, '/wrapper');
               },
@@ -85,15 +88,22 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                       Text('Sign In')
                     ],
                   )),
-            ),
+            ), */
             SizedBox(height: 300),
-            ButtonTheme(
-              child: RaisedButton(
-                  onPressed: () {
-                    confirmOrder();
-                  },
-                  child: Text('CONFIRM ORDER')),
-            )
+            SizedBox(
+              width: double.infinity,
+                height: 40,
+                child:ButtonTheme(
+                  child: RaisedButton(
+                    color: Colors.deepOrange,
+                      onPressed: () {
+                        confirmOrder();
+                      },
+                      child: Text('CONFIRM ORDER', style: TextStyle(
+                        color: Colors.white,
+                      ))),
+                )
+            ),
           ],
         ));
   }

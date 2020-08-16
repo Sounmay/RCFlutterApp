@@ -147,7 +147,7 @@ class _CartState extends State<Cart> {
                 }),
           ),
           Container(
-            width: double.infinity,
+              width: double.infinity,
               height: 50,
               child:FlatButton(
                   color: Colors.deepOrange,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rcapp/pages/Cart.dart';
 import 'package:rcapp/pages/Food.dart';
+import 'package:rcapp/pages/NavigationBar.dart';
 import 'package:rcapp/pages/add_event.dart';
+import 'package:rcapp/pages/address.dart';
 import 'package:rcapp/pages/admin_order_confirm.dart';
 import 'package:rcapp/pages/booking_calendar.dart';
 import 'package:rcapp/pages/confirmOrder.dart';
@@ -11,7 +13,6 @@ import 'package:rcapp/services/auth.dart';
 import 'pages/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/models/user.dart';
-import 'package:rcapp/pages/add_address.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: welcome(),
         routes: {
-          '/food': (context) => Food(),
+          '/navigationbar': (context) => NavigationBar(),
           '/bookingcalendar': (context) => Calendar(),
           '/cart': (context) => Cart(),
           '/adminorder': (context) => AdminOrder(),
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           '/wrapper': (context) => Wrapper(),
           "/add_event": (context) => AddEventPage(),
           "/confirmOrder": (context) => ConfirmOrder(),
-          "/address" : (context) => AddAddress(),
+          "/address" : (context) => AddressForm(),
         },
       ),
     );

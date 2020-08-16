@@ -54,12 +54,12 @@ class _BookingState extends State<Booking> {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/14.jpg'),
+                  image: AssetImage('assets/17.jpg'),
                   fit: BoxFit.fitWidth,
                   alignment: Alignment.topCenter,
                 ),
               ),
-              child: Text("The Red Lounge",
+              child: Text("Milap Reception Hall",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 25,
@@ -116,24 +116,7 @@ class _BookingState extends State<Booking> {
               ),
             ),
           ),
-          Card(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/17.jpg'),
-                  fit: BoxFit.fitWidth,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-              child: Text("Milar Reception Hall",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
+
         ],
         autoplay: true,
         animationCurve: Curves.fastOutSlowIn,

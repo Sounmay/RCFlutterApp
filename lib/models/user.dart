@@ -19,3 +19,24 @@ class UserData {
 }
 
 UserData currentUser;
+
+class Menu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  Menu({this.item, this.price, this.searchIndex});
+}
+
+class Orders {
+  List item;
+  List qty;
+  String name;
+  String number;
+  String address;
+  int total;
+  bool isConfirmed;
+
+  Orders(
+      {this.item, this.qty, this.name, this.number, this.address, this.total, this.isConfirmed});
+}
