@@ -101,7 +101,7 @@ class _FoodState extends State<Food> {
                 ),
                 SizedBox(height: 10.0),
                 FoodCategory(),
-                SizedBox(height: 10.0),
+                /* SizedBox(height: 10.0),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                   child: Text(
@@ -113,22 +113,24 @@ class _FoodState extends State<Food> {
                     ),
                   ),
                 ),
-                MenuCategories(),
-                SizedBox(height: 10.0),
+                MenuCategories(), */
+                SizedBox(height: 30.0),
                 Container(
-                  width: double.infinity,
+                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                   child: Text(
-                    '   Menu: (Tap to add to cart)',
+                    "Categories: ",
                     style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.deepOrange,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.grey,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 ListPage(update: update),
               ],
             ),
           ),
+          SizedBox(height: 10.0),
           Container(
             width: double.maxFinite,
             height: 54,
@@ -267,10 +269,9 @@ class _ListPageState extends State<ListPage> {
             ]),
       );
     } else {
-      return Container(
-          child: ListView.builder(
+      /*child: ListView.builder(
               physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
+              *//*shrinkWrap: true,
               itemCount: _menuList.length,
               itemBuilder: (_, index) {
                 return ListTile(
@@ -328,7 +329,371 @@ class _ListPageState extends State<ListPage> {
                     ],
                   ),
                 );
-              }));
+              }*//*
+              )*/
+      return Container(
+          margin: const EdgeInsets.all(10.0),
+          height: 400.0,
+          width: double.infinity,
+          child: new Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/30.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/29.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/38.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/39.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/33.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/34.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/27.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/31.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/32.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/35.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/36.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/26.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/28.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/31.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, "/cart");
+                      },
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Center(child: Text('test'), ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: new AssetImage(
+                                    "assets/37.jpg"
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                  ],
+                ),
+              ),
+            ],
+          )
+      );
     }
   }
 }
