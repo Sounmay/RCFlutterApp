@@ -27,6 +27,125 @@ class Menu {
 
   Menu({this.item, this.price, this.searchIndex});
 }
+class BreakfastMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  BreakfastMenu({this.item, this.price, this.searchIndex});
+}
+class PaneerMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  PaneerMenu({this.item, this.price, this.searchIndex});
+}
+class MainCourseMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  MainCourseMenu({this.item, this.price, this.searchIndex});
+}
+class ChineseMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  ChineseMenu({this.item, this.price, this.searchIndex});
+}
+class StarterMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  StarterMenu({this.item, this.price, this.searchIndex});
+}
+class BiryaniMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  BiryaniMenu({this.item, this.price, this.searchIndex});
+}
+class BreadMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  BreadMenu({this.item, this.price, this.searchIndex});
+}
+class TandooriMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  TandooriMenu({this.item, this.price, this.searchIndex});
+}
+class FriedRiceAndNoodlesMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  FriedRiceAndNoodlesMenu({this.item, this.price, this.searchIndex});
+}
+class RollMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  RollMenu({this.item, this.price, this.searchIndex});
+}
+class SandwichMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  SandwichMenu({this.item, this.price, this.searchIndex});
+}
+class PizzaMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  PizzaMenu({this.item, this.price, this.searchIndex});
+}
+class SnacksMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  SnacksMenu({this.item, this.price, this.searchIndex});
+}
+class BurgerMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  BurgerMenu({this.item, this.price, this.searchIndex});
+}
+class PastaMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  PastaMenu({this.item, this.price, this.searchIndex});
+}
+class SoupMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  SoupMenu({this.item, this.price, this.searchIndex});
+}
+class AccompanimentMenu {
+  String item = '';
+  int price = 0;
+  String searchIndex = '';
+
+  AccompanimentMenu({this.item, this.price, this.searchIndex});
+}
 
 class Orders {
   List item;

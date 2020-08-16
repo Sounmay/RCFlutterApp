@@ -10,8 +10,47 @@ class DatabaseService {
   final CollectionReference foodCollection =
   Firestore.instance.collection('food');
 
+
+  //collection reference to different categories of food from firestore
+  final CollectionReference allmenufoods =
+  Firestore.instance.collection('All_Menu');
+  final CollectionReference breakfastmenufoods =
+  Firestore.instance.collection('Breakfast');
   final CollectionReference chinesefoods =
   Firestore.instance.collection('chinese');
+  final CollectionReference biryanifoods =
+  Firestore.instance.collection('Biryani');
+  final CollectionReference starterfoods =
+  Firestore.instance.collection('Starter');
+  final CollectionReference paneerfoods =
+  Firestore.instance.collection('Paneer');
+  final CollectionReference maincoursefoods =
+  Firestore.instance.collection('MainCourse');
+  final CollectionReference breadsfoods =
+  Firestore.instance.collection('Breads');
+  final CollectionReference tandoorifoods =
+  Firestore.instance.collection('Tandoori');
+  final CollectionReference friedriceandnoodlesfoods =
+  Firestore.instance.collection('FriedRice_Noodles');
+  final CollectionReference rollfoods =
+  Firestore.instance.collection('Roll');
+  final CollectionReference pizzafoods =
+  Firestore.instance.collection('Pizza');
+  final CollectionReference snacksfoods =
+  Firestore.instance.collection('Snacks');
+  final CollectionReference sandwichfoods =
+  Firestore.instance.collection('Sandwich');
+  final CollectionReference burgerfoods =
+  Firestore.instance.collection('Burger');
+  final CollectionReference pastafoods =
+  Firestore.instance.collection('Pasta');
+  final CollectionReference soupfoods =
+  Firestore.instance.collection('Soup');
+  final CollectionReference accompanimentfoods =
+  Firestore.instance.collection('Accompaniments');
+
+
+
 
   final CollectionReference userInfo =
   Firestore.instance.collection('userInfo');
@@ -60,6 +99,10 @@ class DatabaseService {
     return qn.documents;
   }
 
+
+
+  //Database related to categories of food data retrieval form firebase
+
   List<Menu> _menuListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Menu(
@@ -68,6 +111,147 @@ class DatabaseService {
           searchIndex: doc.data["search_index"] ?? '');
     }).toList();
   }
+  List<MainCourseMenu> _maincoursemenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return MainCourseMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<ChineseMenu> _chinesemenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return ChineseMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<StarterMenu> _startermenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return StarterMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<BiryaniMenu> _biryanimenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return BiryaniMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<PaneerMenu> _paneermenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return PaneerMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<BreadMenu> _breadmenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return BreadMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<TandooriMenu> _tandoorimenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return TandooriMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<FriedRiceAndNoodlesMenu> _firedriceandnoodlesmenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return FriedRiceAndNoodlesMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<RollMenu> _rollmenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return RollMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<SandwichMenu> _sandwichmenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return SandwichMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<PizzaMenu> _pizzamenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return PizzaMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<SnacksMenu> _snackmenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return SnacksMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<BurgerMenu> _burgermenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return BurgerMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<PastaMenu> _pastamenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return PastaMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<SoupMenu> _soupmenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return SoupMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<AccompanimentMenu> _accompanimentmenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return AccompanimentMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  List<BreakfastMenu> _breakfastmenuListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return BreakfastMenu(
+          item: doc.data["item"] ?? '',
+          price: doc.data["price"] ?? 0,
+          searchIndex: doc.data["search_index"] ?? '');
+    }).toList();
+  }
+  
+
+
+
+  //Storing order data of customers as confirmedOrders in firesore_database
 
   List<Orders> _orderListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
@@ -82,9 +266,68 @@ class DatabaseService {
     }).toList();
   }
 
-  Stream<List<Menu>> get chinese {
-    return chinesefoods.snapshots().map(_menuListFromSnapshot);
+
+
+  //Stream provider for different categories of food in widgets
+
+  Stream<List<ChineseMenu>> get chinese {
+    return chinesefoods.snapshots().map(_chinesemenuListFromSnapshot);
   }
+  Stream<List<MainCourseMenu>> get maincourse {
+    return maincoursefoods.snapshots().map(_maincoursemenuListFromSnapshot);
+  }
+  Stream<List<PaneerMenu>> get paneer {
+    return paneerfoods.snapshots().map(_paneermenuListFromSnapshot);
+  }
+  Stream<List<BiryaniMenu>> get biryani {
+    return biryanifoods.snapshots().map(_biryanimenuListFromSnapshot);
+  }
+  Stream<List<StarterMenu>> get starter {
+    return starterfoods.snapshots().map(_startermenuListFromSnapshot);
+  }
+  Stream<List<Menu>> get allmenu {
+    return starterfoods.snapshots().map(_menuListFromSnapshot);
+  }
+  Stream<List<BreadMenu>> get breadmenu {
+    return breadsfoods.snapshots().map(_breadmenuListFromSnapshot);
+  }
+  Stream<List<TandooriMenu>> get tandoorimenu {
+    return tandoorifoods.snapshots().map(_tandoorimenuListFromSnapshot);
+  }
+  Stream<List<FriedRiceAndNoodlesMenu>> get friedriceandmenu {
+    return friedriceandnoodlesfoods.snapshots().map(_firedriceandnoodlesmenuListFromSnapshot);
+  }
+  Stream<List<RollMenu>> get rollmenu {
+    return rollfoods.snapshots().map(_rollmenuListFromSnapshot);
+  }
+  Stream<List<SandwichMenu>> get sandwichmenu {
+    return sandwichfoods.snapshots().map(_sandwichmenuListFromSnapshot);
+  }
+  Stream<List<PizzaMenu>> get pizzamenu {
+    return pizzafoods.snapshots().map(_pizzamenuListFromSnapshot);
+  }
+  Stream<List<SnacksMenu>> get snackmenu {
+    return snacksfoods.snapshots().map(_snackmenuListFromSnapshot);
+  }
+  Stream<List<BurgerMenu>> get burgermenu {
+    return burgerfoods.snapshots().map(_burgermenuListFromSnapshot);
+  }
+  Stream<List<PastaMenu>> get pastamenu {
+    return pastafoods.snapshots().map(_pastamenuListFromSnapshot);
+  }
+  Stream<List<SoupMenu>> get soupmenu {
+    return soupfoods.snapshots().map(_soupmenuListFromSnapshot);
+  }
+  Stream<List<AccompanimentMenu>> get accompanimentmenu {
+    return accompanimentfoods.snapshots().map(_accompanimentmenuListFromSnapshot);
+  }
+  Stream<List<BreakfastMenu>> get breakfastmenu {
+    return accompanimentfoods.snapshots().map(_breakfastmenuListFromSnapshot);
+  }
+
+
+
+
 
   final CollectionReference menuorders =
   Firestore.instance.collection("confirmedOrders");

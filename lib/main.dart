@@ -34,6 +34,9 @@ class MyApp extends StatelessWidget {
           "/add_event": (context) => AddEventPage(),
           "/confirmOrder": (context) => ConfirmOrder(),
           "/address" : (context) => AddressForm(),
+
+          //routes for different categories of food
+          // "/indian" : (context) => 
         },
       ),
     );
