@@ -1,5 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:rcapp/pages/Cart.dart';
+import 'package:rcapp/pages/CategoryMenuList/Accompaniment_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/All_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Biryani_MenuList.dart';
+import 'package:rcapp/pages/CategoryMenuList/Bread_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Breakfast_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Burger_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/FriedRiceAndNoodles_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/MainCourse_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Paneer_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Pasta_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Pizza_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Roll_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Sandwich_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Snacks_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Soup_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Starter_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Tandoori_Menu.dart';
 import 'package:rcapp/pages/Food.dart';
 import 'package:rcapp/pages/NavigationBar.dart';
 import 'package:rcapp/pages/add_event.dart';
@@ -36,7 +53,24 @@ class MyApp extends StatelessWidget {
           "/address" : (context) => AddressForm(),
 
           //routes for different categories of food
-          // "/indian" : (context) => 
+          "/allmenu" : (context) => AllMenu(),
+          "/biryanimenu" : (context) => Biryani_MenuList(),
+          "/breadmenu" : (context) => Bread_MenuList(),
+          "/breakfastmenu" : (context) => Breakfast_MenuList(),
+          "/burgermenu" : (context) => Burger_MenuList(),
+          "/chinesemenu" : (context) => Burger_MenuList(),
+          "/friedriceandnoodlesmenu" : (context) => FriedRiceAndNoodles_MenuList(),
+          "/maincoursemenu" : (context) => MainCourse_MenuList(),
+          "/paneermenu" : (context) => Paneer_MenuList(),
+          "/pastamenu" : (context) => Pasta_MenuList(),
+          "/pizzamenu" : (context) => Pizza_MenuList(),
+          "/rollmenu" : (context) => Roll_MenuList(),
+          "/sandwichmenu" : (context) => Sandwich_MenuList(),
+          "/snacksmenu" : (context) => Snacks_MenuList(),
+          "/soupmenu" : (context) => Soup_MenuList(),
+          "/startermenu" : (context) => StarterMenuList(),
+          "/tandoorimenu" : (context) => Tandoori_MenuList(),
+          "/accompanimentmenu" : (context) => Accompaniment_Menu(),
         },
       ),
     );

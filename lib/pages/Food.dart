@@ -245,7 +245,7 @@ class _ListPageState extends State<ListPage> {
                 children: <Widget>[
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, "/cart");
+                      Navigator.pushNamed(context, "/allmenu");
                     },
                     child: Container(
                       height: 100.0,
