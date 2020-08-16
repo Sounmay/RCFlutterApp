@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rcapp/pages/Cart.dart';
+import 'package:rcapp/pages/CategoryMenuList/Accompaniment_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/All_Menu.dart';
 import 'package:rcapp/pages/Food.dart';
 import 'package:rcapp/pages/NavigationBar.dart';
 import 'package:rcapp/pages/add_event.dart';
@@ -34,6 +36,11 @@ class MyApp extends StatelessWidget {
           "/add_event": (context) => AddEventPage(),
           "/confirmOrder": (context) => ConfirmOrder(),
           "/address" : (context) => AddressForm(),
+          "/allmenu" : (context) => AllMenu(),
+          "/accompaniment" : (context) => Accompaniment_Menu(),
+
+          //routes for different categories of food
+          // "/indian" : (context) => 
         },
       ),
     );

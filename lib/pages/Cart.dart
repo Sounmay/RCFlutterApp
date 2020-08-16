@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rcapp/pages/Food.dart';
 import 'package:rcapp/pages/order_cart.dart';
 import 'package:rcapp/pages/storeData.dart';
@@ -15,10 +18,25 @@ class _CartState extends State<Cart> {
 
   StoreData storeDataforCart = StoreData();
 
+  var address = '';
+
+  void init() async {
+    var user = await FirebaseAuth.instance.currentUser();
+    var _dat = await Firestore.instance
+        .collection('userInfo')
+        .document(user.uid)
+        .get();
+
+    setState(() {
+      address = _dat.data["address"];
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    init();
     updateTotal();
   }
 
@@ -71,7 +89,49 @@ class _CartState extends State<Cart> {
           title: Text('Cart'),
         ),
         body: Column(children: <Widget>[
-          SizedBox(height: 30),
+          SizedBox(height: 10),
+          Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(left: 20),
+                    child: Text(
+                      'Deliver To:',
+                      style: TextStyle(
+                          color: Colors.deepOrange,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Row(children: <Widget>[
+                    Container(
+                      child: Text(
+                        'Change/Add',
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.deepOrange,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 15),
+                      child: IconButton(
+                        icon: Icon(Icons.edit),
+                        color: Colors.deepOrange,
+                        onPressed: () {
+                          Navigator.popAndPushNamed(context, '/address');
+                        },
+                      ),
+                    )
+                  ])
+                ],
+              ),
+              Text(
+                '$address'
+              )
+            ],
+          ),
           OrderCard(total: total),
           Expanded(
             child: ListView.builder(
@@ -124,7 +184,7 @@ class _CartState extends State<Cart> {
                           children: <Widget>[
                             Container(
                               margin:
-                              new EdgeInsets.symmetric(horizontal: 50.0),
+                                  new EdgeInsets.symmetric(horizontal: 50.0),
                               child: Text(
                                 '₹' + '$price' + '   Quantity: ' + '$qty',
                                 style: TextStyle(
@@ -146,16 +206,7 @@ class _CartState extends State<Cart> {
                   );
                 }),
           ),
-          Container(
-              width: double.infinity,
-              height: 50,
-              child:FlatButton(
-                  color: Colors.deepOrange,
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/confirmOrder');
-                  },
-                  child: Text('Proceed to Pay', style: TextStyle(color: Colors.white),))
-          ),
+          ProceedAccess(address: address)
         ]));
   }
 }
@@ -171,12 +222,12 @@ class QuantityInCart extends StatefulWidget {
 
   QuantityInCart(
       {this.index,
-        this.price,
-        this.qtyList,
-        this.qty,
-        this.keyname,
-        this.quantityDecreement,
-        this.quantityIncreement});
+      this.price,
+      this.qtyList,
+      this.qty,
+      this.keyname,
+      this.quantityDecreement,
+      this.quantityIncreement});
   @override
   _QuantityInCartState createState() => _QuantityInCartState();
 }
@@ -297,6 +348,49 @@ class _QuantityInCartState extends State<QuantityInCart> {
           ),
         ],
       );
+    }
+  }
+}
+
+class ProceedAccess extends StatefulWidget {
+  var address;
+  ProceedAccess({this.address});
+  @override
+  _ProceedAccessState createState() => _ProceedAccessState();
+}
+
+class _ProceedAccessState extends State<ProceedAccess> {
+  @override
+  Widget build(BuildContext context) {
+    if (widget.address == '') {
+      return Container(
+          width: double.infinity,
+          height: 50,
+          child: FlatButton(
+              color: Colors.deepOrange,
+              onPressed: () {
+                Navigator.pushNamed(context, '/address');
+              },
+              child: Text(
+                'Add address to proceed',
+                style: TextStyle(color: Colors.white),
+              )));
+    } else if (widget.address != '') {
+      return Container(
+          width: double.infinity,
+          height: 50,
+          child: FlatButton(
+              color: Colors.deepOrange,
+              onPressed: () {
+                Navigator.pushNamed(context, '/confirmOrder');
+              },
+              child: Text(
+                'Proceed to Pay',
+                style: TextStyle(color: Colors.white),
+              )));
+    } else if (widget.address == null) {
+      return Container(
+          width: double.infinity, height: 50, child: SpinKitChasingDots());
     }
   }
 }

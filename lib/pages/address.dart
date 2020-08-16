@@ -99,7 +99,7 @@ class _AddressFormState extends State<AddressForm> {
                                     color: Colors.deepOrange, width: 3.0),
                                 borderRadius: BorderRadius.circular(10))),
                         validator: (val) =>
-                        val.isEmpty ? 'Please Enter Your Area' : null,
+                            val.isEmpty ? 'Please Enter Your Area' : null,
                         obscureText: false,
                         onChanged: (val) {
                           setState(() => _area = val);
@@ -119,7 +119,7 @@ class _AddressFormState extends State<AddressForm> {
                                     color: Colors.deepOrange, width: 3.0),
                                 borderRadius: BorderRadius.circular(10))),
                         validator: (val) =>
-                        val.isEmpty ? 'Please Enter Your City' : null,
+                            val.isEmpty ? 'Please Enter Your City' : null,
                         obscureText: false,
                         onChanged: (val) {
                           setState(() => _city = val);
@@ -139,7 +139,7 @@ class _AddressFormState extends State<AddressForm> {
                                     color: Colors.deepOrange, width: 3.0),
                                 borderRadius: BorderRadius.circular(10))),
                         validator: (val) =>
-                        val.isEmpty ? 'Please Enter Your Pincode' : null,
+                            val.isEmpty ? 'Please Enter Your Pincode' : null,
                         obscureText: false,
                         onChanged: (val) {
                           setState(() => _pincode = val);
@@ -179,9 +179,9 @@ class _AddressFormState extends State<AddressForm> {
                               .updateAddressData(user, _finaladdress);
                           if (result != null) {
                             setState(() => error =
-                            'could not upload address, please try again');
+                                'could not upload address, please try again');
                           } else {
-                            Navigator.pushNamed(context, '/Home');
+                            Navigator.popAndPushNamed(context, '/cart');
                           }
                         }
                       },
