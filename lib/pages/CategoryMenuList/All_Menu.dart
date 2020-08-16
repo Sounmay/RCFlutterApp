@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rcapp/models/user.dart';
-import 'package:rcapp/pages/Cart.dart';
 import 'package:rcapp/pages/storeData.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/services/database.dart';
@@ -33,7 +32,7 @@ class _AllMenuState extends State<AllMenu> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/cart');
+                Navigator.pushReplacementNamed(context, '/cart');
                 // Navigator.popAndPushNamed(context, '/cart');
               },
             )
