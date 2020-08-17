@@ -24,7 +24,7 @@ class _ChineseMenuListState extends State<ChineseMenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: All Menu'),
+          title: Text('Category: Chinese'),
           actions: <Widget>[
             IconButton(
               icon: Icon(

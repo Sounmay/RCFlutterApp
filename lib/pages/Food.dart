@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rcapp/CustomWidget/foot_category.dart';
 import 'package:rcapp/models/user.dart';
+import 'package:rcapp/pages/NavigationBar.dart';
 import 'package:rcapp/pages/Search.dart';
 import 'package:rcapp/pages/storeData.dart';
 
@@ -94,16 +95,30 @@ class _FoodState extends State<Food> {
               SizedBox(height: 10.0),
               FoodCategory(),
               SizedBox(height: 30.0),
-              Container(
-                padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                child: Text(
-                  "Categories: ",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    child: Text(
+                      "Categories: ",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/allmenu');
+                    },
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0)),
+                    child: Text('Full Menu'),
+                    color: Colors.orange,
+                  ),
+                ],
               ),
               ListPage(update: update),
             ],
@@ -245,7 +260,7 @@ class _ListPageState extends State<ListPage> {
                 children: <Widget>[
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, "/allmenu");
+                      Navigator.pushNamed(context, "/maincoursemenu");
                     },
                     child: Container(
                       height: 100.0,
@@ -264,7 +279,7 @@ class _ListPageState extends State<ListPage> {
                   SizedBox(width: 20),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, "/cart");
+                      Navigator.pushNamed(context, "/breadmenu");
                     },
                     child: Container(
                       height: 100.0,
@@ -276,234 +291,14 @@ class _ListPageState extends State<ListPage> {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.blue,
                           image: DecorationImage(
-                              image: new AssetImage("assets/29.jpg"),
+                              image: new AssetImage("assets/40.jpg"),
                               fit: BoxFit.fill)),
                     ),
                   ),
                   SizedBox(width: 20),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, "/cart");
-                    },
-                    child: Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Center(
-                        child: Text('test'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/38.jpg"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/cart");
-                    },
-                    child: Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Center(
-                        child: Text('test'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/39.jpg"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/cart");
-                    },
-                    child: Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Center(
-                        child: Text('test'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/33.jpg"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/cart");
-                    },
-                    child: Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Center(
-                        child: Text('test'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/34.jpg"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/cart");
-                    },
-                    child: Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Center(
-                        child: Text('test'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/27.jpg"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/cart");
-                    },
-                    child: Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Center(
-                        child: Text('test'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/31.jpg"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/cart");
-                    },
-                    child: Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Center(
-                        child: Text('test'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/32.jpg"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/cart");
-                    },
-                    child: Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Center(
-                        child: Text('test'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/35.jpg"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/cart");
-                    },
-                    child: Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Center(
-                        child: Text('test'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/36.jpg"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/cart");
-                    },
-                    child: Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Center(
-                        child: Text('test'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/26.jpg"),
-                              fit: BoxFit.fill)),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/cart");
+                      Navigator.pushNamed(context, "/biryanimenu");
                     },
                     child: Container(
                       height: 100.0,
@@ -522,7 +317,141 @@ class _ListPageState extends State<ListPage> {
                   SizedBox(width: 20),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, "/cart");
+                      Navigator.pushNamed(context, "/tandoorimenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/29.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/chinesemenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/38.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/friedriceandnoodlesmenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/39.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/rollmenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/33.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/pizzamenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/34.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/snacksmenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/27.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/sandwichmenu");
                     },
                     child: Container(
                       height: 100.0,
@@ -541,7 +470,93 @@ class _ListPageState extends State<ListPage> {
                   SizedBox(width: 20),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, "/cart");
+                      Navigator.pushNamed(context, "/burgermenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/32.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/pastamenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/35.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/soupmenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/36.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/accompanimentmenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/37.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/allmenu");
                     },
                     child: Container(
                       height: 100.0,

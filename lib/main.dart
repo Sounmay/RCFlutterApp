@@ -6,9 +6,9 @@ import 'package:rcapp/pages/CategoryMenuList/Biryani_MenuList.dart';
 import 'package:rcapp/pages/CategoryMenuList/Bread_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Breakfast_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Burger_Menu.dart';
+import 'package:rcapp/pages/CategoryMenuList/Chinese_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/FriedRiceAndNoodles_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/MainCourse_Menu.dart';
-import 'package:rcapp/pages/CategoryMenuList/Paneer_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Pasta_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Pizza_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Roll_Menu.dart';
@@ -58,10 +58,9 @@ class MyApp extends StatelessWidget {
           "/breadmenu" : (context) => Bread_MenuList(),
           "/breakfastmenu" : (context) => Breakfast_MenuList(),
           "/burgermenu" : (context) => Burger_MenuList(),
-          "/chinesemenu" : (context) => Burger_MenuList(),
+          "/chinesemenu" : (context) => ChineseMenuList(),
           "/friedriceandnoodlesmenu" : (context) => FriedRiceAndNoodles_MenuList(),
           "/maincoursemenu" : (context) => MainCourse_MenuList(),
-          "/paneermenu" : (context) => Paneer_MenuList(),
           "/pastamenu" : (context) => Pasta_MenuList(),
           "/pizzamenu" : (context) => Pizza_MenuList(),
           "/rollmenu" : (context) => Roll_MenuList(),

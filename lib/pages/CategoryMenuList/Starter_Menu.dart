@@ -24,7 +24,7 @@ class _StarterMenuListState extends State<StarterMenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: All Menu'),
+          title: Text('Category: Starters'),
           actions: <Widget>[
             IconButton(
               icon: Icon(

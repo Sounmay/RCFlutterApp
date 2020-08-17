@@ -24,7 +24,7 @@ class _Biryani_MenuListState extends State<Biryani_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: All Menu'),
+          title: Text('Category: Rice and Biryani'),
           actions: <Widget>[
             IconButton(
               icon: Icon(

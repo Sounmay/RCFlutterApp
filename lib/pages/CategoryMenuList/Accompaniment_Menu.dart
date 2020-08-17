@@ -25,7 +25,7 @@ class _Accompaniment_MenuState extends State<Accompaniment_Menu> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: All Menu'),
+          title: Text('Category: Accompaniments'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
