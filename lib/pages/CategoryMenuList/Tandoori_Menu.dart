@@ -177,28 +177,23 @@ class _TandooriMenuListListPageState extends State<TandooriMenuListListPage> {
                                     ),
                                   ],
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    addToCart(_menuList[index]);
-                                  },
-                                  child: Container(
-                                    height: 45,
-                                    width: 43,
-                                    margin: EdgeInsets.only(top: 6),
-                                    alignment: Alignment.center,
-                                    decoration:
-                                        BoxDecoration(color: Colors.deepOrange),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        addToCart(_menuList[index]);
-                                        setState(() {
-                                          checked = !checked;
-                                        });
-                                      },
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: Colors.white,
-                                      ),
+                                Container(
+                                  height: 45,
+                                  width: 43,
+                                  margin: EdgeInsets.only(top: 6),
+                                  alignment: Alignment.center,
+                                  decoration:
+                                      BoxDecoration(color: Colors.deepOrange),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      addToCart(_menuList[index]);
+                                      setState(() {
+                                        checked = !checked;
+                                      });
+                                    },
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
