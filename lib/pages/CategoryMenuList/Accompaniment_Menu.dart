@@ -1,7 +1,9 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rcapp/models/user.dart';
 import 'package:rcapp/pages/Cart.dart';
+import 'package:rcapp/pages/CategoryMenuList/flushbar.dart';
 import 'package:rcapp/pages/storeData.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/services/database.dart';
@@ -53,7 +55,8 @@ class _Accompaniment_MenuState extends State<Accompaniment_Menu> {
 
 class AccompanimentMenuListPage extends StatefulWidget {
   @override
-  _AccompanimentMenuListPageState createState() => _AccompanimentMenuListPageState();
+  _AccompanimentMenuListPageState createState() =>
+      _AccompanimentMenuListPageState();
 }
 
 class _AccompanimentMenuListPageState extends State<AccompanimentMenuListPage> {
@@ -161,7 +164,6 @@ class _AccompanimentMenuListPageState extends State<AccompanimentMenuListPage> {
                                     IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          addToCart(_menuList[index]);
                                           checked = !checked;
                                         });
                                         addToCart(_menuList[index]);
@@ -188,6 +190,7 @@ class _AccompanimentMenuListPageState extends State<AccompanimentMenuListPage> {
                                       BoxDecoration(color: Colors.deepOrange),
                                   child: IconButton(
                                     onPressed: () {
+                                      showFlushbar(context);
                                       addToCart(_menuList[index]);
                                       setState(() {
                                         checked = !checked;
@@ -231,4 +234,5 @@ class _AccompanimentMenuListPageState extends State<AccompanimentMenuListPage> {
       );
     }
   }
+
 }

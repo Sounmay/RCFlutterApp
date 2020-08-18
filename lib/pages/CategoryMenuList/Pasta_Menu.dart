@@ -1,6 +1,8 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rcapp/models/user.dart';
+import 'package:rcapp/pages/CategoryMenuList/flushbar.dart';
 import 'package:rcapp/pages/storeData.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/services/database.dart';
@@ -190,8 +192,9 @@ class _PaneerMenuListListPageState extends State<PaneerMenuListListPage> {
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
-                                        addToCart(_menuList[index]);
-                                        setState(() {
+                                      showFlushbar(context);
+                                      addToCart(_menuList[index]);
+                                      setState(() {
                                           checked = !checked;
                                         });
                                       },

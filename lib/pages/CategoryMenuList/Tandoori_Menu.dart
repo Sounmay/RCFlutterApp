@@ -1,6 +1,8 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rcapp/models/user.dart';
+import 'package:rcapp/pages/CategoryMenuList/flushbar.dart';
 import 'package:rcapp/pages/storeData.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/services/database.dart';
@@ -177,28 +179,24 @@ class _TandooriMenuListListPageState extends State<TandooriMenuListListPage> {
                                     ),
                                   ],
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    addToCart(_menuList[index]);
-                                  },
-                                  child: Container(
-                                    height: 45,
-                                    width: 43,
-                                    margin: EdgeInsets.only(top: 6),
-                                    alignment: Alignment.center,
-                                    decoration:
-                                        BoxDecoration(color: Colors.deepOrange),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          addToCart(_menuList[index]);
-                                          checked = !checked;
-                                        });
-                                      },
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: Colors.white,
-                                      ),
+                                Container(
+                                  height: 45,
+                                  width: 43,
+                                  margin: EdgeInsets.only(top: 6),
+                                  alignment: Alignment.center,
+                                  decoration:
+                                      BoxDecoration(color: Colors.deepOrange),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      showFlushbar(context);
+                                      addToCart(_menuList[index]);
+                                      setState(() {
+                                        checked = !checked;
+                                      });
+                                    },
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),

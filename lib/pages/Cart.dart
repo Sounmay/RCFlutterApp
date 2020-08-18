@@ -140,9 +140,9 @@ class _CartState extends State<Cart> {
                   int price = _foodNamePrice[keyname];
                   int qty = _foodQtyPrice[keyname];
                   return ListTile(
-                    onTap: () {
-                      removeItem(keyname);
-                    },
+                    // onTap: () {
+                    //   removeItem(keyname);
+                    // },
                     title: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -285,11 +285,12 @@ class _QuantityInCartState extends State<QuantityInCart> {
                 color: Colors.white,
               ),
               onPressed: () {
-                if (widget.qtyList[widget.index] > 1) {
+                if (widget.qtyList[widget.index] > 0) {
                   print(widget.key);
                   widget.quantityDecreement(widget.keyname);
-                } else if (widget.qtyList[widget.index] == 1) {
-                  widget.removeItem(widget.keyname);
+                  if (widget.qty == 1) {
+                    widget.removeItem(widget.keyname);
+                  }
                 }
               },
             ),
