@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rcapp/models/user.dart';
+import 'package:rcapp/pages/CategoryMenuList/flushbar.dart';
 import 'package:rcapp/pages/storeData.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/services/database.dart';
+import 'package:flushbar/flushbar.dart';
 
 class AllMenu extends StatefulWidget {
   @override
@@ -186,6 +188,7 @@ class _AllMenuListPageState extends State<AllMenuListPage> {
                                       BoxDecoration(color: Colors.deepOrange),
                                   child: IconButton(
                                     onPressed: () {
+                                      showFlushbar(context);
                                       addToCart(_menuList[index]);
                                       setState(() {
                                         checked = !checked;
@@ -229,4 +232,6 @@ class _AllMenuListPageState extends State<AllMenuListPage> {
       );
     }
   }
+
+  
 }
