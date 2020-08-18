@@ -9,7 +9,7 @@ class welcome extends StatefulWidget {
 class _welcomeState extends State<welcome> {
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       Navigator.pushNamed(context, '/wrapper');
     });
     return Scaffold(

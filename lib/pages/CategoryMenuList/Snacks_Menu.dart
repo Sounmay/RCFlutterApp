@@ -190,6 +190,7 @@ class _SnacksMenuListListPageState extends State<SnacksMenuListListPage> {
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
+                                        addToCart(_menuList[index]);
                                         setState(() {
                                           checked = !checked;
                                         });

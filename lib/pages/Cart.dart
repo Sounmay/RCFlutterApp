@@ -127,9 +127,7 @@ class _CartState extends State<Cart> {
                   ])
                 ],
               ),
-              Text(
-                '$address'
-              )
+              Text('$address')
             ],
           ),
           OrderCard(total: total),
@@ -177,14 +175,15 @@ class _CartState extends State<Cart> {
                                 qty: qty,
                                 keyname: keyname,
                                 quantityDecreement: quantityDecreement,
-                                quantityIncreement: quantityIncreement)
+                                quantityIncreement: quantityIncreement,
+                                removeItem: removeItem)
                           ],
                         ),
                         Row(
                           children: <Widget>[
                             Container(
                               margin:
-                                  new EdgeInsets.symmetric(horizontal: 50.0),
+                              new EdgeInsets.symmetric(horizontal: 50.0),
                               child: Text(
                                 '₹' + '$price' + '   Quantity: ' + '$qty',
                                 style: TextStyle(
@@ -219,15 +218,17 @@ class QuantityInCart extends StatefulWidget {
   String keyname;
   final quantityIncreement;
   final quantityDecreement;
+  final removeItem;
 
   QuantityInCart(
       {this.index,
-      this.price,
-      this.qtyList,
-      this.qty,
-      this.keyname,
-      this.quantityDecreement,
-      this.quantityIncreement});
+        this.price,
+        this.qtyList,
+        this.qty,
+        this.keyname,
+        this.quantityDecreement,
+        this.quantityIncreement,
+        this.removeItem});
   @override
   _QuantityInCartState createState() => _QuantityInCartState();
 }
@@ -284,9 +285,11 @@ class _QuantityInCartState extends State<QuantityInCart> {
                 color: Colors.white,
               ),
               onPressed: () {
-                if (widget.qtyList[widget.index] > 0) {
+                if (widget.qtyList[widget.index] > 1) {
                   print(widget.key);
                   widget.quantityDecreement(widget.keyname);
+                } else if (widget.qtyList[widget.index] == 1) {
+                  widget.removeItem(widget.keyname);
                 }
               },
             ),

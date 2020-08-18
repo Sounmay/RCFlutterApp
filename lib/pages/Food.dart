@@ -556,7 +556,7 @@ class _ListPageState extends State<ListPage> {
                   SizedBox(width: 20),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, "/allmenu");
+                      Navigator.pushNamed(context, "/startermenu");
                     },
                     child: Container(
                       height: 100.0,
@@ -568,7 +568,26 @@ class _ListPageState extends State<ListPage> {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.blue,
                           image: DecorationImage(
-                              image: new AssetImage("assets/37.jpg"),
+                              image: new AssetImage("assets/41.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/breakfastmenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Center(
+                        child: Text('test'),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/26.jpg"),
                               fit: BoxFit.fill)),
                     ),
                   ),

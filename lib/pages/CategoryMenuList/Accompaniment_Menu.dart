@@ -161,6 +161,7 @@ class _AccompanimentMenuListPageState extends State<AccompanimentMenuListPage> {
                                     IconButton(
                                       onPressed: () {
                                         setState(() {
+                                          addToCart(_menuList[index]);
                                           checked = !checked;
                                         });
                                         addToCart(_menuList[index]);

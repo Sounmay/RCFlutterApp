@@ -190,6 +190,7 @@ class _FriedRiceAndNoodlesMenuListListPageState extends State<FriedRiceAndNoodle
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
+                                        addToCart(_menuList[index]);
                                         setState(() {
                                           checked = !checked;
                                         });

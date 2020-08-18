@@ -190,6 +190,7 @@ class _PizzaMenuListListPageState extends State<PizzaMenuListListPage> {
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
+                                        addToCart(_menuList[index]);
                                         setState(() {
                                           checked = !checked;
                                         });

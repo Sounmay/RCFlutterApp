@@ -1,3 +1,4 @@
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:rcapp/services/auth.dart';
 
@@ -10,6 +11,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  List<String> photos = ["assets/delivery-man.png", "assets/login.png"];
+
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
 
@@ -20,6 +23,27 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+
+
+    Widget logincarousel = Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+        height: 180.0,
+        child: new Carousel(
+          boxFit: BoxFit.contain,
+          images: [
+            AssetImage('assets/login1.PNG'),
+            AssetImage('assets/login2.PNG'),
+            AssetImage('assets/login3.PNG'),
+          ],
+          autoplay: true,
+          dotSize: 0,
+          dotBgColor: Colors.transparent,
+          animationCurve: Curves.fastOutSlowIn,
+          animationDuration: Duration(milliseconds: 2000),
+          borderRadius: true,
+          indicatorBgPadding: 10.0,
+        ));
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.deepOrange,
@@ -42,27 +66,11 @@ class _LoginState extends State<Login> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Image.asset(
-                      'assets/delivery-man.png',
-                      fit: BoxFit.contain,
-                    ),
-                    SizedBox(height: 8.0),
-                    Text(
-                      'Food Delivery',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40),
-                    ),
-                    SizedBox(height: 7.0),
-                    Text(
-                      'Rourkela club now delivers food at your doorstep',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 22,
+                    SizedBox(
+                        height: 250.0,
+                        width: 370.0,
+                        child: logincarousel
                       ),
-                    ),
                     SizedBox(height: 18.0),
                     TextFormField(
                         decoration: InputDecoration(

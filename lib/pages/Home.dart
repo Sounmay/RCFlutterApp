@@ -304,7 +304,7 @@ class _AdminOptionState extends State<AdminOption> {
         child: InkWell(
           onTap: () {},
           child: Text(
-            'Notification',
+            ' ',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
         ),

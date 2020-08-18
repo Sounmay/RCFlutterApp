@@ -191,6 +191,7 @@ class _TandooriMenuListListPageState extends State<TandooriMenuListListPage> {
                                     child: IconButton(
                                       onPressed: () {
                                         setState(() {
+                                          addToCart(_menuList[index]);
                                           checked = !checked;
                                         });
                                       },

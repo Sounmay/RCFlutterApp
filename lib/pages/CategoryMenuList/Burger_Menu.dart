@@ -190,6 +190,7 @@ class _BurgerMenuListListPageState extends State<BurgerMenuListListPage> {
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
+                                        addToCart(_menuList[index]);
                                         setState(() {
                                           checked = !checked;
                                         });
