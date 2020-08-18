@@ -140,9 +140,9 @@ class _CartState extends State<Cart> {
                   int price = _foodNamePrice[keyname];
                   int qty = _foodQtyPrice[keyname];
                   return ListTile(
-                    onTap: () {
-                      removeItem(keyname);
-                    },
+                    // onTap: () {
+                    //   removeItem(keyname);
+                    // },
                     title: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
