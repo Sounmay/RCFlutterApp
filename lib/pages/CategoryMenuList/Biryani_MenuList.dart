@@ -24,7 +24,7 @@ class _Biryani_MenuListState extends State<Biryani_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: All Menu'),
+          title: Text('Category: Rice and Biryani'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -190,6 +190,7 @@ class _BiryaniMenuListListPageState extends State<BiryaniMenuListListPage> {
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
+                                        addToCart(_menuList[index]);
                                         setState(() {
                                           checked = !checked;
                                         });

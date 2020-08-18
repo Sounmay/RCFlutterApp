@@ -24,7 +24,7 @@ class _Pizza_MenuListState extends State<Pizza_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: All Menu'),
+          title: Text('Category: Pizza'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -190,7 +190,8 @@ class _PizzaMenuListListPageState extends State<PizzaMenuListListPage> {
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
-                                        setState(() {
+                                      addToCart(_menuList[index]);
+                                      setState(() {
                                           checked = !checked;
                                         });
                                       },

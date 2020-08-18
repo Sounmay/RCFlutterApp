@@ -24,7 +24,7 @@ class _Roll_MenuListState extends State<Roll_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: All Menu'),
+          title: Text('Category: Roll'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -190,6 +190,7 @@ class _RollMenuListListPageState extends State<RollMenuListListPage> {
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
+                                        addToCart(_menuList[index]);
                                         setState(() {
                                           checked = !checked;
                                         });

@@ -22,8 +22,6 @@ class DatabaseService {
   Firestore.instance.collection('Biryani');
   final CollectionReference starterfoods =
   Firestore.instance.collection('Starter');
-  final CollectionReference paneerfoods =
-  Firestore.instance.collection('Paneer');
   final CollectionReference maincoursefoods =
   Firestore.instance.collection('MainCourse');
   final CollectionReference breadsfoods =
@@ -275,9 +273,6 @@ class DatabaseService {
   }
   Stream<List<MainCourseMenu>> get maincourse {
     return maincoursefoods.snapshots().map(_maincoursemenuListFromSnapshot);
-  }
-  Stream<List<PaneerMenu>> get paneer {
-    return paneerfoods.snapshots().map(_paneermenuListFromSnapshot);
   }
   Stream<List<BiryaniMenu>> get biryani {
     return biryanifoods.snapshots().map(_biryanimenuListFromSnapshot);

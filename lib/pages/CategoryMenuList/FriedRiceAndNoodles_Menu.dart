@@ -24,7 +24,7 @@ class _FriedRiceAndNoodles_MenuListState extends State<FriedRiceAndNoodles_MenuL
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: All Menu'),
+          title: Text('Category: Fried Rice and Noodles'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -190,6 +190,7 @@ class _FriedRiceAndNoodlesMenuListListPageState extends State<FriedRiceAndNoodle
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
+                                        addToCart(_menuList[index]);
                                         setState(() {
                                           checked = !checked;
                                         });

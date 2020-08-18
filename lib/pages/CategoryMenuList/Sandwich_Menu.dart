@@ -24,7 +24,7 @@ class _Sandwich_MenuListState extends State<Sandwich_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: All Menu'),
+          title: Text('Category: Sandwich'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -190,6 +190,7 @@ class _SandwichMenuListListPageState extends State<SandwichMenuListListPage> {
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
+                                       addToCart(_menuList[index]);
                                         setState(() {
                                           checked = !checked;
                                         });

@@ -19,12 +19,12 @@ class _Pasta_MenuListState extends State<Pasta_MenuList> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<PaneerMenu>>.value(
-      value: DatabaseService().paneer,
+    return StreamProvider<List<PastaMenu>>.value(
+      value: DatabaseService().pastamenu,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: All Menu'),
+          title: Text('Category: Pasta'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -190,7 +190,8 @@ class _PaneerMenuListListPageState extends State<PaneerMenuListListPage> {
                                         BoxDecoration(color: Colors.deepOrange),
                                     child: IconButton(
                                       onPressed: () {
-                                        setState(() {
+                                      addToCart(_menuList[index]);
+                                      setState(() {
                                           checked = !checked;
                                         });
                                       },
