@@ -265,8 +265,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Main Course', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -284,8 +285,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Breads', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -303,8 +305,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Biryani', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -322,8 +325,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Tandoori', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -351,8 +355,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Chinese', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -370,8 +375,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Fried Rice and Noodles', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -389,8 +395,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Main Course', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -408,8 +415,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Pizza', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -437,8 +445,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Snacks', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -456,8 +465,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Sandwiches', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -475,8 +485,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Burgers', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -494,8 +505,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Pasta', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -523,8 +535,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Soup', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -542,8 +555,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Accompaniment', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -561,8 +575,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Starters', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -580,8 +595,9 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text('Breakfast', style: TextStyle(color: Colors.white),),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),

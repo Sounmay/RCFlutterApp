@@ -27,22 +27,27 @@ class _NavigationBarState extends State<NavigationBar> {
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.black,
+        selectedItemColor: Colors.deepOrange,
         onTap: onTappedBar,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('Home'),
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.deepOrange,
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.fastfood),
               title: Text('Food'),
-              backgroundColor: Colors.black),
+              backgroundColor: Colors.deepOrange,
+              activeIcon: Icon(Icons.home, color: Colors.deepOrange),
+    ),
           BottomNavigationBarItem(
               icon: Icon(Icons.book),
               title: Text('Booking'),
-              backgroundColor: Colors.deepOrange),
+              backgroundColor: Colors.deepOrange,
+          ),
         ],
       ),
     );
