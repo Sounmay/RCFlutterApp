@@ -55,17 +55,18 @@ class AuthService {
   }
 
   //register with email and pass
-  Future registerWithEmailAndPassword(
-      String name, bool isAuth, String number, String email, String password) async {
+  Future registerWithEmailAndPassword(String name, bool isAuth, String number,
+      String email, String password) async {
     try {
+      String numemail = number + "@gmail.com";
       AuthResult result = await _auth.createUserWithEmailAndPassword(
-          email: (email), password: (password));
+          email: (numemail), password: (password));
       FirebaseUser user = result.user;
-
 
       //create a new document for the user with the uid
       await DatabaseService(uid: user.uid).updateUserData('chowmin', 100, 10);
-      await DatabaseService(uid: user.uid).updateUserInfo('$name', isAuth, '$number');
+      await DatabaseService(uid: user.uid)
+          .updateUserInfo('$name', isAuth, '$number');
 
       var userkaabba = user.uid;
       var dat = await Firestore.instance
@@ -75,7 +76,6 @@ class AuthService {
           .then((value) => value.data["isAdmin"]);
 
       isAdminglobal = dat;
-
 
       return _userFromFirebaseUser(user);
     } catch (e) {

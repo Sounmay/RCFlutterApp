@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class welcome extends StatefulWidget {
   @override
   _welcomeState createState() => _welcomeState();
@@ -10,7 +9,7 @@ class _welcomeState extends State<welcome> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 1), () {
-      Navigator.pushNamed(context, '/wrapper');
+      Navigator.popAndPushNamed(context, '/wrapper');
     });
     return Scaffold(
       backgroundColor: Colors.deepOrange,
@@ -18,7 +17,7 @@ class _welcomeState extends State<welcome> {
         children: [
           Image(image: AssetImage('assets/rclogo.png')),
           Center(
-              child:Text(
+            child: Text(
               'ROURKELA CLUB',
               style: TextStyle(
                 color: Colors.white,
