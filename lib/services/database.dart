@@ -43,6 +43,8 @@ class DatabaseService {
       Firestore.instance.collection('Accompaniments');
   final CollectionReference today_Menu_Data =
       Firestore.instance.collection('Today_Menu_Data');
+  final CollectionReference notice_pdfData =
+      Firestore.instance.collection('noticeBoard');
 
   final CollectionReference userInfo =
       Firestore.instance.collection('userInfo');
@@ -75,6 +77,12 @@ class DatabaseService {
     return await today_Menu_Data
         .document()
         .setData({'category_menu': food, 'itemprice': price, 'imagepath': url});
+  }
+
+  Future updatePdf(String title, String subtitle, String url) async {
+    return await notice_pdfData
+        .document()
+        .setData({'title': title, 'subtitle': subtitle, 'downloadLink': url});
   }
 
   Future confirmOrderofUser(String id, String name, String number,

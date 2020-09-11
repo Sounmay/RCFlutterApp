@@ -2,13 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rcapp/CustomWidget/foot_category.dart';
 import 'package:rcapp/CustomWidget/todays_menucategory.dart';
 import 'package:rcapp/models/user.dart';
 import 'package:rcapp/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/services/database.dart';
+import 'package:path/path.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -129,19 +133,35 @@ class _HomeState extends State<Home> {
             ),
             imageCarousel,
             SizedBox(height: 20.0),
-            Text(
-              "  Notice Board",
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
+            Row(children: <Widget>[
+              Text(
+                "  Notice Board",
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
+              SizedBox(width: 130),
+              if (areYouadmin) ...[
+                FlatButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/uploadPdf');
+                  },
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(10.0)),
+                  child: Text(
+                    'Add To List',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  color: Colors.orange,
+                )
+              ]
+            ]),
             SizedBox(height: 20.0),
             HomeListPage(),
             SizedBox(height: 10.0),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Row(children: <Widget>[
                   Text(
@@ -168,16 +188,6 @@ class _HomeState extends State<Home> {
                     )
                   ]
                 ]),
-                // SizedBox(width: 130.0),
-                /* OutlineButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/address');
-                  },
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0)),
-                  child: Text('View'),
-                  color: Colors.amber,
-                ), */
               ],
             ),
             SizedBox(height: 7.0),
@@ -287,7 +297,26 @@ class _HomeListPageState extends State<HomeListPage> {
                                   )
                                 ]),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                final status =
+                                    await Permission.storage.request();
+
+                                if (status.isGranted) {
+                                  final externalDir =
+                                      await getExternalStorageDirectory();
+
+                                  final taskId =
+                                      await FlutterDownloader.enqueue(
+                                    url:
+                                        '${snapshot.data[index].data["downloadLink"]}',
+                                    savedDir: externalDir.path,
+                                    fileName:
+                                        '${snapshot.data[index].data["title"]}',
+                                    showNotification: true,
+                                    openFileFromNotification: true,
+                                  );
+                                }
+                              },
                               icon: Icon(Icons.picture_as_pdf),
                             )
                           ]),
