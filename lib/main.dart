@@ -25,6 +25,7 @@ import 'package:rcapp/pages/admin_order_confirm.dart';
 import 'package:rcapp/pages/booking_calendar.dart';
 import 'package:rcapp/pages/confirmOrder.dart';
 import 'package:rcapp/pages/orderdetails.dart';
+import 'package:rcapp/pages/uploadImage.dart';
 import 'package:rcapp/pages/welcome.dart';
 import 'package:rcapp/services/auth.dart';
 import 'pages/wrapper.dart';
@@ -70,6 +71,9 @@ class MyApp extends StatelessWidget {
           "/startermenu" : (context) => StarterMenuList(),
           "/tandoorimenu" : (context) => Tandoori_MenuList(),
           "/accompanimentmenu" : (context) => Accompaniment_Menu(),
+
+          //Routes for admin
+          "/uploadImage" : (context) => UploadImage()
         },
       ),
     );

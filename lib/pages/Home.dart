@@ -3,8 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:rcapp/CustomWidget/foot_category.dart';
 import 'package:rcapp/CustomWidget/todays_menucategory.dart';
+import 'package:rcapp/models/user.dart';
 import 'package:rcapp/services/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:rcapp/services/database.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,9 +18,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
 
-  bool areYouadmin;
-  String userName;
-  String userNumber;
+  bool areYouadmin = false;
+  String userName = "";
+  String userNumber = "";
 
   Future getAdmin() async {
     try {
@@ -71,111 +75,131 @@ class _HomeState extends State<Home> {
           indicatorBgPadding: 10.0,
         ));
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 10.0,
-        backgroundColor: Colors.deepOrange,
-        leading: Builder(builder: (BuildContext context) {
-          return IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            // tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          );
-        }),
-        title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text('Home'),
-            ]),
-      ),
-      drawer: Drawer(
-        child: SafeArea(
-          child: Container(
-            height: 100,
-            child: LoadingData(auth: _auth),
+    return StreamProvider<List<Today_Menu>>.value(
+      value: DatabaseService().today_Menu,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          elevation: 10.0,
+          backgroundColor: Colors.deepOrange,
+          leading: Builder(builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.account_circle),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              // tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          }),
+          title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Home'),
+              ]),
+        ),
+        drawer: Drawer(
+          child: SafeArea(
+            child: Container(
+              height: 100,
+              child: LoadingData(auth: _auth),
+            ),
           ),
         ),
-      ),
-      body: new ListView(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-        children: <Widget>[
-          SizedBox(height: 4),
-          InkWell(
-            onTap: () {},
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Rourkela Club Menu',
-                    style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontSize: 10,
-                        decoration: TextDecoration.underline),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.picture_as_pdf),
-                  )
-                ]),
-          ),
-          imageCarousel,
-          SizedBox(height: 20.0),
-          Text(
-            "  Notice Board",
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
+        body: new ListView(
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+          children: <Widget>[
+            SizedBox(height: 4),
+            InkWell(
+              onTap: () {},
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Rourkela Club Menu',
+                      style: TextStyle(
+                          color: Colors.deepOrange,
+                          fontSize: 10,
+                          decoration: TextDecoration.underline),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.insert_drive_file),
+                    )
+                  ]),
             ),
-          ),
-          SizedBox(height: 20.0),
-          HomeListPage(),
-          SizedBox(height: 10.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "  Today's Menu",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
+            imageCarousel,
+            SizedBox(height: 20.0),
+            Text(
+              "  Notice Board",
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(width: 130.0),
-             /* OutlineButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/address');
-                },
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0)),
-                child: Text('View'),
-                color: Colors.amber,
-              ), */
-            ],
-          ),
-          SizedBox(height: 7.0),
-          TodaysMenuCategory(),
-          SizedBox(height: 20.0),
-          Text(
-            "  Upcoming Events",
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
             ),
-          ),
-          SizedBox(height: 10.0),
-          Container(
-            height: 150,
-            decoration: BoxDecoration(color: Colors.blue[50]),
-            child: Center(child: Text('No Events')),
-          ),
-          SizedBox(height: 50)
-        ],
+            SizedBox(height: 20.0),
+            HomeListPage(),
+            SizedBox(height: 10.0),
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Row(children: <Widget>[
+                  Text(
+                    "  Today's Menu",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 130),
+                  if (areYouadmin) ...[
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/uploadImage');
+                      },
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(10.0)),
+                      child: Text(
+                        'Add To List',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      color: Colors.orange,
+                    )
+                  ]
+                ]),
+                // SizedBox(width: 130.0),
+                /* OutlineButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/address');
+                  },
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(10.0)),
+                  child: Text('View'),
+                  color: Colors.amber,
+                ), */
+              ],
+            ),
+            SizedBox(height: 7.0),
+            FoodCategory(),
+            SizedBox(height: 20.0),
+            Text(
+              "  Upcoming Events",
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Container(
+              height: 150,
+              decoration: BoxDecoration(color: Colors.blue[50]),
+              child: Center(child: Text('No Events')),
+            ),
+            SizedBox(height: 50)
+          ],
+        ),
       ),
     );
   }
@@ -235,7 +259,7 @@ class _HomeListPageState extends State<HomeListPage> {
                     return Container(
                       margin: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
                       padding:
-                      EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                       decoration: BoxDecoration(
                         color: Colors.blue[50],
                         borderRadius: BorderRadius.circular(8),
@@ -304,7 +328,7 @@ class _AdminOptionState extends State<AdminOption> {
         child: InkWell(
           onTap: () {},
           child: Text(
-            'Notification',
+            ' ',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
         ),
@@ -414,6 +438,20 @@ class _LoadingDataState extends State<LoadingData> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 25),
                             )),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/uploadImage');
+                          },
+                          child: Text(
+                            "Upload Today's Menu",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 25),
+                          ),
+                        ),
                       ),
                       SizedBox(height: 10),
                       AdminOption(areYouadmin: snapshot.data["isAdmin"]),

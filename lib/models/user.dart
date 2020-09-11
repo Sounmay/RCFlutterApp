@@ -146,6 +146,13 @@ class AccompanimentMenu {
 
   AccompanimentMenu({this.item, this.price, this.searchIndex});
 }
+class Today_Menu {
+  String imagepath = '';
+  int price = 0;
+  String category_menu = '';
+
+  Today_Menu({this.imagepath, this.price, this.category_menu});
+}
 
 class Orders {
   List item;

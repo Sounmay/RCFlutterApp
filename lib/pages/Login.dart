@@ -17,14 +17,12 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
 
   // test field state
-  String email = '';
+  String number = '';
   String password = '';
   String error = '';
 
   @override
   Widget build(BuildContext context) {
-
-
     Widget logincarousel = Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         height: 180.0,
@@ -66,15 +64,11 @@ class _LoginState extends State<Login> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    SizedBox(
-                        height: 250.0,
-                        width: 370.0,
-                        child: logincarousel
-                      ),
+                    SizedBox(height: 250.0, width: 370.0, child: logincarousel),
                     SizedBox(height: 18.0),
                     TextFormField(
                         decoration: InputDecoration(
-                            hintText: 'Email',
+                            hintText: 'Mobile NO.',
                             fillColor: Colors.white,
                             filled: true,
                             enabledBorder: OutlineInputBorder(
@@ -85,10 +79,11 @@ class _LoginState extends State<Login> {
                                 borderSide: BorderSide(
                                     color: Colors.deepOrange, width: 3.0),
                                 borderRadius: BorderRadius.circular(10))),
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter an email' : null,
+                        validator: (val) => val.isEmpty
+                            ? 'Enter Your Registered Mobile No.'
+                            : null,
                         onChanged: (val) {
-                          setState(() => email = val);
+                          setState(() => number = val);
                         }),
                     SizedBox(height: 20.0),
                     TextFormField(
@@ -128,8 +123,9 @@ class _LoginState extends State<Login> {
                       ),
                       onPressed: () async {
                         if (_formKey.currentState.validate()) {
+                          String numemail = number + "@gmail.com";
                           dynamic result = await _auth
-                              .signInWithEmailAndPassword(email, password);
+                              .signInWithEmailAndPassword(numemail, password);
                           if (result == null) {
                             setState(() => error =
                                 'could not sign in with the credentials');

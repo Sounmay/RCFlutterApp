@@ -1,8 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'package:rcapp/CustomWidget/foot_category.dart';
 import 'package:rcapp/models/user.dart';
+import 'package:rcapp/pages/Cart.dart';
+import 'package:rcapp/pages/NavigationBar.dart';
 import 'package:rcapp/pages/Search.dart';
 import 'package:rcapp/pages/storeData.dart';
+import 'package:provider/provider.dart';
+import 'package:rcapp/services/database.dart';
+
 
 // var cartList = [];
 
@@ -26,19 +32,29 @@ class _FoodState extends State<Food> {
   int total = 0;
 
   int qty = 0;
+
+  //   @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   updateTotal();
+  // }
+
   List<int> qtyList = List<int>();
 
-  void update() {
-    Map<String, int> qtyCart = dataforCart.retrieveQtyDetails();
+  void updateTotal() {
     Map<String, int> foodDetail = dataforCart.retrieveFoodDetails();
+    Map<String, int> qtyDetail = dataforCart.retrieveQtyDetails();
+
+    total = 0;
+    qty = 0;
 
     setState(() {
-      qty = 0;
-      qtyCart.forEach((key, value) {
+      qtyDetail.forEach((key, value) {
         qty += value;
         qtyList.add(value);
       });
-      foodDetail.forEach((k, v) => total = total + v * qtyCart[k]);
+      foodDetail.forEach((k, v) => total = total + v * qtyDetail[k]);
     });
   }
 
@@ -49,12 +65,15 @@ class _FoodState extends State<Food> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    update();
+    updateTotal();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    updateTotal();
+    return StreamProvider<List<Today_Menu>>.value(
+      value: DatabaseService().today_Menu,
+      child: Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 10.0,
@@ -93,7 +112,7 @@ class _FoodState extends State<Food> {
               ),
               SizedBox(height: 10.0),
               FoodCategory(),
-              SizedBox(height: 30.0),
+              SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -119,39 +138,41 @@ class _FoodState extends State<Food> {
                   ),
                 ],
               ),
-              ListPage(update: update),
+              ListPage(),
             ],
           ),
         ),
         SizedBox(height: 10.0),
-        Container(
-          width: double.maxFinite,
-          height: 54,
-          decoration: BoxDecoration(color: Colors.deepOrange),
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  '$qty ' + '  item ' + '|' + ' ' + '₹ ' + '$total',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-                InkWell(
-                  onTap: (() => Navigator.pushNamed(context, '/cart')),
-                  child: Text(
-                    'VIEW CART',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                )
-              ],
-            ),
-          ),
-        )
+        BottomItemView(total: total, qty: qty)
+        // Container(
+        //   width: double.maxFinite,
+        //   height: 54,
+        //   decoration: BoxDecoration(color: Colors.deepOrange),
+        //   child: Padding(
+        //     padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+        //     child: Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: <Widget>[
+        //         Text(
+        //           '$qty ' + '  item ' + '|' + ' ' + '₹ ' + '$total',
+        //           style: TextStyle(
+        //               color: Colors.white, fontWeight: FontWeight.bold),
+        //         ),
+        //         InkWell(
+        //           onTap: (() => Navigator.pushNamed(context, '/cart')),
+        //           child: Text(
+        //             'VIEW CART',
+        //             style: TextStyle(
+        //                 color: Colors.white, fontWeight: FontWeight.bold),
+        //           ),
+        //         )
+        //       ],
+        //     ),
+        //   ),
+        // )
       ]),
-    );
+    ),
+    ); 
   }
 }
 
@@ -222,8 +243,6 @@ class _QuantityState extends State<Quantity> {
 
 class ListPage extends StatefulWidget {
   @override
-  final update;
-  ListPage({this.update});
   _ListPageState createState() => _ListPageState();
 }
 
@@ -264,8 +283,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Main Course',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -283,8 +306,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Breads',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -302,8 +329,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Biryani',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -321,8 +352,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Tandoori',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -350,8 +385,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Chinese',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -369,8 +408,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Fried Rice and Noodles',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -388,8 +431,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Main Course',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -407,8 +454,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Pizza',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -436,8 +487,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Snacks',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -455,8 +510,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Sandwiches',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -474,8 +533,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Burgers',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -493,8 +556,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Pasta',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -522,8 +589,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Soup',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -541,8 +612,12 @@ class _ListPageState extends State<ListPage> {
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Accompaniment',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -555,19 +630,46 @@ class _ListPageState extends State<ListPage> {
                   SizedBox(width: 20),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, "/allmenu");
+                      Navigator.pushNamed(context, "/startermenu");
                     },
                     child: Container(
                       height: 100.0,
                       width: 100.0,
-                      child: Center(
-                        child: Text('test'),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Starters',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.blue,
                           image: DecorationImage(
-                              image: new AssetImage("assets/37.jpg"),
+                              image: new AssetImage("assets/41.jpg"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/breakfastmenu");
+                    },
+                    child: Container(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Breakfast',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: new AssetImage("assets/26.jpg"),
                               fit: BoxFit.fill)),
                     ),
                   ),
