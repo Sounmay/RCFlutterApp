@@ -23,7 +23,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
     Map<String, int> foodqtyDetail = storeData.retrieveQtyDetails();
 
     setState(() {
-      foodDetail.forEach((k, v) => total = total + v);
+      foodDetail.forEach((k, v) => total = total + v * foodqtyDetail[k]);
       foodDetail.forEach((k, v) => totalquantity = totalquantity + v);
       foodDetail.forEach((key, value) => itemList.add(key));
       foodqtyDetail.forEach((key, value) => quantityList.add(value));

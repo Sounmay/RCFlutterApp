@@ -146,6 +146,13 @@ class AccompanimentMenu {
 
   AccompanimentMenu({this.item, this.price, this.searchIndex});
 }
+class Today_Menu {
+  String imagepath = '';
+  int price = 0;
+  String category_menu = '';
+
+  Today_Menu({this.imagepath, this.price, this.category_menu});
+}
 
 class Orders {
   List item;
@@ -157,5 +164,18 @@ class Orders {
   bool isConfirmed;
 
   Orders(
+      {this.item, this.qty, this.name, this.number, this.address, this.total, this.isConfirmed});
+}
+
+class PreviousOrders {
+  List item;
+  List qty;
+  String name;
+  String number;
+  String address;
+  int total;
+  bool isConfirmed;
+
+  PreviousOrders(
       {this.item, this.qty, this.name, this.number, this.address, this.total, this.isConfirmed});
 }

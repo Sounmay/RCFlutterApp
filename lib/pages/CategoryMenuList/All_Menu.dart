@@ -232,6 +232,4 @@ class _AllMenuListPageState extends State<AllMenuListPage> {
       );
     }
   }
-
-  
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:rcapp/pages/Cart.dart';
 import 'package:rcapp/pages/CategoryMenuList/Accompaniment_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/All_Menu.dart';
@@ -25,13 +26,23 @@ import 'package:rcapp/pages/admin_order_confirm.dart';
 import 'package:rcapp/pages/booking_calendar.dart';
 import 'package:rcapp/pages/confirmOrder.dart';
 import 'package:rcapp/pages/orderdetails.dart';
+import 'package:rcapp/pages/previousOrder.dart';
+import 'package:rcapp/pages/uploadImage.dart';
+import 'package:rcapp/pages/uploadPdf.dart';
 import 'package:rcapp/pages/welcome.dart';
 import 'package:rcapp/services/auth.dart';
 import 'pages/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/models/user.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize(
+      debug: true // optional: set false to disable printing logs to console
+      );
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -50,26 +61,32 @@ class MyApp extends StatelessWidget {
           '/wrapper': (context) => Wrapper(),
           "/add_event": (context) => AddEventPage(),
           "/confirmOrder": (context) => ConfirmOrder(),
-          "/address" : (context) => AddressForm(),
+          "/address": (context) => AddressForm(),
+          "/previousOrder": (context) => PreviousOrder(),
 
           //routes for different categories of food
-          "/allmenu" : (context) => AllMenu(),
-          "/biryanimenu" : (context) => Biryani_MenuList(),
-          "/breadmenu" : (context) => Bread_MenuList(),
-          "/breakfastmenu" : (context) => Breakfast_MenuList(),
-          "/burgermenu" : (context) => Burger_MenuList(),
-          "/chinesemenu" : (context) => ChineseMenuList(),
-          "/friedriceandnoodlesmenu" : (context) => FriedRiceAndNoodles_MenuList(),
-          "/maincoursemenu" : (context) => MainCourse_MenuList(),
-          "/pastamenu" : (context) => Pasta_MenuList(),
-          "/pizzamenu" : (context) => Pizza_MenuList(),
-          "/rollmenu" : (context) => Roll_MenuList(),
-          "/sandwichmenu" : (context) => Sandwich_MenuList(),
-          "/snacksmenu" : (context) => Snacks_MenuList(),
-          "/soupmenu" : (context) => Soup_MenuList(),
-          "/startermenu" : (context) => StarterMenuList(),
-          "/tandoorimenu" : (context) => Tandoori_MenuList(),
-          "/accompanimentmenu" : (context) => Accompaniment_Menu(),
+          "/allmenu": (context) => AllMenu(),
+          "/biryanimenu": (context) => Biryani_MenuList(),
+          "/breadmenu": (context) => Bread_MenuList(),
+          "/breakfastmenu": (context) => Breakfast_MenuList(),
+          "/burgermenu": (context) => Burger_MenuList(),
+          "/chinesemenu": (context) => ChineseMenuList(),
+          "/friedriceandnoodlesmenu": (context) =>
+              FriedRiceAndNoodles_MenuList(),
+          "/maincoursemenu": (context) => MainCourse_MenuList(),
+          "/pastamenu": (context) => Pasta_MenuList(),
+          "/pizzamenu": (context) => Pizza_MenuList(),
+          "/rollmenu": (context) => Roll_MenuList(),
+          "/sandwichmenu": (context) => Sandwich_MenuList(),
+          "/snacksmenu": (context) => Snacks_MenuList(),
+          "/soupmenu": (context) => Soup_MenuList(),
+          "/startermenu": (context) => StarterMenuList(),
+          "/tandoorimenu": (context) => Tandoori_MenuList(),
+          "/accompanimentmenu": (context) => Accompaniment_Menu(),
+
+          //Routes for admin
+          "/uploadImage": (context) => UploadImage(),
+          "/uploadPdf": (context) => UploadPdf()
         },
       ),
     );

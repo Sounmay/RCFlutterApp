@@ -128,7 +128,7 @@ class _LoginState extends State<Login> {
                               .signInWithEmailAndPassword(numemail, password);
                           if (result == null) {
                             setState(() => error =
-                            'could not sign in with the credentials');
+                                'could not sign in with the credentials');
                           }
                         }
                       },
