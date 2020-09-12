@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 18.0),
                     TextFormField(
                         decoration: InputDecoration(
-                            hintText: 'Mobile NO.',
+                            hintText: 'Personal Number',
                             fillColor: Colors.white,
                             filled: true,
                             enabledBorder: OutlineInputBorder(
@@ -80,7 +80,7 @@ class _LoginState extends State<Login> {
                                     color: Colors.deepOrange, width: 3.0),
                                 borderRadius: BorderRadius.circular(10))),
                         validator: (val) => val.isEmpty
-                            ? 'Enter Your Registered Mobile No.'
+                            ? 'Enter Your authorised Personal No.'
                             : null,
                         onChanged: (val) {
                           setState(() => number = val);
