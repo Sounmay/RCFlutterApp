@@ -87,7 +87,7 @@ class DatabaseService {
 
   Future confirmOrderofUser(String id, String name, String number,
       String address, List item, List qty, int total, bool isConfirmed) async {
-    return await confirmedOrders.document(number).setData({
+    return await confirmedOrders.document().setData({
       'id': id,
       'name': name,
       'number': number,
@@ -95,7 +95,10 @@ class DatabaseService {
       'item': item,
       'quantity': qty,
       'total': total,
-      'isConfirmed': isConfirmed
+      'isConfirmed': isConfirmed,
+      'date': '${DateTime.now().day}' + '/' +
+          '${DateTime.now().month}' + '/' +
+          '${DateTime.now().year}'
     });
   }
 

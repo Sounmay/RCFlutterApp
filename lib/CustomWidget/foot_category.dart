@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:focused_menu/focused_menu.dart';
+import 'package:focused_menu/modals.dart';
 import 'package:rcapp/models/user.dart';
 import 'package:rcapp/pages/storeData.dart';
 import 'food_card.dart';
@@ -20,6 +23,7 @@ class FoodCategory extends StatefulWidget {
 class _FoodCategoryState extends State<FoodCategory> {
   // final List<Category> _categories = categories;
 
+  
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +49,16 @@ class _FoodCategoryState extends State<FoodCategory> {
           scrollDirection: Axis.horizontal,
           itemCount: _menuList.length,
           itemBuilder: (BuildContext context, int index) {
-            return FoodCard(
-              categoryName: _menuList[index].category_menu,
-              imagePath: _menuList[index].imagepath,
-              itemprice: _menuList[index].price,
+            return FocusedMenuHolder(
+              onPressed: () {},
+              menuItems: <FocusedMenuItem>[
+                FocusedMenuItem(title: Text('delete'), onPressed: (){})
+              ],
+              child: FoodCard(
+                categoryName: _menuList[index].category_menu,
+                imagePath: _menuList[index].imagepath,
+                itemprice: _menuList[index].price,
+              ),
             );
           },
         ),

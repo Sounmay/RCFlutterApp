@@ -461,7 +461,9 @@ class _LoadingDataState extends State<LoadingData> {
                       Container(
                         padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
                         child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, '/previousOrder');
+                            },
                             child: Text(
                               'Previous Orders',
                               style: TextStyle(

@@ -166,3 +166,16 @@ class Orders {
   Orders(
       {this.item, this.qty, this.name, this.number, this.address, this.total, this.isConfirmed});
 }
+
+class PreviousOrders {
+  List item;
+  List qty;
+  String name;
+  String number;
+  String address;
+  int total;
+  bool isConfirmed;
+
+  PreviousOrders(
+      {this.item, this.qty, this.name, this.number, this.address, this.total, this.isConfirmed});
+}

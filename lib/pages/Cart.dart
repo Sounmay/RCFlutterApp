@@ -46,6 +46,7 @@ class _CartState extends State<Cart> {
     Map<String, int> foodDetail = storeDataforCart.retrieveFoodDetails();
     Map<String, int> qtyDetail = storeDataforCart.retrieveQtyDetails();
 
+    
     total = 0;
     totalquantity = 0;
 
