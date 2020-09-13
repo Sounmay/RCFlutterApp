@@ -63,6 +63,7 @@ class MyApp extends StatelessWidget {
           "/confirmOrder": (context) => ConfirmOrder(),
           "/address": (context) => AddressForm(),
           "/previousOrder": (context) => PreviousOrder(),
+          // "/previousOrder": (context) => PreviousOrderDetails(),
 
           //routes for different categories of food
           "/allmenu": (context) => AllMenu(),

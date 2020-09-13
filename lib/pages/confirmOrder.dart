@@ -77,18 +77,6 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                     Text('CASH ON DELIVERY')
                   ],
                 )),
-            /* InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, '/wrapper');
-              },
-              child: SizedBox(
-                  child: Row(
-                    children: <Widget>[
-                      IconButton(icon: Icon(Icons.radio_button_checked)),
-                      Text('Sign In')
-                    ],
-                  )),
-            ), */
             SizedBox(height: 300),
             SizedBox(
               width: double.infinity,
