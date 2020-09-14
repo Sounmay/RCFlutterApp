@@ -22,10 +22,12 @@ import 'package:rcapp/pages/Food.dart';
 import 'package:rcapp/pages/NavigationBar.dart';
 import 'package:rcapp/pages/add_event.dart';
 import 'package:rcapp/pages/address.dart';
+import 'package:rcapp/pages/adminBooking.dart';
 import 'package:rcapp/pages/admin_order_confirm.dart';
 import 'package:rcapp/pages/booking_calendar.dart';
 import 'package:rcapp/pages/confirmOrder.dart';
 import 'package:rcapp/pages/orderdetails.dart';
+import 'package:rcapp/pages/previousBooking.dart';
 import 'package:rcapp/pages/previousOrder.dart';
 import 'package:rcapp/pages/uploadImage.dart';
 import 'package:rcapp/pages/uploadPdf.dart';
@@ -63,6 +65,8 @@ class MyApp extends StatelessWidget {
           "/confirmOrder": (context) => ConfirmOrder(),
           "/address": (context) => AddressForm(),
           "/previousOrder": (context) => PreviousOrder(),
+          "/previousBooking": (context) => PreviousBooking(),
+          "/adminBooking": (context) => AdminBooking(),
           // "/previousOrder": (context) => PreviousOrderDetails(),
 
           //routes for different categories of food

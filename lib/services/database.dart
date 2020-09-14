@@ -52,6 +52,9 @@ class DatabaseService {
   final CollectionReference confirmedOrders =
       Firestore.instance.collection('confirmedOrders');
 
+  final CollectionReference bookingDetails =
+      Firestore.instance.collection('BookingDetails');
+
   Future updateUserInfo(String name, bool isAdmin, String number) async {
     return await userInfo.document(uid).setData({
       'name': name,
@@ -85,6 +88,18 @@ class DatabaseService {
         .setData({'title': title, 'subtitle': subtitle, 'downloadLink': url});
   }
 
+  Future bookDetails(String id, String name, String number, String lounge,
+      int slot, DateTime date) async {
+    return await bookingDetails.document().setData({
+      'id': id,
+      'name': name,
+      'number': number,
+      'lounge': lounge,
+      'slot': slot,
+      'date': '${date.day}' + '/' + '${date.month}' + '/' + '${date.year}'
+    });
+  }
+
   Future confirmOrderofUser(String id, String name, String number,
       String address, List item, List qty, int total, bool isConfirmed) async {
     return await confirmedOrders.document().setData({
@@ -96,8 +111,10 @@ class DatabaseService {
       'quantity': qty,
       'total': total,
       'isConfirmed': isConfirmed,
-      'date': '${DateTime.now().day}' + '/' +
-          '${DateTime.now().month}' + '/' +
+      'date': '${DateTime.now().day}' +
+          '/' +
+          '${DateTime.now().month}' +
+          '/' +
           '${DateTime.now().year}'
     });
   }
