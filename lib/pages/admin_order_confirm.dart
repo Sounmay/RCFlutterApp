@@ -1,16 +1,196 @@
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:rcapp/models/user.dart';
-import 'package:rcapp/services/database.dart';
-import 'package:provider/provider.dart';
+// import 'package:flutter/material.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:flutter_spinkit/flutter_spinkit.dart';
+// import 'package:rcapp/models/user.dart';
+// import 'package:rcapp/services/database.dart';
+// import 'package:provider/provider.dart';
 
-class ConfirmedOrderDetails {
-  String name;
-  String number;
-  int total;
-  String address;
-}
+// class ConfirmedOrderDetails {
+//   String name;
+//   String number;
+//   int total;
+//   String address;
+// }
+
+// class AdminOrder extends StatefulWidget {
+//   @override
+//   _AdminOrderState createState() => _AdminOrderState();
+// }
+
+// class _AdminOrderState extends State<AdminOrder> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamProvider<List<Orders>>.value(
+//       value: DatabaseService().orders,
+//       child: Scaffold(
+//         appBar: AppBar(
+//           title: Text('Orders'),
+//           backgroundColor: Colors.deepOrange,
+//         ),
+//         body: NewOrderList(),
+//       ),
+//     );
+//   }
+// }
+
+// class NewOrderList extends StatefulWidget {
+//   @override
+//   NewOrderListState createState() => NewOrderListState();
+// }
+
+// class NewOrderListState extends State<NewOrderList> {
+//   changeConfirmation(bool isConfirmed, String number) async {
+//     try {
+//       if (isConfirmed) {
+//         await Firestore.instance
+//             .collection("confirmedOrders")
+//             .document(number)
+//             .delete();
+//       } else {
+//         await Firestore.instance
+//             .collection("confirmedOrders")
+//             .document(number)
+//             .updateData({"isConfirmed": !isConfirmed});
+//       }
+//       Navigator.pushReplacementNamed(context, '/adminorder');
+//     } catch (e) {
+//       print(e.toString());
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     int orderNo = 110;
+//     final _orderList = Provider.of<List<Orders>>(context) ?? [];
+//     return ListView.builder(
+//       shrinkWrap: true,
+//       itemCount: _orderList.length,
+//       itemBuilder: (_, index) {
+//         orderNo += index;
+//         return ListTile(
+//           contentPadding: EdgeInsets.all(10),
+//           title: Column(
+//             children: <Widget>[
+//               SizedBox(height: 20.0),
+//               Container(
+//                 alignment: Alignment.topLeft,
+//                 height: 420.0,
+//                 width: 370.0,
+//                 margin: new EdgeInsets.only(left: 20.0, right: 20.0),
+//                 decoration: BoxDecoration(
+//                   color: Colors.tealAccent,
+//                   borderRadius: BorderRadius.all(Radius.circular(20.0)),
+//                 ),
+//                 child: Column(
+//                   children: <Widget>[
+//                     Row(
+//                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                       children: <Widget>[
+//                         Text(
+//                           "Order Number : " + "$orderNo",
+//                           style:
+//                               TextStyle(color: Colors.deepOrange, fontSize: 22),
+//                         ),
+//                         Text("Aug 4th 2020"),
+//                       ],
+//                     ),
+//                     Column(
+//                       children: <Widget>[
+//                         Row(
+//                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                           children: <Widget>[
+//                             Padding(
+//                               padding: const EdgeInsets.all(10),
+//                               child: Text(
+//                                 "Name : " + "${_orderList[index].name}",
+//                                 style: TextStyle(
+//                                     color: Colors.black, fontSize: 15),
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                         Row(
+//                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                           children: <Widget>[
+//                             Padding(
+//                               padding: const EdgeInsets.all(10),
+//                               child: Text(
+//                                 "Personal No. : " +
+//                                     "${_orderList[index].number}",
+//                                 style: TextStyle(
+//                                     color: Colors.black, fontSize: 15),
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                         Row(
+//                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                           children: <Widget>[
+//                             Flexible(
+//                               child: Text(
+//                                 "Address : " + "${_orderList[index].address}",
+//                                 style: TextStyle(
+//                                     color: Colors.black, fontSize: 15),
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                       ],
+//                     ),
+//                     SizedBox(height: 30),
+//                     Row(
+//                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                       children: <Widget>[
+//                         Flexible(
+//                           child: Text(
+//                             "Cost : ₹" +
+//                                 "${_orderList[index].total} " +
+//                                 "${_orderList[index].item}" +
+//                                 " : " +
+//                                 "${_orderList[index].qty}",
+//                             style: TextStyle(color: Colors.black, fontSize: 22),
+//                           ),
+//                         ),
+//                         FlatButton(
+//                           onPressed: () {
+//                             Navigator.pushNamed(context, '/orderdetails');
+//                           },
+//                           shape: new RoundedRectangleBorder(
+//                               borderRadius: new BorderRadius.circular(10.0)),
+//                           child: Text('View'),
+//                           color: Colors.white,
+//                         ),
+//                         FlatButton(
+//                           onPressed: () {
+//                             changeConfirmation(_orderList[index].isConfirmed,
+//                                 _orderList[index].number);
+//                           },
+//                           shape: new RoundedRectangleBorder(
+//                               borderRadius: new BorderRadius.circular(10.0)),
+//                           child: Text(_orderList[index].isConfirmed
+//                               ? 'Confirm'
+//                               : 'Delete'),
+//                           color: Colors.amber,
+//                         ),
+//                       ],
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
+import 'package:rcapp/models/user.dart';
 
 class AdminOrder extends StatefulWidget {
   @override
@@ -18,169 +198,507 @@ class AdminOrder extends StatefulWidget {
 }
 
 class _AdminOrderState extends State<AdminOrder> {
-  @override
-  Widget build(BuildContext context) {
-    return StreamProvider<List<Orders>>.value(
-      value: DatabaseService().orders,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Orders'),
-          backgroundColor: Colors.deepOrange,
-        ),
-        body: NewOrderList(),
-      ),
-    );
+  List<dynamic> orders = [];
+  List<dynamic> item = [];
+  List<dynamic> quantity = [];
+  List<dynamic> total = [];
+
+  void confirmOrder(int index) async {
+    var docId = '${orders[index]["id"]}' + '${orders[index]["total"]}';
+    await Firestore.instance
+        .collection('confirmedOrders')
+        .document(docId)
+        .updateData({"isConfirmed": true});
+    setState(() {
+      orders[index]["isConfirmed"] = true;
+    });
   }
-}
 
-class NewOrderList extends StatefulWidget {
+  void deleteOrder(int index) async {
+    var docId = '${orders[index]["id"]}' + '${orders[index]["total"]}';
+    await Firestore.instance
+        .collection('confirmedOrders')
+        .document(docId)
+        .delete();
+    setState(() {
+      orders.removeAt(index);
+    });
+  }
+
+  void initialData() async {
+    var result =
+        await Firestore.instance.collection('confirmedOrders').getDocuments();
+    result.documents.forEach((res) {
+      setState(() {
+        orders.add(res.data);
+        item.add(res.data["item"]);
+        quantity.add(res.data["quantity"]);
+        total.add(res.data["total"]);
+      });
+    });
+  }
+
   @override
-  NewOrderListState createState() => NewOrderListState();
-}
-
-class NewOrderListState extends State<NewOrderList> {
-  changeConfirmation(bool isConfirmed, String number) async {
-    try {
-      if (isConfirmed) {
-        await Firestore.instance
-            .collection("confirmedOrders")
-            .document(number)
-            .delete();
-      } else {
-        await Firestore.instance
-            .collection("confirmedOrders")
-            .document(number)
-            .updateData({"isConfirmed": !isConfirmed});
-      }
-      Navigator.pushReplacementNamed(context, '/adminorder');
-    } catch (e) {
-      print(e.toString());
-    }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initialData();
   }
 
   @override
   Widget build(BuildContext context) {
     int orderNo = 110;
-    final _orderList = Provider.of<List<Orders>>(context) ?? [];
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: _orderList.length,
-      itemBuilder: (_, index) {
-        orderNo += index;
-        return ListTile(
-          contentPadding: EdgeInsets.all(10),
-          title: Column(
-            children: <Widget>[
-              SizedBox(height: 20.0),
-              Container(
-                alignment: Alignment.topLeft,
-                height: 420.0,
-                width: 370.0,
-                margin: new EdgeInsets.only(left: 20.0, right: 20.0),
-                decoration: BoxDecoration(
-                  color: Colors.tealAccent,
-                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                ),
-                child: Column(
+    if (orders.length == 0 && item.length == 0 && quantity.length == 0) {
+      return Scaffold(
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              SpinKitCircle(color: Colors.deepOrange, size: 65),
+              Text('Loading data')
+            ])),
+      );
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Your Orders'),
+          backgroundColor: Colors.deepOrange,
+        ),
+        body: Container(
+          height: double.infinity,
+          decoration: BoxDecoration(color: Colors.grey[200]),
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: orders.length,
+            itemBuilder: (_, index) {
+              orderNo = 110;
+              orderNo = orderNo + index;
+              return ListTile(
+                contentPadding: EdgeInsets.all(10),
+                title: Column(
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          "Order Number : " + "$orderNo",
-                          style:
-                              TextStyle(color: Colors.deepOrange, fontSize: 22),
-                        ),
-                        Text("Aug 4th 2020"),
-                      ],
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Text(
-                                "Name : " + "${_orderList[index].name}",
+                    SizedBox(height: 10.0),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      height: 190.0,
+                      width: 370.0,
+                      decoration: BoxDecoration(
+                          color: Colors.blue[50],
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          border: Border.all(color: Colors.grey)),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "Order No: $orderNo",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 15),
+                                    color: Colors.deepOrange, fontSize: 22),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Text(
-                                "Personal No. : " +
-                                    "${_orderList[index].number}",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Flexible(
-                              child: Text(
-                                "Address : " + "${_orderList[index].address}",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 30),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Flexible(
-                          child: Text(
-                            "Cost : ₹" +
-                                "${_orderList[index].total} " +
-                                "${_orderList[index].item}" +
-                                " : " +
-                                "${_orderList[index].qty}",
-                            style: TextStyle(color: Colors.black, fontSize: 22),
+                              Flexible(child: Text('${orders[index]["date"]}')),
+                            ],
                           ),
-                        ),
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/orderdetails');
-                          },
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10.0)),
-                          child: Text('View'),
-                          color: Colors.white,
-                        ),
-                        FlatButton(
-                          onPressed: () {
-                            changeConfirmation(_orderList[index].isConfirmed,
-                                _orderList[index].number);
-                          },
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10.0)),
-                          child: Text(_orderList[index].isConfirmed
-                              ? 'Confirm'
-                              : 'Delete'),
-                          color: Colors.amber,
-                        ),
-                      ],
+                          SizedBox(height: 8),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      "Name : " + "${orders[index]["name"]}",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      "Personal No : " +
+                                          "${orders[index]["number"]}",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                                if (orders[index]["isConfirmed"]) ...[
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text(
+                                        "Status: Confirmed",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                ] else ...[
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text(
+                                        "Status: Not Confirmed",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                ]
+                              ]),
+                          SizedBox(height: 15),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "Cost : ₹" + "${orders[index]["total"]} ",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 22),
+                                ),
+                                Row(children: <Widget>[
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AdminOrderDetails(
+                                                      total: orders[index]
+                                                          ["total"],
+                                                      orderNo: orderNo,
+                                                      name: orders[index]
+                                                          ["name"],
+                                                      date: orders[index]
+                                                          ["date"],
+                                                      number: orders[index]
+                                                          ["number"],
+                                                      address: orders[index]
+                                                          ["address"],
+                                                      item: item[index],
+                                                      quantity:
+                                                          quantity[index])));
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 5, vertical: 4),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          border:
+                                              Border.all(color: Colors.black),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Text('View',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                          )),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  if (!orders[index]["isConfirmed"]) ...[
+                                    InkWell(
+                                      onTap: () {
+                                        confirmOrder(index);
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 4),
+                                        decoration: BoxDecoration(
+                                            color: Colors.deepOrange[400],
+                                            border:
+                                                Border.all(color: Colors.black),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Text('Confirm',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            )),
+                                      ),
+                                    )
+                                  ] else ...[
+                                    InkWell(
+                                      onTap: () {
+                                        deleteOrder(index);
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 4),
+                                        decoration: BoxDecoration(
+                                            color: Colors.red,
+                                            border:
+                                                Border.all(color: Colors.black),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Text('Delete',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            )),
+                                      ),
+                                    )
+                                  ]
+                                ])
+                              ]),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ],
+              );
+            },
           ),
-        );
-      },
+        ),
+      );
+    }
+  }
+}
+
+class AdminOrderData extends StatefulWidget {
+  List item;
+  List quantity;
+  AdminOrderData({this.item, this.quantity});
+  @override
+  _AdminOrderDataState createState() => _AdminOrderDataState();
+}
+
+class _AdminOrderDataState extends State<AdminOrderData> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 20, 0),
+      height: 390,
+      child: ListView.builder(
+          itemCount: widget.item.length,
+          itemBuilder: (_, index) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                    child: Row(children: <Widget>[
+                  Text('${index + 1}) '),
+                  Text('${widget.item[index]} '),
+                ])),
+                Text('${widget.quantity[index]}'),
+              ],
+            );
+          }),
     );
+  }
+}
+
+class AdminOrderDetails extends StatefulWidget {
+  final int orderNo;
+  final int total;
+  final String address;
+  final String name;
+  final String number;
+  final String date;
+  final List item;
+  final List quantity;
+  AdminOrderDetails({
+    this.orderNo,
+    this.total,
+    this.address,
+    this.name,
+    this.number,
+    this.date,
+    this.item,
+    this.quantity,
+  });
+  @override
+  _AdminOrderDetailsState createState() => _AdminOrderDetailsState();
+}
+
+class _AdminOrderDetailsState extends State<AdminOrderDetails> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.deepOrange,
+          title: Text('Details'),
+        ),
+        body: Container(
+          padding: EdgeInsets.symmetric(vertical: 40, horizontal: 0),
+          decoration: BoxDecoration(color: Colors.grey[300]),
+          child: ListTile(
+            contentPadding: EdgeInsets.all(10),
+            title: Container(
+              decoration: BoxDecoration(
+                  color: Colors.blue[50],
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey)),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 20.0),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    height: 500.0,
+                    width: 370.0,
+                    decoration: BoxDecoration(
+                      color: Colors.blue[50],
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "#${widget.orderNo}",
+                              style: TextStyle(
+                                  color: Colors.deepOrange, fontSize: 22),
+                            ),
+                            Flexible(child: Text('${widget.date}')),
+                          ],
+                        ),
+                        SizedBox(height: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "${widget.name}",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "Personal No. :",
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                SizedBox(height: 5),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: Text(
+                                    "${widget.number}",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        "Delivered To : ",
+                                        style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Container(
+                                        width: 300,
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                          child: Text(
+                                            "${widget.address}",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                      )
+                                    ]),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Menu :',
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+                            )),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text('Item Name',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                      decoration: TextDecoration.underline)),
+                              Text('Quantity',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                      decoration: TextDecoration.underline))
+                            ],
+                          ),
+                        ),
+                        Flexible(
+                          child: AdminOrderData(
+                              item: widget.item, quantity: widget.quantity),
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "Cost : ",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 22),
+                              ),
+                              Text(
+                                "₹${widget.total} ",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 22),
+                              ),
+                            ]),
+                        SizedBox(height: 20),
+                        // Container(
+                        //     width: double.infinity,
+                        //     child: FlatButton(
+                        //         onPressed: () {},
+                        //         color: Colors.deepOrange,
+                        //         child: Text('Confirm')))
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }

@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           '/bookingcalendar': (context) => Calendar(),
           '/cart': (context) => Cart(),
           '/adminorder': (context) => AdminOrder(),
-          '/orderdetails': (context) => OrderDetails(),
+          // '/orderdetails': (context) => OrderDetails(),
           '/wrapper': (context) => Wrapper(),
           "/add_event": (context) => AddEventPage(),
           "/confirmOrder": (context) => ConfirmOrder(),
