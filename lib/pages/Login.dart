@@ -1,5 +1,6 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:rcapp/pages/loadingspinner.dart';
 import 'package:rcapp/services/auth.dart';
 
 class Login extends StatefulWidget {
@@ -15,11 +16,11 @@ class _LoginState extends State<Login> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
-
   // test field state
   String number = '';
   String password = '';
   String error = '';
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +42,7 @@ class _LoginState extends State<Login> {
           borderRadius: true,
           indicatorBgPadding: 10.0,
         ));
-
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.deepOrange,
           title: Text('Sign in'),
@@ -123,12 +123,17 @@ class _LoginState extends State<Login> {
                       ),
                       onPressed: () async {
                         if (_formKey.currentState.validate()) {
+                          setState(() {
+                            loading = true;
+                          });
                           String numemail = number + "@gmail.com";
                           dynamic result = await _auth
                               .signInWithEmailAndPassword(numemail, password);
                           if (result == null) {
-                            setState(() => error =
-                                'could not sign in with the credentials');
+                            setState(() {
+                              error = 'could not sign in with the credentials';
+                              loading = false;
+                            });
                           }
                         }
                       },
