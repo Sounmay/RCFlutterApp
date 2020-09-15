@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rcapp/pages/CategoryMenuList/flushbar.dart';
 import 'package:rcapp/pages/searchService.dart';
+import 'package:rcapp/pages/storeData.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   var queryResultSet = [];
   var tempSearchStore = [];
+  var priceStore = [];
 
   initiateSearch(value) {
     if (value.length == 0) {
@@ -17,6 +20,7 @@ class _SearchState extends State<Search> {
         queryResultSet = [];
         tempSearchStore = [];
       });
+      print(tempSearchStore);
     }
 
     var capitalizedValue =
@@ -52,16 +56,14 @@ class _SearchState extends State<Search> {
           decoration: InputDecoration(
               prefixIcon: IconButton(
                 color: Colors.black,
-                icon: Icon(Icons.arrow_back),
+                icon: Icon(Icons.search),
                 iconSize: 20.0,
-                onPressed: () {
-                  Navigator.pushNamed(context, '/food');
-                },
+                onPressed: () {},
               ),
               contentPadding: EdgeInsets.only(left: 25.0),
               hintText: 'Search by item name',
               border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(4.0))),
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(4.0))),
         ),
       ),
       SearchList(tempSearchStore: tempSearchStore),
@@ -70,6 +72,9 @@ class _SearchState extends State<Search> {
 }
 
 class SearchQuantity extends StatefulWidget {
+  final item;
+  final price;
+  SearchQuantity({this.item, this.price});
   @override
   _SearchQuantityState createState() => _SearchQuantityState();
 }
@@ -77,14 +82,36 @@ class SearchQuantity extends StatefulWidget {
 class _SearchQuantityState extends State<SearchQuantity> {
   int FQty = 0;
 
+  StoreData storeData = StoreData();
+
+  void addToCart(String item, int price) {
+    // String item = post.item;
+    // int price = post.price;
+
+    Map<String, int> qtyDetail = storeData.retrieveQtyDetails();
+
+    int qty = 1;
+
+    qtyDetail.forEach((key, value) {
+      if (key == item) {
+        qty = value;
+      }
+    });
+
+    if (qty > 1) {
+      storeData.StoreFoodDetails(item, price, qty);
+    } else {
+      storeData.StoreFoodDetails(item, price, 1);
+    }
+    showFlushbar(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     if (FQty == 0) {
       return InkWell(
         onTap: () {
-          setState(() {
-            FQty++;
-          });
+          addToCart(widget.item, widget.price);
         },
         child: Container(
           margin: EdgeInsets.fromLTRB(0, 0, 14, 0),
@@ -238,7 +265,9 @@ class _SearchListState extends State<SearchList> {
                     '${widget.tempSearchStore[index]['item']}',
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                   ),
-                  SearchQuantity(),
+                  SearchQuantity(
+                      item: widget.tempSearchStore[index]['item'],
+                      price: widget.tempSearchStore[index]['price']),
                 ],
               ),
             );

@@ -191,7 +191,7 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(height: 7.0),
-            FoodCategory(),
+            FoodCategory(areYouadmin),
             SizedBox(height: 20.0),
             Text(
               "  Upcoming Events",
@@ -344,6 +344,18 @@ class _AdminOptionState extends State<AdminOption> {
           padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
           child: ListTile(
             onTap: () {
+              Navigator.pushNamed(context, '/uploadImage');
+            },
+            title: Text(
+              "Upload Today's Menu",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+          child: ListTile(
+            onTap: () {
               Navigator.pushNamed(context, '/adminorder');
             },
             title: Text(
@@ -490,19 +502,19 @@ class _LoadingDataState extends State<LoadingData> {
                             )),
                       ),
                       SizedBox(height: 10),
-                      Container(
-                        padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/uploadImage');
-                          },
-                          child: Text(
-                            "Upload Today's Menu",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+                      //   child: InkWell(
+                      //     onTap: () {
+                      // Navigator.pushNamed(context, '/uploadImage');
+                      //     },
+                      //     child: Text(
+                      //       "Upload Today's Menu",
+                      //       style: TextStyle(
+                      //           fontWeight: FontWeight.bold, fontSize: 25),
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(height: 10),
                       AdminOption(areYouadmin: snapshot.data["isAdmin"]),
                       SizedBox(height: 10),

@@ -15,15 +15,16 @@ import '../data/category_data.dart';
 // Model
 import '../models/category_model.dart';
 
-class FoodCategory extends StatefulWidget {
-  @override
-  _FoodCategoryState createState() => _FoodCategoryState();
-}
+// class FoodCategory extends StatefulWidget {
+//   @override
+//   _FoodCategoryState createState() => _FoodCategoryState();
+// }
 
-class _FoodCategoryState extends State<FoodCategory> {
+class FoodCategory extends StatelessWidget {
   // final List<Category> _categories = categories;
+  final bool areYouAdmin;
 
-  
+  FoodCategory(this.areYouAdmin);
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +53,10 @@ class _FoodCategoryState extends State<FoodCategory> {
             return FocusedMenuHolder(
               onPressed: () {},
               menuItems: <FocusedMenuItem>[
-                FocusedMenuItem(title: Text('delete'), onPressed: (){})
+                FocusedMenuItem(title: Text('delete'), onPressed: () {})
               ],
               child: FoodCard(
+                areYouAdmin: areYouAdmin,
                 categoryName: _menuList[index].category_menu,
                 imagePath: _menuList[index].imagepath,
                 itemprice: _menuList[index].price,

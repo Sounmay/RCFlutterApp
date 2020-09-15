@@ -88,12 +88,13 @@ class DatabaseService {
         .setData({'title': title, 'subtitle': subtitle, 'downloadLink': url});
   }
 
-  Future bookDetails(String id, String name, String number, String lounge,
+  Future bookDetails(String id, String name, String number, int numberOfPeople, String lounge,
       int slot, DateTime date) async {
     return await bookingDetails.document().setData({
       'id': id,
       'name': name,
       'number': number,
+      'numberOfPeople': numberOfPeople,
       'lounge': lounge,
       'slot': slot,
       'date': '${date.day}' + '/' + '${date.month}' + '/' + '${date.year}'
