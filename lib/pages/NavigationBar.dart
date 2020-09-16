@@ -41,7 +41,7 @@ class _NavigationBarState extends State<NavigationBar> {
               icon: Icon(Icons.fastfood),
               title: Text('Food'),
               backgroundColor: Colors.deepOrange,
-              activeIcon: Icon(Icons.home, color: Colors.deepOrange),
+              activeIcon: Icon(Icons.fastfood, color: Colors.deepOrange),
     ),
           BottomNavigationBarItem(
               icon: Icon(Icons.book),

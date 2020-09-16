@@ -1,7 +1,7 @@
-class TodaysMenu {
+class BookingMenu {
   final String categoryName;
   final String imagePath;
   final int itemprice;
 
-  TodaysMenu({this.categoryName, this.imagePath, this.itemprice});
+  BookingMenu({this.categoryName, this.imagePath, this.itemprice});
 }

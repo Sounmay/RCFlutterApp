@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:rcapp/pages/BlueL.dart';
 import 'package:rcapp/pages/Cart.dart';
 import 'package:rcapp/pages/CategoryMenuList/Accompaniment_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/All_Menu.dart';
@@ -18,8 +19,12 @@ import 'package:rcapp/pages/CategoryMenuList/Snacks_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Soup_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Starter_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Tandoori_Menu.dart';
+import 'package:rcapp/pages/Coluseum.dart';
 import 'package:rcapp/pages/Food.dart';
+import 'package:rcapp/pages/Milan.dart';
+import 'package:rcapp/pages/MilapL.dart';
 import 'package:rcapp/pages/NavigationBar.dart';
+import 'package:rcapp/pages/YellowL.dart';
 import 'package:rcapp/pages/add_event.dart';
 import 'package:rcapp/pages/address.dart';
 import 'package:rcapp/pages/adminBooking.dart';
@@ -88,6 +93,13 @@ class MyApp extends StatelessWidget {
           "/startermenu": (context) => StarterMenuList(),
           "/tandoorimenu": (context) => Tandoori_MenuList(),
           "/accompanimentmenu": (context) => Accompaniment_Menu(),
+
+          // lounge routes
+          "/bluelounge": (context) => BlueLounge(),
+          "/yellowlounge": (context) => YellowLounge(),
+          "/milanlounge" : (context) => MilanLounge(),
+          "/milaplounge" : (context) => MilapLounge(),
+          "/coluseum" : (context) => Coluseum(),
 
           //Routes for admin
           "/uploadImage": (context) => UploadImage(),

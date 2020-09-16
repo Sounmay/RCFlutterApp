@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:rcapp/pages/NavigationBar.dart';
 
 class Booking extends StatefulWidget {
   @override
@@ -10,73 +11,94 @@ class _BookingState extends State<Booking> {
   @override
   Widget build(BuildContext context) {
     Widget image_carousel1 = new Container(
-      height: 200.0,
+      margin: EdgeInsets.all(5),
+      height: 180.0,
       child: new Carousel(
         boxFit: BoxFit.cover,
         images: [
-          Card(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/12.jpg'),
-                  fit: BoxFit.fitWidth,
-                  alignment: Alignment.topCenter,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/bluelounge");
+            },
+            child: Card(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/12.jpg'),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.topCenter,
+                  ),
                 ),
-              ),
-              child: Text("The Blue Lounge",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Card(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/13.jpg'),
-                  fit: BoxFit.fitWidth,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-              child: Text("The Yellow Lounge",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+                child: Text(
+                  "The Blue Lounge",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
           ),
-          Card(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/17.jpg'),
-                  fit: BoxFit.fitWidth,
-                  alignment: Alignment.topCenter,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/yellowlounge");
+            },
+            child: Card(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/13.jpg'),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.topCenter,
+                  ),
+                ),
+                child: Text(
+                  "The Yellow Lounge",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              child: Text("Milap Reception Hall",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/milaplounge");
+            },
+            child: Card(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/17.jpg'),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.topCenter,
+                  ),
+                ),
+                child: Text(
+                  "Milap Reception Hall",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
           ),
         ],
-        autoplay: true,
-        animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds: 1000),
+        autoplay: false,
+        dotBgColor: Colors.transparent,
+        borderRadius: true,
+        dotSize: 0,
       ),
     );
 
     Widget image_carousel2 = new Container(
-      height: 200.0,
+      margin: EdgeInsets.all(5),
+      height: 180.0,
       child: new Carousel(
         boxFit: BoxFit.cover,
         images: [
@@ -89,7 +111,8 @@ class _BookingState extends State<Booking> {
                   alignment: Alignment.topCenter,
                 ),
               ),
-              child: Text("Main Banquet",
+              child: Text(
+                "Main Banquet",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 25,
@@ -107,7 +130,8 @@ class _BookingState extends State<Booking> {
                   alignment: Alignment.topCenter,
                 ),
               ),
-              child: Text("Wedding Reception Hall",
+              child: Text(
+                "Wedding Reception Hall",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 25,
@@ -116,14 +140,13 @@ class _BookingState extends State<Booking> {
               ),
             ),
           ),
-
         ],
-        autoplay: true,
-        animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds: 1000),
+        autoplay: false,
+        dotSize: 0,
+        borderRadius: true,
+        dotBgColor: Colors.transparent,
       ),
     );
-
 
     return Scaffold(
       appBar: AppBar(
