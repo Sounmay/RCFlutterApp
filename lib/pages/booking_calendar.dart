@@ -60,7 +60,7 @@ class _CalendarState extends State<Calendar> {
               children: <Widget>[
                 TableCalendar(
                   events: _events,
-                  initialCalendarFormat: CalendarFormat.week,
+                  initialCalendarFormat: CalendarFormat.month,
                   calendarStyle: CalendarStyle(
                       canEventMarkersOverflow: true,
                       todayColor: Colors.orange,
