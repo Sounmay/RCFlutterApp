@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:rcapp/pages/BlueL.dart';
 import 'package:rcapp/pages/Cart.dart';
 import 'package:rcapp/pages/CategoryMenuList/Accompaniment_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/All_Menu.dart';
@@ -18,14 +19,20 @@ import 'package:rcapp/pages/CategoryMenuList/Snacks_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Soup_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Starter_Menu.dart';
 import 'package:rcapp/pages/CategoryMenuList/Tandoori_Menu.dart';
+import 'package:rcapp/pages/Coluseum.dart';
 import 'package:rcapp/pages/Food.dart';
+import 'package:rcapp/pages/Milan.dart';
+import 'package:rcapp/pages/MilapL.dart';
 import 'package:rcapp/pages/NavigationBar.dart';
+import 'package:rcapp/pages/YellowL.dart';
 import 'package:rcapp/pages/add_event.dart';
 import 'package:rcapp/pages/address.dart';
+import 'package:rcapp/pages/adminBooking.dart';
 import 'package:rcapp/pages/admin_order_confirm.dart';
 import 'package:rcapp/pages/booking_calendar.dart';
 import 'package:rcapp/pages/confirmOrder.dart';
 import 'package:rcapp/pages/orderdetails.dart';
+import 'package:rcapp/pages/previousBooking.dart';
 import 'package:rcapp/pages/previousOrder.dart';
 import 'package:rcapp/pages/uploadImage.dart';
 import 'package:rcapp/pages/uploadPdf.dart';
@@ -57,12 +64,15 @@ class MyApp extends StatelessWidget {
           '/bookingcalendar': (context) => Calendar(),
           '/cart': (context) => Cart(),
           '/adminorder': (context) => AdminOrder(),
-          '/orderdetails': (context) => OrderDetails(),
+          // '/orderdetails': (context) => OrderDetails(),
           '/wrapper': (context) => Wrapper(),
           "/add_event": (context) => AddEventPage(),
           "/confirmOrder": (context) => ConfirmOrder(),
           "/address": (context) => AddressForm(),
           "/previousOrder": (context) => PreviousOrder(),
+          "/previousBooking": (context) => PreviousBooking(),
+          "/adminBooking": (context) => AdminBooking(),
+          // "/previousOrder": (context) => PreviousOrderDetails(),
 
           //routes for different categories of food
           "/allmenu": (context) => AllMenu(),
@@ -83,6 +93,13 @@ class MyApp extends StatelessWidget {
           "/startermenu": (context) => StarterMenuList(),
           "/tandoorimenu": (context) => Tandoori_MenuList(),
           "/accompanimentmenu": (context) => Accompaniment_Menu(),
+
+          // lounge routes
+          "/bluelounge": (context) => BlueLounge(),
+          "/yellowlounge": (context) => YellowLounge(),
+          "/milanlounge" : (context) => MilanLounge(),
+          "/milaplounge" : (context) => MilapLounge(),
+          "/coluseum" : (context) => Coluseum(),
 
           //Routes for admin
           "/uploadImage": (context) => UploadImage(),

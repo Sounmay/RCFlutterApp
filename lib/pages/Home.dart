@@ -191,7 +191,7 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(height: 7.0),
-            FoodCategory(),
+            FoodCategory(areYouadmin),
             SizedBox(height: 20.0),
             Text(
               "  Upcoming Events",
@@ -339,18 +339,53 @@ class _AdminOptionState extends State<AdminOption> {
   @override
   Widget build(BuildContext context) {
     if (isAdminglobal || widget.areYouadmin == true) {
-      return Container(
-        padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
-        child: InkWell(
-          onTap: () {
-            Navigator.pushNamed(context, '/adminorder');
-          },
-          child: Text(
-            'Admin Orders',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+      return Column(children: <Widget>[
+        Container(
+          padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+          child: ListTile(
+            onTap: () {
+              Navigator.pushNamed(context, '/uploadImage');
+            },
+            title: Text(
+              "Upload Today's Menu",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
           ),
         ),
-      );
+        Container(
+          padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+          child: ListTile(
+            onTap: () {
+              Navigator.pushNamed(context, '/adminorder');
+            },
+            title: Text(
+              'Admin Orders',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+          child: ListTile(
+            onTap: () {
+              Navigator.pushNamed(context, '/adminBooking');
+            },
+            title: Text(
+              'Admin Booking',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+          ),
+          // InkWell(
+          //   onTap: () {
+          //     Navigator.pushNamed(context, '/adminBooking');
+          //   },
+          //   child: Text(
+          //     'Admin Booking',
+          //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          //   ),
+          // ),
+        )
+      ]);
     } else if (isAdminglobal == null || isAdminglobal == false) {
       return Container(
         padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
@@ -382,12 +417,6 @@ class _LoadingDataState extends State<LoadingData> {
         .collection("userInfo")
         .document(userkaabba)
         .get();
-    // setState(() {
-    //   areYouadmin = dat.data["isAdmin"];
-    //   userName = dat.data["name"];
-    //   userNumber = dat.data["number"];
-    // });
-    // .then((value) => value.data["IsAdmin"]);
   }
 
   @override
@@ -450,7 +479,9 @@ class _LoadingDataState extends State<LoadingData> {
                       Container(
                         padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
                         child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, '/previousBooking');
+                            },
                             child: Text(
                               'My Bookings',
                               style: TextStyle(
@@ -471,19 +502,19 @@ class _LoadingDataState extends State<LoadingData> {
                             )),
                       ),
                       SizedBox(height: 10),
-                      Container(
-                        padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/uploadImage');
-                          },
-                          child: Text(
-                            "Upload Today's Menu",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+                      //   child: InkWell(
+                      //     onTap: () {
+                      // Navigator.pushNamed(context, '/uploadImage');
+                      //     },
+                      //     child: Text(
+                      //       "Upload Today's Menu",
+                      //       style: TextStyle(
+                      //           fontWeight: FontWeight.bold, fontSize: 25),
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(height: 10),
                       AdminOption(areYouadmin: snapshot.data["isAdmin"]),
                       SizedBox(height: 10),

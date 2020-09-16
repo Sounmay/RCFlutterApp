@@ -42,6 +42,7 @@ dependencies:
   permission_handler: ^5.0.1+1
   flutter_downloader: ^1.5.0
   path_provider: ^1.6.14
+  dropdown_formfield: ^0.1.2
 
 
 

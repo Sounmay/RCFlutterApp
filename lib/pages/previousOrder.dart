@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/models/user.dart';
 
@@ -30,7 +31,6 @@ class _PreviousOrderState extends State<PreviousOrder> {
         total.add(res.data["total"]);
       });
     });
-    print(orders[0]);
   }
 
   @override
@@ -44,8 +44,14 @@ class _PreviousOrderState extends State<PreviousOrder> {
   Widget build(BuildContext context) {
     int orderNo = 110;
     if (orders.length == 0 && item.length == 0 && quantity.length == 0) {
-      return Container(
-        child: Text('No data'),
+      return Scaffold(
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              SpinKitCircle(color: Colors.deepOrange, size: 65),
+              Text('Loading data')
+            ])),
       );
     } else {
       return Scaffold(
@@ -53,114 +59,105 @@ class _PreviousOrderState extends State<PreviousOrder> {
           title: Text('Your Orders'),
           backgroundColor: Colors.deepOrange,
         ),
-        body: ListView.builder(
-          shrinkWrap: true,
-          itemCount: orders.length,
-          itemBuilder: (_, index) {
-            orderNo += index;
-            return ListTile(
-              contentPadding: EdgeInsets.all(10),
-              title: Column(
-                children: <Widget>[
-                  SizedBox(height: 20.0),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    height: 420.0,
-                    width: 370.0,
-                    decoration: BoxDecoration(
-                      color: Colors.lightBlue[50],
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Order Number : " + "$orderNo",
-                              style: TextStyle(
-                                  color: Colors.deepOrange, fontSize: 22),
-                            ),
-                            Flexible(child: Text('${orders[index]["date"]}')),
-                          ],
-                        ),
-                        SizedBox(height: 8),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  "Name : " + "${orders[index]["name"]}",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 8),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  "Personal No. : " +
-                                      "${orders[index]["number"]}",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 8),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: Container(
+          height: double.infinity,
+          decoration: BoxDecoration(color: Colors.grey[200]),
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: orders.length,
+            itemBuilder: (_, index) {
+              orderNo += index;
+              return ListTile(
+                contentPadding: EdgeInsets.all(10),
+                title: Column(
+                  children: <Widget>[
+                    SizedBox(height: 10.0),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      height: 140.0,
+                      width: 370.0,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          border: Border.all(color: Colors.grey)),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "#$orderNo",
+                                style: TextStyle(
+                                    color: Colors.deepOrange, fontSize: 22),
+                              ),
+                              Flexible(child: Text('${orders[index]["date"]}')),
+                            ],
+                          ),
+                          SizedBox(height: 8),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        "Address : ",
-                                        // "${orders[index]["address"]}",
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      "Name : " + "${orders[index]["name"]}",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                              ]),
+                          SizedBox(height: 15),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "Cost : ₹" + "${orders[index]["total"]} ",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 22),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                PreviousOrderDetails(
+                                                    total: orders[index]
+                                                        ["total"],
+                                                    orderNo: orderNo,
+                                                    name: orders[index]["name"],
+                                                    date: orders[index]["date"],
+                                                    number: orders[index]
+                                                        ["number"],
+                                                    address: orders[index]
+                                                        ["address"],
+                                                    item: item[index],
+                                                    quantity:
+                                                        quantity[index])));
+                                  },
+                                  child: Container(
+                                    child: Text('Know More',
                                         style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Container(
-                                        width: 240,
-                                        child: Text(
-                                          "${orders[index]["address"]}",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      )
-                                    ]),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 30),
-                        Flexible(
-                          child: OrderData(
-                              item: item[index], quantity: quantity[index]),
-                        ),
-                        Text(
-                          "Cost : ₹" + "${orders[index]["total"]} ",
-                          style: TextStyle(color: Colors.black, fontSize: 22),
-                        ),
-                      ],
+                                            color: Colors.deepOrange,
+                                            decoration:
+                                                TextDecoration.underline)),
+                                  ),
+                                )
+                              ]),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       );
     }
@@ -179,14 +176,229 @@ class _OrderDataState extends State<OrderData> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140,
+      padding: EdgeInsets.fromLTRB(10, 10, 20, 0),
+      height: 290,
       child: ListView.builder(
           itemCount: widget.item.length,
           itemBuilder: (_, index) {
-            return Container(
-              child: Text('${widget.item[index]}: ${widget.quantity[index]}'),
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                    child: Row(children: <Widget>[
+                  Text('${index + 1}) '),
+                  Text('${widget.item[index]} '),
+                ])),
+                Text('${widget.quantity[index]}'),
+              ],
             );
           }),
     );
+  }
+}
+
+class PreviousOrderDetails extends StatefulWidget {
+  final int orderNo;
+  final int total;
+  final String address;
+  final String name;
+  final String number;
+  final String date;
+  final List item;
+  final List quantity;
+  PreviousOrderDetails(
+      {this.orderNo,
+      this.total,
+      this.address,
+      this.name,
+      this.number,
+      this.date,
+      this.item,
+      this.quantity});
+  @override
+  _PreviousOrderDetailsState createState() => _PreviousOrderDetailsState();
+}
+
+class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.deepOrange,
+          title: Text('Details'),
+        ),
+        body: Container(
+          padding: EdgeInsets.symmetric(vertical: 40, horizontal: 0),
+          decoration: BoxDecoration(color: Colors.grey[300]),
+          child: ListTile(
+            contentPadding: EdgeInsets.all(10),
+            title: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey)),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 20.0),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    height: 500.0,
+                    width: 370.0,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "#${widget.orderNo}",
+                              style: TextStyle(
+                                  color: Colors.deepOrange, fontSize: 22),
+                            ),
+                            Flexible(child: Text('${widget.date}')),
+                          ],
+                        ),
+                        SizedBox(height: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "${widget.name}",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "Personal No. :",
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                SizedBox(height: 5),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: Text(
+                                    "${widget.number}",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        "Delivered To : ",
+                                        style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Container(
+                                        width: 300,
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                          child: Text(
+                                            "${widget.address}",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                      )
+                                    ]),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Menu :',
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+                            )),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text('Item Name',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                      decoration: TextDecoration.underline)),
+                              Text('Quantity',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                      decoration: TextDecoration.underline))
+                            ],
+                          ),
+                        ),
+                        Flexible(
+                          child: OrderData(
+                              item: widget.item, quantity: widget.quantity),
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "Cost : ₹" + "${widget.total} ",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 22),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              PreviousOrderDetails()));
+                                },
+                                child: Container(
+                                  child: Text('Know More',
+                                      style: TextStyle(
+                                          color: Colors.deepOrange,
+                                          decoration:
+                                              TextDecoration.underline)),
+                                ),
+                              )
+                            ]),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }

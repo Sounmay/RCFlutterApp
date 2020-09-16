@@ -111,7 +111,7 @@ class _FoodState extends State<Food> {
                 ),
               ),
               SizedBox(height: 10.0),
-              FoodCategory(),
+              FoodCategory(false),
               SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

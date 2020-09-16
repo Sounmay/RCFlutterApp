@@ -27,6 +27,7 @@ class Menu {
 
   Menu({this.item, this.price, this.searchIndex});
 }
+
 class BreakfastMenu {
   String item = '';
   int price = 0;
@@ -34,6 +35,7 @@ class BreakfastMenu {
 
   BreakfastMenu({this.item, this.price, this.searchIndex});
 }
+
 class PaneerMenu {
   String item = '';
   int price = 0;
@@ -41,6 +43,7 @@ class PaneerMenu {
 
   PaneerMenu({this.item, this.price, this.searchIndex});
 }
+
 class MainCourseMenu {
   String item = '';
   int price = 0;
@@ -48,6 +51,7 @@ class MainCourseMenu {
 
   MainCourseMenu({this.item, this.price, this.searchIndex});
 }
+
 class ChineseMenu {
   String item = '';
   int price = 0;
@@ -55,6 +59,7 @@ class ChineseMenu {
 
   ChineseMenu({this.item, this.price, this.searchIndex});
 }
+
 class StarterMenu {
   String item = '';
   int price = 0;
@@ -62,6 +67,7 @@ class StarterMenu {
 
   StarterMenu({this.item, this.price, this.searchIndex});
 }
+
 class BiryaniMenu {
   String item = '';
   int price = 0;
@@ -69,6 +75,7 @@ class BiryaniMenu {
 
   BiryaniMenu({this.item, this.price, this.searchIndex});
 }
+
 class BreadMenu {
   String item = '';
   int price = 0;
@@ -76,6 +83,7 @@ class BreadMenu {
 
   BreadMenu({this.item, this.price, this.searchIndex});
 }
+
 class TandooriMenu {
   String item = '';
   int price = 0;
@@ -83,6 +91,7 @@ class TandooriMenu {
 
   TandooriMenu({this.item, this.price, this.searchIndex});
 }
+
 class FriedRiceAndNoodlesMenu {
   String item = '';
   int price = 0;
@@ -90,6 +99,7 @@ class FriedRiceAndNoodlesMenu {
 
   FriedRiceAndNoodlesMenu({this.item, this.price, this.searchIndex});
 }
+
 class RollMenu {
   String item = '';
   int price = 0;
@@ -97,6 +107,7 @@ class RollMenu {
 
   RollMenu({this.item, this.price, this.searchIndex});
 }
+
 class SandwichMenu {
   String item = '';
   int price = 0;
@@ -104,6 +115,7 @@ class SandwichMenu {
 
   SandwichMenu({this.item, this.price, this.searchIndex});
 }
+
 class PizzaMenu {
   String item = '';
   int price = 0;
@@ -111,6 +123,7 @@ class PizzaMenu {
 
   PizzaMenu({this.item, this.price, this.searchIndex});
 }
+
 class SnacksMenu {
   String item = '';
   int price = 0;
@@ -118,6 +131,7 @@ class SnacksMenu {
 
   SnacksMenu({this.item, this.price, this.searchIndex});
 }
+
 class BurgerMenu {
   String item = '';
   int price = 0;
@@ -125,6 +139,7 @@ class BurgerMenu {
 
   BurgerMenu({this.item, this.price, this.searchIndex});
 }
+
 class PastaMenu {
   String item = '';
   int price = 0;
@@ -132,6 +147,7 @@ class PastaMenu {
 
   PastaMenu({this.item, this.price, this.searchIndex});
 }
+
 class SoupMenu {
   String item = '';
   int price = 0;
@@ -139,6 +155,7 @@ class SoupMenu {
 
   SoupMenu({this.item, this.price, this.searchIndex});
 }
+
 class AccompanimentMenu {
   String item = '';
   int price = 0;
@@ -146,6 +163,7 @@ class AccompanimentMenu {
 
   AccompanimentMenu({this.item, this.price, this.searchIndex});
 }
+
 class Today_Menu {
   String imagepath = '';
   int price = 0;
@@ -162,9 +180,17 @@ class Orders {
   String address;
   int total;
   bool isConfirmed;
+  String date;
 
   Orders(
-      {this.item, this.qty, this.name, this.number, this.address, this.total, this.isConfirmed});
+      {this.item,
+      this.qty,
+      this.name,
+      this.number,
+      this.address,
+      this.total,
+      this.isConfirmed,
+      this.date});
 }
 
 class PreviousOrders {
@@ -177,5 +203,11 @@ class PreviousOrders {
   bool isConfirmed;
 
   PreviousOrders(
-      {this.item, this.qty, this.name, this.number, this.address, this.total, this.isConfirmed});
+      {this.item,
+      this.qty,
+      this.name,
+      this.number,
+      this.address,
+      this.total,
+      this.isConfirmed});
 }
