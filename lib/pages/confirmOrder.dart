@@ -48,8 +48,8 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
     var number = _dat.data["number"];
     var address = _dat.data["address"];
 
-    DatabaseService().confirmOrderofUser(
-        user.uid, userName, number, address, itemList, quantityList, total, false);
+    DatabaseService().confirmOrderofUser(user.uid, userName, number, address,
+        itemList, quantityList, total, false);
 
     storeData.resetStore();
     updateTotal();
@@ -66,32 +66,31 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
           title: Text('Payment'),
         ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(
                 child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.radio_button_checked),
-                      color: Colors.green,
-                    ),
-                    Text('CASH ON DELIVERY')
-                  ],
-                )),
-            SizedBox(height: 300),
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.radio_button_checked),
+                  color: Colors.green,
+                ),
+                Text('CASH ON DELIVERY')
+              ],
+            )),
+            // SizedBox(height: 300),
             SizedBox(
-              width: double.infinity,
-                height: 40,
-                child:ButtonTheme(
+                width: double.infinity,
+                height: 60,
+                child: ButtonTheme(
                   child: RaisedButton(
-                    color: Colors.deepOrange,
+                      color: Colors.deepOrange,
                       onPressed: () {
                         confirmOrder();
                       },
-                      child: Text('CONFIRM ORDER', style: TextStyle(
-                        color: Colors.white,
-                      ))),
-                )
-            ),
+                      child: Text('CONFIRM ORDER',
+                          style: TextStyle(color: Colors.white, fontSize: 18))),
+                )),
           ],
         ));
   }

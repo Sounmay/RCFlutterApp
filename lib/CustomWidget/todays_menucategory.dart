@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:rcapp/CustomWidget/booking_menuCard.dart';
+import 'package:rcapp/CustomWidget/todays_menucard.dart';
 import 'package:rcapp/data/todays_menu.dart';
 import 'package:rcapp/models/todays_menumodel.dart';
 
 class TodaysMenuCategory extends StatelessWidget {
-  final List<BookingMenu> _categories = todaymenucategories;
+  final List<TodaysMenu> _categories = todaymenucategories;
 
   @override
   Widget build(BuildContext context) {
