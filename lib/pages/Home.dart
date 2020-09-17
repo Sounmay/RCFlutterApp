@@ -109,7 +109,7 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.deepOrange,
           leading: Builder(builder: (BuildContext context) {
             return IconButton(
-              icon: const Icon(Icons.account_circle),
+              icon: const Icon(Icons.menu),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
@@ -158,12 +158,16 @@ class _HomeState extends State<Home> {
                       'Rourkela Club Menu',
                       style: TextStyle(
                           color: Colors.deepOrange,
-                          fontSize: 10,
+                          fontSize: 14,
                           decoration: TextDecoration.underline),
                     ),
                     IconButton(
+                      padding: EdgeInsets.all(0),
+                      alignment: Alignment.centerLeft,
                       onPressed: () {},
                       icon: Icon(Icons.insert_drive_file),
+                      color: Colors.deepOrange,
+                      iconSize: 14,
                     )
                   ]),
             ),
@@ -181,23 +185,29 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   if (areYouadmin) ...[
-                    FlatButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/uploadPdf');
-                      },
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(10.0)),
-                      child: Text(
-                        'Add To List',
-                        style: TextStyle(color: Colors.black),
+                    Row(children: <Widget>[
+                      Container(
+                        height: 28,
+                        child: FlatButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/uploadPdf');
+                          },
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(10.0)),
+                          child: Text(
+                            'Add To List',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          color: Colors.deepOrange,
+                        ),
                       ),
-                      color: Colors.orange,
-                    )
+                      SizedBox(width: 10)
+                    ])
                   ]
                 ]),
-            SizedBox(height: 20.0),
-            HomeListPage(),
             SizedBox(height: 10.0),
+            HomeListPage(),
+            SizedBox(height: 20.0),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -210,22 +220,32 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   if (areYouadmin) ...[
-                    FlatButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/uploadImage');
-                      },
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(10.0)),
-                      child: Text(
-                        'Add To List',
-                        style: TextStyle(color: Colors.black),
+                    Row(children: <Widget>[
+                      Container(
+                        height: 28,
+                        child: FlatButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/uploadImage');
+                          },
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(10.0)),
+                          child: Text(
+                            'Add To List',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          color: Colors.deepOrange,
+                        ),
                       ),
-                      color: Colors.orange,
-                    )
+                      SizedBox(
+                        width: 10,
+                      )
+                    ])
                   ]
                 ]),
             SizedBox(height: 7.0),
-            FoodCategory(areYouadmin),
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                child: FoodCategory(areYouadmin)),
             SizedBox(height: 20.0),
             Text(
               "  Upcoming Events",
@@ -237,8 +257,11 @@ class _HomeState extends State<Home> {
             ),
             SizedBox(height: 10.0),
             Container(
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
               height: 150,
-              decoration: BoxDecoration(color: Colors.blue[50]),
+              decoration: BoxDecoration(
+                  color: Colors.blue[50],
+                  borderRadius: BorderRadius.circular(10)),
               child: Center(child: Text('No Events')),
             ),
             SizedBox(height: 50)

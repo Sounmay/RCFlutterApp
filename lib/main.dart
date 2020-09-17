@@ -68,7 +68,6 @@ class MyApp extends StatelessWidget {
           // '/orderdetails': (context) => OrderDetails(),
           '/wrapper': (context) => Wrapper(),
           "/add_event": (context) => AddEventPage(),
-          "/confirmOrder": (context) => ConfirmOrder(),
           "/address": (context) => AddressForm(),
           "/previousOrder": (context) => PreviousOrder(),
           "/previousBooking": (context) => PreviousBooking(),

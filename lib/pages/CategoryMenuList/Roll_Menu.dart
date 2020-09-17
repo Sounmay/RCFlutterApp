@@ -26,7 +26,7 @@ class _Roll_MenuListState extends State<Roll_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: Roll'),
+          title: Text('Roll'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -35,7 +35,6 @@ class _Roll_MenuListState extends State<Roll_MenuList> {
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/cart');
-                // Navigator.popAndPushNamed(context, '/cart');
               },
             )
           ],
@@ -159,18 +158,7 @@ class _RollMenuListListPageState extends State<RollMenuListListPage> {
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          checked = !checked;
-                                        });
-                                        addToCart(_menuList[index]);
-                                      },
-                                      icon: Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: Colors.green,
-                                      ),
-                                    ),
+                                    SizedBox(width: 15),
                                     Text(
                                       '${_menuList[index].item}',
                                       style: TextStyle(
@@ -189,7 +177,7 @@ class _RollMenuListListPageState extends State<RollMenuListListPage> {
                                     margin: EdgeInsets.only(top: 6),
                                     alignment: Alignment.center,
                                     decoration:
-                                        BoxDecoration(color: Colors.deepOrange),
+                                        BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.circular(10)),
                                     child: IconButton(
                                       onPressed: () {
                                         showFlushbar(context);
@@ -211,7 +199,7 @@ class _RollMenuListListPageState extends State<RollMenuListListPage> {
                               children: <Widget>[
                                 Container(
                                   margin: new EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 50.0),
+                                      vertical: 3, horizontal: 16.0),
                                   child: Text(
                                     '₹' + '${_menuList[index].price}',
                                     style: TextStyle(

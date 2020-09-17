@@ -180,14 +180,14 @@ class DatabaseService {
     }).toList();
   }
 
-  List<PaneerMenu> _paneermenuListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.documents.map((doc) {
-      return PaneerMenu(
-          item: doc.data["item"] ?? '',
-          price: doc.data["price"] ?? 0,
-          searchIndex: doc.data["search_index"] ?? '');
-    }).toList();
-  }
+  // List<PaneerMenu> _paneermenuListFromSnapshot(QuerySnapshot snapshot) {
+  //   return snapshot.documents.map((doc) {
+  //     return PaneerMenu(
+  //         item: doc.data["item"] ?? '',
+  //         price: doc.data["price"] ?? 0,
+  //         searchIndex: doc.data["search_index"] ?? '');
+  //   }).toList();
+  // }
 
   List<BreadMenu> _breadmenuListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {

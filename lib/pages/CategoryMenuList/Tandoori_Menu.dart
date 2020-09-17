@@ -26,7 +26,7 @@ class _Tandoori_MenuListState extends State<Tandoori_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: Tandoor'),
+          title: Text('Tandoor'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -35,7 +35,6 @@ class _Tandoori_MenuListState extends State<Tandoori_MenuList> {
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/cart');
-                // Navigator.popAndPushNamed(context, '/cart');
               },
             )
           ],
@@ -54,7 +53,8 @@ class _Tandoori_MenuListState extends State<Tandoori_MenuList> {
 
 class TandooriMenuListListPage extends StatefulWidget {
   @override
-  _TandooriMenuListListPageState createState() => _TandooriMenuListListPageState();
+  _TandooriMenuListListPageState createState() =>
+      _TandooriMenuListListPageState();
 }
 
 class _TandooriMenuListListPageState extends State<TandooriMenuListListPage> {
@@ -159,18 +159,7 @@ class _TandooriMenuListListPageState extends State<TandooriMenuListListPage> {
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          checked = !checked;
-                                        });
-                                        addToCart(_menuList[index]);
-                                      },
-                                      icon: Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: Colors.green,
-                                      ),
-                                    ),
+                                    SizedBox(width: 15),
                                     Text(
                                       '${_menuList[index].item}',
                                       style: TextStyle(
@@ -184,8 +173,9 @@ class _TandooriMenuListListPageState extends State<TandooriMenuListListPage> {
                                   width: 43,
                                   margin: EdgeInsets.only(top: 6),
                                   alignment: Alignment.center,
-                                  decoration:
-                                      BoxDecoration(color: Colors.deepOrange),
+                                  decoration: BoxDecoration(
+                                      color: Colors.deepOrange,
+                                      borderRadius: BorderRadius.circular(10)),
                                   child: IconButton(
                                     onPressed: () {
                                       showFlushbar(context);
@@ -206,7 +196,7 @@ class _TandooriMenuListListPageState extends State<TandooriMenuListListPage> {
                               children: <Widget>[
                                 Container(
                                   margin: new EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 50.0),
+                                      vertical: 3, horizontal: 16.0),
                                   child: Text(
                                     '₹' + '${_menuList[index].price}',
                                     style: TextStyle(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:rcapp/CustomWidget/foot_category.dart';
 import 'package:rcapp/models/user.dart';
@@ -8,7 +7,6 @@ import 'package:rcapp/pages/Search.dart';
 import 'package:rcapp/pages/storeData.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/services/database.dart';
-
 
 // var cartList = [];
 
@@ -74,105 +72,85 @@ class _FoodState extends State<Food> {
     return StreamProvider<List<Today_Menu>>.value(
       value: DatabaseService().today_Menu,
       child: Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 10.0,
-        backgroundColor: Colors.deepOrange,
-        title: Text("Menu"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.shopping_cart,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/cart');
-            },
-          )
-        ],
-      ),
-      body: Column(children: <Widget>[
-        Expanded(
-          child: new ListView(
-            padding: EdgeInsets.all(10),
-            children: <Widget>[
-              SizedBox(height: 10.0),
-              Search(),
-              SizedBox(height: 10.0),
-              Container(
-                padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                child: Text(
-                  "Today's Menu",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 10.0,
+          backgroundColor: Colors.deepOrange,
+          title: Text("Menu"),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
               ),
-              SizedBox(height: 10.0),
-              FoodCategory(false),
-              SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: Text(
-                      "Categories: ",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/cart');
+              },
+            )
+          ],
+        ),
+        body: Column(children: <Widget>[
+          Expanded(
+            child: new ListView(
+              padding: EdgeInsets.all(10),
+              children: <Widget>[
+                SizedBox(height: 10.0),
+                Search(),
+                SizedBox(height: 10.0),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: Text(
+                    "Today's Menu",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/allmenu');
-                    },
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0)),
-                    child: Text('Full Menu'),
-                    color: Colors.orange,
-                  ),
-                ],
-              ),
-              ListPage(),
-            ],
+                ),
+                SizedBox(height: 10.0),
+                Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                    child: FoodCategory(false)),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: Text(
+                        "Categories: ",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/allmenu');
+                      },
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(10.0)),
+                      child: Text('Menu',
+                          style: TextStyle(
+                              color: Colors.deepOrange,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold)),
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+                ListPage(),
+              ],
+            ),
           ),
-        ),
-        SizedBox(height: 10.0),
-        BottomItemView(total: total, qty: qty)
-        // Container(
-        //   width: double.maxFinite,
-        //   height: 54,
-        //   decoration: BoxDecoration(color: Colors.deepOrange),
-        //   child: Padding(
-        //     padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
-        //     child: Row(
-        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //       children: <Widget>[
-        //         Text(
-        //           '$qty ' + '  item ' + '|' + ' ' + '₹ ' + '$total',
-        //           style: TextStyle(
-        //               color: Colors.white, fontWeight: FontWeight.bold),
-        //         ),
-        //         InkWell(
-        //           onTap: (() => Navigator.pushNamed(context, '/cart')),
-        //           child: Text(
-        //             'VIEW CART',
-        //             style: TextStyle(
-        //                 color: Colors.white, fontWeight: FontWeight.bold),
-        //           ),
-        //         )
-        //       ],
-        //     ),
-        //   ),
-        // )
-      ]),
-    ),
-    ); 
+          SizedBox(height: 10.0),
+          BottomItemView(total: total, qty: qty)
+        ]),
+      ),
+    );
   }
 }
 
@@ -200,18 +178,14 @@ class _QuantityState extends State<Quantity> {
         child: Container(
           margin: EdgeInsets.fromLTRB(0, 0, 14, 0),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.deepOrange,
             borderRadius: BorderRadius.circular(4),
             border: Border.all(color: Colors.grey, width: 0.1),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey, blurRadius: 2.0, offset: Offset(2.1, 2.2))
-            ],
           ),
           height: 25,
           width: 62,
-          child: Center(
-              child: Text('Add', style: TextStyle(color: Colors.deepOrange))),
+          child:
+              Center(child: Text('Add', style: TextStyle(color: Colors.white))),
         ),
       );
     } else {
@@ -222,19 +196,14 @@ class _QuantityState extends State<Quantity> {
         child: Container(
           margin: EdgeInsets.fromLTRB(0, 0, 14, 0),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.deepOrange,
             borderRadius: BorderRadius.circular(4),
             border: Border.all(color: Colors.grey, width: 0.1),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey, blurRadius: 2.0, offset: Offset(2.1, 2.2))
-            ],
           ),
           height: 25,
           width: 66,
           child: Center(
-              child:
-                  Text('Remove', style: TextStyle(color: Colors.deepOrange))),
+              child: Text('Remove', style: TextStyle(color: Colors.white))),
         ),
       );
     }
@@ -265,7 +234,7 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.all(10.0),
+        margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
         height: 400.0,
         width: double.infinity,
         child: new Column(

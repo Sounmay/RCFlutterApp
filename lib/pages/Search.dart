@@ -116,18 +116,14 @@ class _SearchQuantityState extends State<SearchQuantity> {
         child: Container(
           margin: EdgeInsets.fromLTRB(0, 0, 14, 0),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.deepOrange,
             borderRadius: BorderRadius.circular(4),
             border: Border.all(color: Colors.grey, width: 0.1),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey, blurRadius: 2.0, offset: Offset(2.1, 2.2))
-            ],
           ),
           height: 25,
           width: 62,
-          child: Center(
-              child: Text('Add', style: TextStyle(color: Colors.deepOrange))),
+          child:
+              Center(child: Text('Add', style: TextStyle(color: Colors.white))),
         ),
       );
     } else {
@@ -139,12 +135,12 @@ class _SearchQuantityState extends State<SearchQuantity> {
               color: Colors.deepOrange,
               borderRadius: BorderRadius.circular(4),
               border: Border.all(color: Colors.grey, width: 0.1),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 2.0,
-                    offset: Offset(2.1, 2.2))
-              ],
+              // boxShadow: [
+              //   BoxShadow(
+              //       color: Colors.grey,
+              //       blurRadius: 2.0,
+              //       offset: Offset(2.1, 2.2))
+              // ],
             ),
             height: 25,
             width: 30,

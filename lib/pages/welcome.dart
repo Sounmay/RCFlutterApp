@@ -21,7 +21,7 @@ class _welcomeState extends State<welcome> {
               'ROURKELA CLUB',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 45.0,
+                fontSize: 40.0,
               ),
             ),
           ),

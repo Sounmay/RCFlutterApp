@@ -26,7 +26,7 @@ class _StarterMenuListState extends State<StarterMenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: Starters'),
+          title: Text('Starters'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -35,7 +35,6 @@ class _StarterMenuListState extends State<StarterMenuList> {
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/cart');
-                // Navigator.popAndPushNamed(context, '/cart');
               },
             )
           ],
@@ -54,7 +53,8 @@ class _StarterMenuListState extends State<StarterMenuList> {
 
 class StarterMenuListListPage extends StatefulWidget {
   @override
-  _StarterMenuListListPageState createState() => _StarterMenuListListPageState();
+  _StarterMenuListListPageState createState() =>
+      _StarterMenuListListPageState();
 }
 
 class _StarterMenuListListPageState extends State<StarterMenuListListPage> {
@@ -159,18 +159,7 @@ class _StarterMenuListListPageState extends State<StarterMenuListListPage> {
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          checked = !checked;
-                                        });
-                                        addToCart(_menuList[index]);
-                                      },
-                                      icon: Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: Colors.green,
-                                      ),
-                                    ),
+                                    SizedBox(width: 15),
                                     Text(
                                       '${_menuList[index].item}',
                                       style: TextStyle(
@@ -185,8 +174,10 @@ class _StarterMenuListListPageState extends State<StarterMenuListListPage> {
                                     width: 43,
                                     margin: EdgeInsets.only(top: 6),
                                     alignment: Alignment.center,
-                                    decoration:
-                                        BoxDecoration(color: Colors.deepOrange),
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepOrange,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: IconButton(
                                       onPressed: () {
                                         showFlushbar(context);
@@ -208,7 +199,7 @@ class _StarterMenuListListPageState extends State<StarterMenuListListPage> {
                               children: <Widget>[
                                 Container(
                                   margin: new EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 50.0),
+                                      vertical: 3, horizontal: 16.0),
                                   child: Text(
                                     '₹' + '${_menuList[index].price}',
                                     style: TextStyle(

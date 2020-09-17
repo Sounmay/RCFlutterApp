@@ -26,7 +26,7 @@ class _MainCourse_MenuListState extends State<MainCourse_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: Main Course'),
+          title: Text('Main Course'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -54,10 +54,12 @@ class _MainCourse_MenuListState extends State<MainCourse_MenuList> {
 
 class MainCourseMenuListListPage extends StatefulWidget {
   @override
-  _MainCourseMenuListListPageState createState() => _MainCourseMenuListListPageState();
+  _MainCourseMenuListListPageState createState() =>
+      _MainCourseMenuListListPageState();
 }
 
-class _MainCourseMenuListListPageState extends State<MainCourseMenuListListPage> {
+class _MainCourseMenuListListPageState
+    extends State<MainCourseMenuListListPage> {
   StoreData storeData = StoreData();
   int total = 0;
   bool checked = false;
@@ -159,18 +161,7 @@ class _MainCourseMenuListListPageState extends State<MainCourseMenuListListPage>
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          checked = !checked;
-                                        });
-                                        addToCart(_menuList[index]);
-                                      },
-                                      icon: Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: Colors.green,
-                                      ),
-                                    ),
+                                    SizedBox(width: 15),
                                     Text(
                                       '${_menuList[index].item}',
                                       style: TextStyle(
@@ -188,8 +179,10 @@ class _MainCourseMenuListListPageState extends State<MainCourseMenuListListPage>
                                     width: 43,
                                     margin: EdgeInsets.only(top: 6),
                                     alignment: Alignment.center,
-                                    decoration:
-                                        BoxDecoration(color: Colors.deepOrange),
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepOrange,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: IconButton(
                                       onPressed: () {
                                         showFlushbar(context);
@@ -211,7 +204,7 @@ class _MainCourseMenuListListPageState extends State<MainCourseMenuListListPage>
                               children: <Widget>[
                                 Container(
                                   margin: new EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 50.0),
+                                      vertical: 3, horizontal: 16.0),
                                   child: Text(
                                     '₹' + '${_menuList[index].price}',
                                     style: TextStyle(

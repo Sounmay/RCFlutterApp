@@ -26,7 +26,7 @@ class _Sandwich_MenuListState extends State<Sandwich_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: Sandwich'),
+          title: Text('Sandwich'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -35,7 +35,6 @@ class _Sandwich_MenuListState extends State<Sandwich_MenuList> {
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/cart');
-                // Navigator.popAndPushNamed(context, '/cart');
               },
             )
           ],
@@ -54,7 +53,8 @@ class _Sandwich_MenuListState extends State<Sandwich_MenuList> {
 
 class SandwichMenuListListPage extends StatefulWidget {
   @override
-  _SandwichMenuListListPageState createState() => _SandwichMenuListListPageState();
+  _SandwichMenuListListPageState createState() =>
+      _SandwichMenuListListPageState();
 }
 
 class _SandwichMenuListListPageState extends State<SandwichMenuListListPage> {
@@ -159,18 +159,7 @@ class _SandwichMenuListListPageState extends State<SandwichMenuListListPage> {
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          checked = !checked;
-                                        });
-                                        addToCart(_menuList[index]);
-                                      },
-                                      icon: Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: Colors.green,
-                                      ),
-                                    ),
+                                    SizedBox(width: 15),
                                     Text(
                                       '${_menuList[index].item}',
                                       style: TextStyle(
@@ -188,8 +177,10 @@ class _SandwichMenuListListPageState extends State<SandwichMenuListListPage> {
                                     width: 43,
                                     margin: EdgeInsets.only(top: 6),
                                     alignment: Alignment.center,
-                                    decoration:
-                                        BoxDecoration(color: Colors.deepOrange),
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepOrange,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: IconButton(
                                       onPressed: () {
                                         showFlushbar(context);
@@ -211,7 +202,7 @@ class _SandwichMenuListListPageState extends State<SandwichMenuListListPage> {
                               children: <Widget>[
                                 Container(
                                   margin: new EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 50.0),
+                                      vertical: 3, horizontal: 16.0),
                                   child: Text(
                                     '₹' + '${_menuList[index].price}',
                                     style: TextStyle(
