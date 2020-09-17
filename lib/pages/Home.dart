@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rcapp/CustomWidget/foot_category.dart';
-import 'package:rcapp/CustomWidget/todays_menucategory.dart';
 import 'package:rcapp/models/user.dart';
 import 'package:rcapp/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +42,27 @@ class _HomeState extends State<Home> {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  void exp() async {
+    // var date = 1600288449003;
+    // var result = await Firestore.instance
+    //     .collection('events')
+    //     .where('slot', isEqualTo: 1)
+    //     .getDocuments();
+    // result.documents.forEach((element) {
+    //   print(DateTime.fromMillisecondsSinceEpoch(date));
+    // });
+    DateTime currentPhoneDate = DateTime.now();
+    Timestamp myTimeStamp = Timestamp.fromDate(currentPhoneDate);
+    DateTime myDateTime = myTimeStamp.toDate();
+    print("$currentPhoneDate");
+    print("$myDateTime");
+    var result = await Firestore.instance
+        .collection('events')
+        .where("slot", isEqualTo: 1)
+        .getDocuments();
+    print(result.documents[0]["event_date"].toDate());
   }
 
   @override
@@ -176,7 +197,8 @@ class _HomeState extends State<Home> {
                   if (areYouadmin) ...[
                     FlatButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/uploadImage');
+                        // Navigator.pushNamed(context, '/uploadImage');
+                        exp();
                       },
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0)),

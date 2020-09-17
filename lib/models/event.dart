@@ -4,8 +4,8 @@ class EventModel extends DatabaseItem {
   final String id;
   final String name;
   final String personalno;
-  final String slot;
-  final String numberOfPeople;
+  final int slot;
+  final int numberOfPeople;
   final String Lounge;
   final DateTime eventDate;
 
@@ -25,7 +25,6 @@ class EventModel extends DatabaseItem {
 
   factory EventModel.fromDS(String id, Map<String, dynamic> data) {
     return EventModel(
-      id: id,
       name: data['name'],
       personalno: data['personal no'],
       Lounge: data['Lounge'],
@@ -41,7 +40,6 @@ class EventModel extends DatabaseItem {
       "personal no": personalno,
       "Lounge": Lounge,
       "event_date": eventDate,
-      "id": id,
       "slot": slot,
       "numberOfPeople": numberOfPeople
     };

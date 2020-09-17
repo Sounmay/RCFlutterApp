@@ -88,23 +88,28 @@ class DatabaseService {
         .setData({'title': title, 'subtitle': subtitle, 'downloadLink': url});
   }
 
-  Future bookDetails(String id, String name, String number, int numberOfPeople, String lounge,
-      int slot, DateTime date) async {
-    return await bookingDetails.document().setData({
+  Future bookDetails(String id, String name, String number, int numberOfPeople,
+      String lounge, int slot, DateTime date) async {
+    var _date = DateTime.now().toUtc().millisecondsSinceEpoch;
+    return await bookingDetails.document('$_date').setData({
+      '_date': _date,
       'id': id,
       'name': name,
+      'isConfirmed': false,
       'number': number,
       'numberOfPeople': numberOfPeople,
       'lounge': lounge,
       'slot': slot,
-      'date': '${date.day}' + '/' + '${date.month}' + '/' + '${date.year}'
+      'date': '${date.day}' + '/' + '${date.month}' + '/' + '${date.year}',
+      'bookingDate': date
     });
   }
 
   Future confirmOrderofUser(String id, String name, String number,
       String address, List item, List qty, int total, bool isConfirmed) async {
-    var docId = '$id' + '$total';
-    return await confirmedOrders.document(docId).setData({
+    // var docId = '$id' + '$total';
+    var _date = DateTime.now().toUtc().millisecondsSinceEpoch;
+    return await confirmedOrders.document('$_date').setData({
       'id': id,
       'name': name,
       'number': number,
@@ -113,6 +118,7 @@ class DatabaseService {
       'quantity': qty,
       'total': total,
       'isConfirmed': isConfirmed,
+      '_date': _date,
       'date': '${DateTime.now().day}' +
           '/' +
           '${DateTime.now().month}' +

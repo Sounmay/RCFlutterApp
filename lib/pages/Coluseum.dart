@@ -13,9 +13,10 @@ class _ColuseumState extends State<Coluseum> {
       appBar: AppBar(
         elevation: 10.0,
         backgroundColor: Colors.deepOrange,
-        title: Text('Blue Lounge'),
+        title: Text('Coluseum'),
       ),
-      body: new ListView(
+      body: new Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           InkWell(
             child: Container(
@@ -27,10 +28,22 @@ class _ColuseumState extends State<Coluseum> {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.blue,
                   image: DecorationImage(
-                      image: new AssetImage("assets/14.jpg"),
+                      image: new AssetImage("assets/15.jpg"),
                       fit: BoxFit.fill)),
             ),
           ),
+          SizedBox(
+              width: double.infinity,
+              height: 60,
+              child: ButtonTheme(
+                child: RaisedButton(
+                    color: Colors.deepOrange,
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/bookingcalendar");
+                    },
+                    child: Text('Book',
+                        style: TextStyle(color: Colors.white, fontSize: 18))),
+              )),
         ],
       ),
     );

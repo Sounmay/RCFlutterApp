@@ -65,6 +65,7 @@ class _CalendarState extends State<Calendar> {
                       canEventMarkersOverflow: true,
                       todayColor: Colors.orange,
                       selectedColor: Theme.of(context).primaryColor,
+                      
                       todayStyle: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18.0,

@@ -82,6 +82,7 @@ class _PreviousBookingState extends State<PreviousBooking> {
             shrinkWrap: true,
             itemCount: bookings.length,
             itemBuilder: (_, index) {
+              orderNo = 110;
               orderNo += index;
               return ListTile(
                 contentPadding: EdgeInsets.all(10),
@@ -169,6 +170,7 @@ class _PreviousBookingState extends State<PreviousBooking> {
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
                                     ),
+                                   
                                   ],
                                 ),
                               ]),

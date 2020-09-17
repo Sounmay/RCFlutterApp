@@ -70,18 +70,18 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
           children: <Widget>[
             SizedBox(
                 child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.radio_button_checked),
-                      color: Colors.green,
-                    ),
-                    Text('CASH ON DELIVERY')
-                  ],
-                )),
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.radio_button_checked),
+                  color: Colors.green,
+                ),
+                Text('CASH ON DELIVERY')
+              ],
+            )),
             // SizedBox(height: 300),
             SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 60,
                 child: ButtonTheme(
                   child: RaisedButton(
                       color: Colors.deepOrange,
