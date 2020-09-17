@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -41,6 +42,17 @@ class _HomeState extends State<Home> {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  void exp() async {
+    var date = 1600288449003;
+    var result = await Firestore.instance
+        .collection('events')
+        .where('slot', isEqualTo: 1)
+        .getDocuments();
+    result.documents.forEach((element) {
+      print(DateTime.fromMillisecondsSinceEpoch(date));
+    });
   }
 
   @override
@@ -175,7 +187,8 @@ class _HomeState extends State<Home> {
                   if (areYouadmin) ...[
                     FlatButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/uploadImage');
+                        // Navigator.pushNamed(context, '/uploadImage');
+                        exp();
                       },
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0)),

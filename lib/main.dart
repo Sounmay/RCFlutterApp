@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:rcapp/pages/BlueL.dart';
@@ -43,7 +44,7 @@ import 'package:provider/provider.dart';
 import 'package:rcapp/models/user.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+    WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize(
       debug: true // optional: set false to disable printing logs to console
       );
@@ -97,9 +98,9 @@ class MyApp extends StatelessWidget {
           // lounge routes
           "/bluelounge": (context) => BlueLounge(),
           "/yellowlounge": (context) => YellowLounge(),
-          "/milanlounge" : (context) => MilanLounge(),
-          "/milaplounge" : (context) => MilapLounge(),
-          "/coluseum" : (context) => Coluseum(),
+          "/milanlounge": (context) => MilanLounge(),
+          "/milaplounge": (context) => MilapLounge(),
+          "/coluseum": (context) => Coluseum(),
 
           //Routes for admin
           "/uploadImage": (context) => UploadImage(),

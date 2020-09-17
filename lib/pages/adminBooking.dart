@@ -3,9 +3,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import 'package:rcapp/models/event.dart';
 import 'package:rcapp/models/user.dart';
+import 'package:rcapp/services/database.dart';
+import 'package:rcapp/res/event_firestore_service.dart';
 
 class AdminBooking extends StatefulWidget {
+  final EventModel note;
+
+  const AdminBooking({Key key, this.note}) : super(key: key);
+
   @override
   _AdminBookingState createState() => _AdminBookingState();
 }
@@ -18,22 +25,60 @@ class _AdminBookingState extends State<AdminBooking> {
   String lounge = '';
   int slot;
   int documentlength = 1;
+  String status = '';
 
   void initialData() async {
-    var result =
-        await Firestore.instance.collection('BookingDetails').getDocuments();
+    var result = await Firestore.instance
+        .collection('BookingDetails')
+        .orderBy('_date', descending: true)
+        .getDocuments();
     setState(() {
       documentlength = result.documents.length;
     });
     result.documents.forEach((res) {
       setState(() {
         bookings.add(res.data);
-        name = res.data["name"];
-        number = res.data["number"];
-        lounge = res.data["lounge"];
-        slot = res.data["slot"];
       });
     });
+  }
+
+  void rejectBookinHistory(int _eventDate, int index) async {
+    await Firestore.instance
+        .collection('BookingDetails')
+        .document('$_eventDate')
+        .delete();
+    setState(() {
+      bookings.removeAt(index);
+    });
+  }
+
+  void confirmBooking(String _name, String _personalno, String loungeColor,
+      int _slot, int numberOfPeople, int _eventDate, int index) async {
+    await Firestore.instance
+        .collection('BookingDetails')
+        .document('$_eventDate')
+        .updateData({'isConfirmed': true});
+    setState(() {
+      bookings[index]["isConfirmed"] = true;
+    });
+    if (widget.note != null) {
+      await eventDBS.updateData(widget.note.id, {
+        "name": _name,
+        "personal no": _personalno,
+        "Lounge": loungeColor,
+        "event_date": widget.note.eventDate,
+        "slot": _slot,
+        "numberOfPeople": numberOfPeople
+      });
+    } else {
+      await eventDBS.createItem(EventModel(
+          name: _name,
+          personalno: _personalno,
+          Lounge: loungeColor,
+          eventDate: DateTime.fromMillisecondsSinceEpoch(_eventDate),
+          slot: _slot,
+          numberOfPeople: numberOfPeople));
+    }
   }
 
   @override
@@ -62,7 +107,7 @@ class _AdminBookingState extends State<AdminBooking> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.all_inclusive),
+              Icon(Icons.all_inclusive),
               Text('No data')
             ])),
       );
@@ -79,6 +124,7 @@ class _AdminBookingState extends State<AdminBooking> {
             shrinkWrap: true,
             itemCount: bookings.length,
             itemBuilder: (_, index) {
+              orderNo = 110;
               orderNo += index;
               return ListTile(
                 contentPadding: EdgeInsets.all(10),
@@ -166,9 +212,126 @@ class _AdminBookingState extends State<AdminBooking> {
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
                                     ),
+                                    Text(
+                                        bookings[index]["isConfirmed"]
+                                            ? 'Status: Confirmed'
+                                            : 'Status: Not Confirmed',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w400)),
+                                    SizedBox(width: 30)
                                   ],
                                 ),
+                                SizedBox(height: 10),
                               ]),
+                          if (!bookings[index]["isConfirmed"]) ...[
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Row(children: <Widget>[
+                                    Container(
+                                      height: 30,
+                                      width: 100,
+                                      child: FlatButton(
+                                        onPressed: () {
+                                          rejectBookinHistory(
+                                              bookings[index]["_date"], index);
+                                        },
+                                        color: Colors.red[700],
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.close,
+                                                size: 17,
+                                                color: Colors.white,
+                                              ),
+                                              Text(
+                                                'Reject',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ]),
+                                        shape: new RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(8.0)),
+                                      ),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Container(
+                                      height: 30,
+                                      width: 100,
+                                      child: FlatButton(
+                                        onPressed: () {
+                                          confirmBooking(
+                                              bookings[index]["name"],
+                                              bookings[index]["number"],
+                                              bookings[index]["lounge"],
+                                              bookings[index]["slot"],
+                                              bookings[index]["numberOfPeople"],
+                                              bookings[index]["_date"],
+                                              index);
+                                        },
+                                        color: Colors.deepOrange,
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.check,
+                                                size: 17,
+                                                color: Colors.white,
+                                              ),
+                                              Text(
+                                                'Confirm',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ]),
+                                        shape: new RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(8.0)),
+                                      ),
+                                    )
+                                  ]),
+                                ]),
+                          ] else ...[
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Container(
+                                    height: 30,
+                                    width: 100,
+                                    child: FlatButton(
+                                      onPressed: () {
+                                        rejectBookinHistory(
+                                            bookings[index]["_date"], index);
+                                      },
+                                      color: Colors.red[700],
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.delete,
+                                              size: 17,
+                                              color: Colors.white,
+                                            ),
+                                            Text(
+                                              'Delete',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ]),
+                                      shape: new RoundedRectangleBorder(
+                                          borderRadius:
+                                              new BorderRadius.circular(8.0)),
+                                    ),
+                                  )
+                                ])
+                          ],
                           SizedBox(height: 10),
                         ],
                       ),

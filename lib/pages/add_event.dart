@@ -39,22 +39,26 @@ class _AddEventPageState extends State<AddEventPage> {
   }
 
   void confirmBooking() async {
-    _booking.bookDetails(
-        id, _name, _personalno, numberOfPeople, loungeColor[_value1], slot, _eventDate);
-    if (widget.note != null) {
-      await eventDBS.updateData(widget.note.id, {
-        "Name": _name,
-        "personal no": _personalno,
-        "Lounge": loungeColor[_value1],
-        "event_date": widget.note.eventDate
-      });
-    } else {
-      await eventDBS.createItem(EventModel(
-          name: _name,
-          personalno: _personalno,
-          Lounge: loungeColor[_value1],
-          eventDate: _eventDate));
-    }
+    _booking.bookDetails(id, _name, _personalno, numberOfPeople,
+        loungeColor[_value1-1], slot, _eventDate);
+    // if (widget.note != null) {
+    //   await eventDBS.updateData(widget.note.id, {
+    //     "name": _name,
+    //     "personal no": _personalno,
+    //     "Lounge": loungeColor[_value1-1],
+    //     "event_date": widget.note.eventDate,
+    //     "slot": slot,
+    //     "numberOfPeople": numberOfPeople
+    //   });
+    // } else {
+    //   await eventDBS.createItem(EventModel(
+    //       name: _name,
+    //       personalno: _personalno,
+    //       Lounge: loungeColor[_value1-1],
+    //       eventDate: _eventDate,
+    //       slot: slot,
+    //       numberOfPeople: numberOfPeople));
+    // }
     Navigator.pop(context);
   }
 
@@ -131,7 +135,7 @@ class _AddEventPageState extends State<AddEventPage> {
                           borderSide:
                               BorderSide(color: Colors.deepOrange, width: 3.0),
                           borderRadius: BorderRadius.circular(10))),
-                  validator: (val) => int.tryParse(val) <= 5
+                  validator: (val) => int.tryParse(val) > 5
                       ? 'Number of Peoples should be less than 5'
                       : null,
                   onChanged: (val) {

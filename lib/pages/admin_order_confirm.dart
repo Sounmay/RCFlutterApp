@@ -203,22 +203,21 @@ class _AdminOrderState extends State<AdminOrder> {
   List<dynamic> quantity = [];
   List<dynamic> total = [];
 
-  void confirmOrder(int index) async {
-    var docId = '${orders[index]["id"]}' + '${orders[index]["total"]}';
+  void confirmOrder(int index, int date) async {
+    // var docId = '${orders[index]["id"]}' + '${orders[index]["total"]}';
     await Firestore.instance
         .collection('confirmedOrders')
-        .document(docId)
+        .document('$date')
         .updateData({"isConfirmed": true});
     setState(() {
       orders[index]["isConfirmed"] = true;
     });
   }
 
-  void deleteOrder(int index) async {
-    var docId = '${orders[index]["id"]}' + '${orders[index]["total"]}';
+  void deleteOrder(int index, int date) async {
     await Firestore.instance
         .collection('confirmedOrders')
-        .document(docId)
+        .document('$date')
         .delete();
     setState(() {
       orders.removeAt(index);
@@ -227,7 +226,7 @@ class _AdminOrderState extends State<AdminOrder> {
 
   void initialData() async {
     var result =
-        await Firestore.instance.collection('confirmedOrders').getDocuments();
+        await Firestore.instance.collection('confirmedOrders').orderBy('_date', descending: true).getDocuments();
     result.documents.forEach((res) {
       setState(() {
         orders.add(res.data);
@@ -413,7 +412,8 @@ class _AdminOrderState extends State<AdminOrder> {
                                   if (!orders[index]["isConfirmed"]) ...[
                                     InkWell(
                                       onTap: () {
-                                        confirmOrder(index);
+                                        confirmOrder(
+                                            index, orders[index]["_date"]);
                                       },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(
@@ -433,7 +433,7 @@ class _AdminOrderState extends State<AdminOrder> {
                                   ] else ...[
                                     InkWell(
                                       onTap: () {
-                                        deleteOrder(index);
+                                        deleteOrder(index, orders[index]["_date"]);
                                       },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(
