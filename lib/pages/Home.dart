@@ -45,14 +45,24 @@ class _HomeState extends State<Home> {
   }
 
   void exp() async {
-    var date = 1600288449003;
+    // var date = 1600288449003;
+    // var result = await Firestore.instance
+    //     .collection('events')
+    //     .where('slot', isEqualTo: 1)
+    //     .getDocuments();
+    // result.documents.forEach((element) {
+    //   print(DateTime.fromMillisecondsSinceEpoch(date));
+    // });
+    DateTime currentPhoneDate = DateTime.now();
+    Timestamp myTimeStamp = Timestamp.fromDate(currentPhoneDate);
+    DateTime myDateTime = myTimeStamp.toDate();
+    print("$currentPhoneDate");
+    print("$myDateTime");
     var result = await Firestore.instance
         .collection('events')
-        .where('slot', isEqualTo: 1)
+        .where("slot", isEqualTo: 1)
         .getDocuments();
-    result.documents.forEach((element) {
-      print(DateTime.fromMillisecondsSinceEpoch(date));
-    });
+    print(result.documents[0]["event_date"].toDate());
   }
 
   @override

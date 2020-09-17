@@ -100,7 +100,8 @@ class DatabaseService {
       'numberOfPeople': numberOfPeople,
       'lounge': lounge,
       'slot': slot,
-      'date': '${date.day}' + '/' + '${date.month}' + '/' + '${date.year}'
+      'date': '${date.day}' + '/' + '${date.month}' + '/' + '${date.year}',
+      'bookingDate': date
     });
   }
 

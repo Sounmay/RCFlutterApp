@@ -52,8 +52,15 @@ class _AdminBookingState extends State<AdminBooking> {
     });
   }
 
-  void confirmBooking(String _name, String _personalno, String loungeColor,
-      int _slot, int numberOfPeople, int _eventDate, int index) async {
+  void confirmBooking(
+      String _name,
+      String _personalno,
+      String loungeColor,
+      int _slot,
+      int numberOfPeople,
+      int _eventDate,
+      Timestamp _bookingDate,
+      int index) async {
     await Firestore.instance
         .collection('BookingDetails')
         .document('$_eventDate')
@@ -66,7 +73,7 @@ class _AdminBookingState extends State<AdminBooking> {
         "name": _name,
         "personal no": _personalno,
         "Lounge": loungeColor,
-        "event_date": widget.note.eventDate,
+        "event_date": _bookingDate.toDate(),
         "slot": _slot,
         "numberOfPeople": numberOfPeople
       });
@@ -75,7 +82,7 @@ class _AdminBookingState extends State<AdminBooking> {
           name: _name,
           personalno: _personalno,
           Lounge: loungeColor,
-          eventDate: DateTime.fromMillisecondsSinceEpoch(_eventDate),
+          eventDate: _bookingDate.toDate(),
           slot: _slot,
           numberOfPeople: numberOfPeople));
     }
@@ -272,6 +279,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                               bookings[index]["slot"],
                                               bookings[index]["numberOfPeople"],
                                               bookings[index]["_date"],
+                                              bookings[index]["bookingDate"],
                                               index);
                                         },
                                         color: Colors.deepOrange,
