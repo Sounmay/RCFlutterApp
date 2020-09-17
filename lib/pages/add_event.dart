@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -71,6 +73,9 @@ class _AddEventPageState extends State<AddEventPage> {
       Navigator.pop(context);
     } else {
       showFlushbarBooking(context);
+      setState(() {
+        exits = false;
+      });
     }
   }
 
