@@ -135,7 +135,22 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             SizedBox(height: 4),
             InkWell(
-              onTap: () {},
+              onTap: () async {
+                final status = await Permission.storage.request();
+
+                if (status.isGranted) {
+                  final externalDir = await getExternalStorageDirectory();
+
+                  final taskId = await FlutterDownloader.enqueue(
+                    url:
+                        'https://firebasestorage.googleapis.com/v0/b/rcapp-de25c.appspot.com/o/final.pdf?alt=media&token=64819cfa-3ffd-4875-889e-c50b3dbf935d',
+                    savedDir: externalDir.path,
+                    fileName: 'Rourkela_Club_Menu',
+                    showNotification: true,
+                    openFileFromNotification: true,
+                  );
+                }
+              },
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -154,51 +169,21 @@ class _HomeState extends State<Home> {
             ),
             imageCarousel,
             SizedBox(height: 20.0),
-            Row(children: <Widget>[
-              Text(
-                "  Notice Board",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(width: 130),
-              if (areYouadmin) ...[
-                FlatButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/uploadPdf');
-                  },
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0)),
-                  child: Text(
-                    'Add To List',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  color: Colors.orange,
-                )
-              ]
-            ]),
-            SizedBox(height: 20.0),
-            HomeListPage(),
-            SizedBox(height: 10.0),
             Row(
-              children: <Widget>[
-                Row(children: <Widget>[
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
                   Text(
-                    "  Today's Menu",
+                    "  Notice Board",
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(width: 130),
                   if (areYouadmin) ...[
                     FlatButton(
                       onPressed: () {
-                        // Navigator.pushNamed(context, '/uploadImage');
-                        exp();
+                        Navigator.pushNamed(context, '/uploadPdf');
                       },
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0)),
@@ -210,8 +195,35 @@ class _HomeState extends State<Home> {
                     )
                   ]
                 ]),
-              ],
-            ),
+            SizedBox(height: 20.0),
+            HomeListPage(),
+            SizedBox(height: 10.0),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "  Today's Menu",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (areYouadmin) ...[
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/uploadImage');
+                      },
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(10.0)),
+                      child: Text(
+                        'Add To List',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      color: Colors.orange,
+                    )
+                  ]
+                ]),
             SizedBox(height: 7.0),
             FoodCategory(areYouadmin),
             SizedBox(height: 20.0),

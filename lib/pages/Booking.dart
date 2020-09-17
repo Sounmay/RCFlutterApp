@@ -88,6 +88,54 @@ class _BookingState extends State<Booking> {
               ),
             ),
           ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/milanlounge");
+            },
+            child: Card(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/18.jpg'),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.topCenter,
+                  ),
+                ),
+                child: Text(
+                  "Milan Reception Hall",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/coluseum");
+            },
+            child: Card(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/15.jpg'),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.topCenter,
+                  ),
+                ),
+                child: Text(
+                  "Coluseum",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
         autoplay: false,
         dotBgColor: Colors.transparent,

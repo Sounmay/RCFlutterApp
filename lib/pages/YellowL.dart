@@ -15,7 +15,8 @@ class _YellowLoungeState extends State<YellowLounge> {
         backgroundColor: Colors.deepOrange,
         title: Text('Yellow Lounge'),
       ),
-      body: new ListView(
+      body: new Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           InkWell(
             child: Container(
@@ -31,6 +32,18 @@ class _YellowLoungeState extends State<YellowLounge> {
                       fit: BoxFit.fill)),
             ),
           ),
+          SizedBox(
+              width: double.infinity,
+              height: 60,
+              child: ButtonTheme(
+                child: RaisedButton(
+                    color: Colors.deepOrange,
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/bookingcalendar");
+                    },
+                    child: Text('Book',
+                        style: TextStyle(color: Colors.white, fontSize: 18))),
+              )),
         ],
       ),
     );

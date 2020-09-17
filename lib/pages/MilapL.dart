@@ -16,7 +16,8 @@ class _MilapLoungeState extends State<MilapLounge> {
         backgroundColor: Colors.deepOrange,
         title: Text('Milap Lounge'),
       ),
-      body: new ListView(
+      body: new Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           InkWell(
             child: Container(
@@ -32,6 +33,18 @@ class _MilapLoungeState extends State<MilapLounge> {
                       fit: BoxFit.fill)),
             ),
           ),
+          SizedBox(
+              width: double.infinity,
+              height: 60,
+              child: ButtonTheme(
+                child: RaisedButton(
+                    color: Colors.deepOrange,
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/bookingcalendar");
+                    },
+                    child: Text('Book',
+                        style: TextStyle(color: Colors.white, fontSize: 18))),
+              )),
         ],
       ),
     );
