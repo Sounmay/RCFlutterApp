@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rcapp/models/event.dart';
 import 'package:flutter/material.dart';
+import 'package:rcapp/pages/CategoryMenuList/flushbar.dart';
 import 'package:rcapp/res/event_firestore_service.dart';
 import 'package:rcapp/services/database.dart';
 
@@ -25,6 +28,7 @@ class _AddEventPageState extends State<AddEventPage> {
   int numberOfPeople = 1;
   int _value1 = 1;
   int _value2 = 1;
+  bool exits = false;
 
   var id;
   bool processing;
@@ -33,33 +37,41 @@ class _AddEventPageState extends State<AddEventPage> {
 
   void initialize() async {
     var uid = (await FirebaseAuth.instance.currentUser()).uid;
+    var data =
+        await Firestore.instance.collection('userInfo').document(uid).get();
     setState(() {
       id = uid;
+      _name = data.data["name"];
+      _personalno = data.data["number"];
     });
   }
 
   void confirmBooking() async {
-    _booking.bookDetails(id, _name, _personalno, numberOfPeople,
-        loungeColor[_value1-1], slot, _eventDate);
-    // if (widget.note != null) {
-    //   await eventDBS.updateData(widget.note.id, {
-    //     "name": _name,
-    //     "personal no": _personalno,
-    //     "Lounge": loungeColor[_value1-1],
-    //     "event_date": widget.note.eventDate,
-    //     "slot": slot,
-    //     "numberOfPeople": numberOfPeople
-    //   });
-    // } else {
-    //   await eventDBS.createItem(EventModel(
-    //       name: _name,
-    //       personalno: _personalno,
-    //       Lounge: loungeColor[_value1-1],
-    //       eventDate: _eventDate,
-    //       slot: slot,
-    //       numberOfPeople: numberOfPeople));
-    // }
-    Navigator.pop(context);
+    String _eventDatestring = '${_eventDate.day}' +
+        '/' +
+        '${_eventDate.month}' +
+        '/' +
+        '${_eventDate.year}';
+    print(_eventDatestring);
+    var result = await Firestore.instance
+        .collection('BookingDetails')
+        .where('date', isEqualTo: _eventDatestring)
+        .getDocuments();
+    result.documents.forEach((element) {
+      if (loungeColor[_value1 - 1] == element.data["lounge"] &&
+          slot == element.data["slot"]) {
+        setState(() {
+          exits = true;
+        });
+      }
+    });
+    if (!exits) {
+      _booking.bookDetails(id, _name, _personalno, numberOfPeople,
+          loungeColor[_value1 - 1], slot, _eventDate);
+      Navigator.pop(context);
+    } else {
+      showFlushbarBooking(context);
+    }
   }
 
   @override
@@ -71,157 +83,181 @@ class _AddEventPageState extends State<AddEventPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(_eventDate.year);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.note != null ? "Edit Note" : "Booking Details"),
-        elevation: 10.0,
-        backgroundColor: Colors.deepOrange,
-      ),
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            shrinkWrap: false,
+    if (_name == '' && _personalno == '') {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.note != null ? "Edit Note" : "Booking Details"),
+          elevation: 10.0,
+          backgroundColor: Colors.deepOrange,
+        ),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextFormField(
-                  decoration: InputDecoration(
-                      hintText: 'Name',
-                      fillColor: Colors.white,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.deepOrange, width: 1.0),
-                          borderRadius: BorderRadius.circular(10)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.deepOrange, width: 3.0),
-                          borderRadius: BorderRadius.circular(10))),
-                  validator: (val) => val.isEmpty ? 'Enter your Name' : null,
-                  onChanged: (val) {
-                    setState(() => _name = val);
-                  }),
-              SizedBox(height: 10),
-              TextFormField(
-                  decoration: InputDecoration(
-                      hintText: 'Personal No.',
-                      fillColor: Colors.white,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.deepOrange, width: 1.0),
-                          borderRadius: BorderRadius.circular(10)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.deepOrange, width: 3.0),
-                          borderRadius: BorderRadius.circular(10))),
-                  validator: (val) =>
-                      val.isEmpty ? 'Enter your Personal No.' : null,
-                  onChanged: (val) {
-                    setState(() => _personalno = val);
-                  }),
-              SizedBox(height: 10),
-              TextFormField(
-                  decoration: InputDecoration(
-                      hintText: 'Number of People(Max: 5)',
-                      fillColor: Colors.white,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.deepOrange, width: 1.0),
-                          borderRadius: BorderRadius.circular(10)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.deepOrange, width: 3.0),
-                          borderRadius: BorderRadius.circular(10))),
-                  validator: (val) => int.tryParse(val) > 5
-                      ? 'Number of Peoples should be less than 5'
-                      : null,
-                  onChanged: (val) {
-                    setState(() => numberOfPeople = int.tryParse(val));
-                  }),
-              const SizedBox(height: 10.0),
-              DropdownButton(
-                  value: _value1,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text("Yellow"),
-                      value: 1,
-                    ),
-                    DropdownMenuItem(
-                      child: Text("Red"),
-                      value: 2,
-                    ),
-                    DropdownMenuItem(child: Text("Blue"), value: 3),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      _value1 = value;
-                    });
-                  }),
-              const SizedBox(height: 10.0),
-              DropdownButton(
-                  value: _value2,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text("Slot 1"),
-                      value: 1,
-                    ),
-                    DropdownMenuItem(
-                      child: Text("Slot 2"),
-                      value: 2,
-                    ),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      _value2 = value;
-                      slot = value;
-                    });
-                  }),
-              const SizedBox(height: 10.0),
-              ListTile(
-                title: Text("Date (YYYY-MM-DD)"),
-                subtitle: Text(
-                    "${_eventDate.year} - ${_eventDate.month} - ${_eventDate.day}"),
-                onTap: () async {
-                  DateTime picked = await showDatePicker(
-                      context: context,
-                      initialDate: _eventDate,
-                      firstDate: DateTime(_eventDate.year - 5),
-                      lastDate: DateTime(_eventDate.year + 5));
-                  if (picked != null) {
-                    setState(() {
-                      _eventDate = picked;
-                    });
-                  }
-                },
-              ),
-              SizedBox(height: 10.0),
-              RaisedButton(
-                  color: Colors.deepOrange,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  child: Text(
-                    'Book Now',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 25),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      confirmBooking();
+              Center(
+                child: SpinKitCircle(color: Colors.deepOrange),
+              )
+            ]),
+      );
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.note != null ? "Edit Note" : "Booking Details"),
+          elevation: 10.0,
+          backgroundColor: Colors.deepOrange,
+        ),
+        body: Container(
+          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              shrinkWrap: false,
+              children: <Widget>[
+                TextFormField(
+                    initialValue: '$_name',
+                    decoration: InputDecoration(
+                        hintText: 'Name',
+                        fillColor: Colors.white,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrange, width: 1.0),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrange, width: 3.0),
+                            borderRadius: BorderRadius.circular(10))),
+                    validator: (val) => val.isEmpty ? 'Enter your Name' : null,
+                    onChanged: (val) {
+                      setState(() => _name = val);
+                    }),
+                SizedBox(height: 10),
+                TextFormField(
+                    initialValue: _personalno,
+                    decoration: InputDecoration(
+                        hintText: 'Personal No.',
+                        fillColor: Colors.white,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrange, width: 1.0),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrange, width: 3.0),
+                            borderRadius: BorderRadius.circular(10))),
+                    validator: (val) =>
+                        val.isEmpty ? 'Enter your Personal No.' : null,
+                    onChanged: (val) {
+                      setState(() => _personalno = val);
+                    }),
+                SizedBox(height: 10),
+                TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Number of People(Max: 5)',
+                        fillColor: Colors.white,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrange, width: 1.0),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrange, width: 3.0),
+                            borderRadius: BorderRadius.circular(10))),
+                    validator: (val) => int.tryParse(val) > 5
+                        ? 'Number of Peoples should be less than 5'
+                        : null,
+                    onChanged: (val) {
+                      setState(() => numberOfPeople = int.tryParse(val));
+                    }),
+                const SizedBox(height: 10.0),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: DropdownButton(
+                      value: _value1,
+                      items: [
+                        DropdownMenuItem(
+                          child: Text("Yellow"),
+                          value: 1,
+                        ),
+                        DropdownMenuItem(
+                          child: Text("Red"),
+                          value: 2,
+                        ),
+                        DropdownMenuItem(child: Text("Blue"), value: 3),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _value1 = value;
+                        });
+                      }),
+                ),
+                const SizedBox(height: 10.0),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: DropdownButton(
+                      value: _value2,
+                      items: [
+                        DropdownMenuItem(
+                          child: Text("Slot 1"),
+                          value: 1,
+                        ),
+                        DropdownMenuItem(
+                          child: Text("Slot 2"),
+                          value: 2,
+                        ),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _value2 = value;
+                          slot = value;
+                        });
+                      }),
+                ),
+                const SizedBox(height: 10.0),
+                ListTile(
+                  title: Text("Date (YYYY-MM-DD)"),
+                  subtitle: Text(
+                      "${_eventDate.year} - ${_eventDate.month} - ${_eventDate.day}"),
+                  onTap: () async {
+                    DateTime picked = await showDatePicker(
+                        context: context,
+                        initialDate: _eventDate,
+                        firstDate: DateTime(_eventDate.year - 5),
+                        lastDate: DateTime(_eventDate.year + 5));
+                    if (picked != null) {
+                      setState(() {
+                        _eventDate = picked;
+                      });
                     }
-                  }),
-            ],
+                  },
+                ),
+                SizedBox(height: 10.0),
+                RaisedButton(
+                    color: Colors.deepOrange,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 15),
+                    child: Text(
+                      'Book Now',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 25),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState.validate()) {
+                        confirmBooking();
+                      }
+                    }),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 }
 
