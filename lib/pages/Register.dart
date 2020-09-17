@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:rcapp/pages/loadingspinner.dart';
 import 'package:rcapp/services/auth.dart';
 
@@ -25,6 +26,24 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+    Widget logincarousel = Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+        height: 180.0,
+        child: new Carousel(
+          boxFit: BoxFit.contain,
+          images: [
+            AssetImage('assets/login1.PNG'),
+            AssetImage('assets/login2.PNG'),
+            AssetImage('assets/login3.PNG'),
+          ],
+          autoplay: true,
+          dotSize: 0,
+          dotBgColor: Colors.transparent,
+          animationCurve: Curves.fastOutSlowIn,
+          animationDuration: Duration(milliseconds: 2000),
+          borderRadius: true,
+          indicatorBgPadding: 10.0,
+        ));
     return loading
         ? Loading()
         : Scaffold(
@@ -48,11 +67,8 @@ class _RegisterState extends State<Register> {
                   child: Form(
                     key: _formKey,
                     child: Column(children: <Widget>[
-                      Image.asset(
-                        'assets/login.png',
-                        fit: BoxFit.contain,
-                      ),
-                      SizedBox(height: 15.0),
+                      SizedBox(height: 250.0, width: 370.0, child: logincarousel),
+                      SizedBox(height: 18.0),
                       TextFormField(
                           decoration: InputDecoration(
                               hintText: 'Name',

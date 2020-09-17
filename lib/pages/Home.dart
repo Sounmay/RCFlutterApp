@@ -154,7 +154,9 @@ class _HomeState extends State<Home> {
             ),
             imageCarousel,
             SizedBox(height: 20.0),
-            Row(children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
               Text(
                 "  Notice Board",
                 style: TextStyle(
@@ -163,7 +165,6 @@ class _HomeState extends State<Home> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 130),
               if (areYouadmin) ...[
                 FlatButton(
                   onPressed: () {
@@ -183,8 +184,8 @@ class _HomeState extends State<Home> {
             HomeListPage(),
             SizedBox(height: 10.0),
             Row(
-              children: <Widget>[
-                Row(children: <Widget>[
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
                   Text(
                     "  Today's Menu",
                     style: TextStyle(
@@ -193,7 +194,6 @@ class _HomeState extends State<Home> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(width: 130),
                   if (areYouadmin) ...[
                     FlatButton(
                       onPressed: () {
@@ -210,8 +210,6 @@ class _HomeState extends State<Home> {
                     )
                   ]
                 ]),
-              ],
-            ),
             SizedBox(height: 7.0),
             FoodCategory(areYouadmin),
             SizedBox(height: 20.0),
