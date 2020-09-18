@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/pages/CategoryMenuList/flushbar.dart';
 import 'package:rcapp/pages/searchService.dart';
 import 'package:rcapp/pages/storeData.dart';
@@ -123,7 +124,7 @@ class _SearchQuantityState extends State<SearchQuantity> {
           height: 25,
           width: 62,
           child:
-              Center(child: Text('Add', style: TextStyle(color: Colors.white))),
+              Center(child: Text('Add', style: GoogleFonts.inter(color: Colors.white))),
         ),
       );
     } else {
@@ -177,7 +178,7 @@ class _SearchQuantityState extends State<SearchQuantity> {
             width: 33,
             child: Text(
               '$FQty',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.bold),
             ),
           ),
           Container(
@@ -259,7 +260,7 @@ class _SearchListState extends State<SearchList> {
                 children: <Widget>[
                   Text(
                     '${widget.tempSearchStore[index]['item']}',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.bold),
                   ),
                   SearchQuantity(
                       item: widget.tempSearchStore[index]['item'],

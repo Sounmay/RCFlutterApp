@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/models/event.dart';
 import 'package:flutter/material.dart';
 import 'package:rcapp/pages/CategoryMenuList/flushbar.dart';
@@ -19,7 +20,6 @@ class AddEventPage extends StatefulWidget {
 }
 
 class _AddEventPageState extends State<AddEventPage> {
-  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   final _formKey = GlobalKey<FormState>();
   final DatabaseService _booking = DatabaseService();
 
@@ -158,7 +158,7 @@ class _AddEventPageState extends State<AddEventPage> {
                 SizedBox(height: 10),
                 TextFormField(
                     decoration: InputDecoration(
-                        hintText: 'Number of People(Max: 5)',
+                        hintText: 'Number of People',
                         fillColor: Colors.white,
                         filled: true,
                         enabledBorder: OutlineInputBorder(
@@ -169,8 +169,8 @@ class _AddEventPageState extends State<AddEventPage> {
                             borderSide: BorderSide(
                                 color: Colors.deepOrange, width: 3.0),
                             borderRadius: BorderRadius.circular(10))),
-                    validator: (val) => int.tryParse(val) > 5
-                        ? 'Number of Peoples should be less than 5'
+                    validator: (val) => int.tryParse(val) > 200
+                        ? 'Number of Peoples should be less than 200'
                         : null,
                     onChanged: (val) {
                       setState(() => numberOfPeople = int.tryParse(val));
@@ -244,7 +244,7 @@ class _AddEventPageState extends State<AddEventPage> {
                         horizontal: 40, vertical: 15),
                     child: Text(
                       'Book Now',
-                      style: TextStyle(
+                      style: GoogleFonts.inter(
                           color: Colors.white,
                           fontWeight: FontWeight.w400,
                           fontSize: 25),
@@ -276,7 +276,7 @@ class _AddEventPageState extends State<AddEventPage> {
 // }
 
 // class _AddEventPageState extends State<AddEventPage> {
-//   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+//   GoogleFonts.inter style = GoogleFonts.inter(fontFamily: 'Montserrat', fontSize: 20.0);
 //   TextEditingController _name;
 //   TextEditingController _personalno;
 //   TextEditingController _Lounge;

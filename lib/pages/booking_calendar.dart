@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/res/event_firestore_service.dart';
 import 'package:rcapp/pages/add_event.dart';
 import 'package:rcapp/pages/view_event.dart';
@@ -66,7 +67,7 @@ class _CalendarState extends State<Calendar> {
                       todayColor: Colors.orange,
                       selectedColor: Theme.of(context).primaryColor,
                       
-                      todayStyle: TextStyle(
+                      todayStyle: GoogleFonts.inter(
                           fontWeight: FontWeight.bold,
                           fontSize: 18.0,
                           color: Colors.white)),
@@ -76,7 +77,7 @@ class _CalendarState extends State<Calendar> {
                       color: Colors.orange,
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    formatButtonTextStyle: TextStyle(color: Colors.white),
+                    formatButtonTextStyle: GoogleFonts.inter(color: Colors.white),
                     formatButtonShowsNext: false,
                   ),
                   startingDayOfWeek: StartingDayOfWeek.monday,
@@ -94,7 +95,7 @@ class _CalendarState extends State<Calendar> {
                             borderRadius: BorderRadius.circular(10.0)),
                         child: Text(
                           date.day.toString(),
-                          style: TextStyle(color: Colors.white),
+                          style: GoogleFonts.inter(color: Colors.white),
                         )),
                     todayDayBuilder: (context, date, events) => Container(
                         margin: const EdgeInsets.all(4.0),
@@ -104,7 +105,7 @@ class _CalendarState extends State<Calendar> {
                             borderRadius: BorderRadius.circular(10.0)),
                         child: Text(
                           date.day.toString(),
-                          style: TextStyle(color: Colors.white),
+                          style: GoogleFonts.inter(color: Colors.white),
                         )),
                   ),
                   calendarController: _controller,
@@ -128,7 +129,7 @@ class _CalendarState extends State<Calendar> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepOrange,
         child: Text('Book',
-        style: TextStyle(
+        style: GoogleFonts.inter(
             color: Colors.white
         ),),
         onPressed: () => Navigator.pushNamed(context, '/add_event'),

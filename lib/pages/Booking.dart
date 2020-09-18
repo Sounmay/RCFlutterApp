@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/pages/NavigationBar.dart';
 
 class Booking extends StatefulWidget {
@@ -26,7 +27,7 @@ class _BookingState extends State<Booking> {
             children: <Widget>[
               Text(
                 " Lounges",
-                style: TextStyle(
+                style: GoogleFonts.inter(
                   color: Colors.grey,
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -66,7 +67,7 @@ class _BookingState extends State<Booking> {
     alignment: Alignment.bottomCenter,
     child: Text(
     'Blue Lounge',
-    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
     ),
     ),
     decoration: BoxDecoration(
@@ -89,7 +90,7 @@ class _BookingState extends State<Booking> {
     alignment: Alignment.bottomCenter,
     child: Text(
     'Yellow Lounge',
-    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
     ),
     ),
     decoration: BoxDecoration(
@@ -112,7 +113,7 @@ class _BookingState extends State<Booking> {
     alignment: Alignment.bottomCenter,
     child: Text(
     'Milap Hall',
-    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
     ),
     ),
     decoration: BoxDecoration(
@@ -135,7 +136,7 @@ class _BookingState extends State<Booking> {
             alignment: Alignment.bottomCenter,
             child: Text(
               'Milan Lounge',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
           decoration: BoxDecoration(
@@ -156,7 +157,7 @@ class _BookingState extends State<Booking> {
           SizedBox(height: 30.0),
           Text(
             " Banquet Halls",
-            style: TextStyle(
+            style: GoogleFonts.inter(
               color: Colors.grey,
               fontSize: 25,
               fontWeight: FontWeight.bold,
@@ -186,7 +187,7 @@ class _BookingState extends State<Booking> {
                               alignment: Alignment.bottomCenter,
                               child: Text(
                                 'Main Hall',
-                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
                               ),
                             ),
                             decoration: BoxDecoration(
@@ -209,7 +210,7 @@ class _BookingState extends State<Booking> {
                               alignment: Alignment.bottomCenter,
                               child: Text(
                                 'Wedding Hall',
-                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
                               ),
                             ),
                             decoration: BoxDecoration(

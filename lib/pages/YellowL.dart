@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class YellowLounge extends StatefulWidget {
@@ -34,14 +35,14 @@ class _YellowLoungeState extends State<YellowLounge> {
           ),
           Text(
             "Yellow Lounge",
-            style: TextStyle(
+            style: GoogleFonts.inter(
               color: Colors.blueAccent,
               fontSize: 40,
             ),
           ),
           Text(
             "The Yellow Lounge is a large, comfortable lounge in the ground floor of the club. It is decorated with plush sofas and a warm ambience. Perfect for medium gatherings like office gettogethers, birthday parties etc \n \nCapacity : 25 people",
-            style: TextStyle(
+            style: GoogleFonts.inter(
                 fontSize: 20
             ),
           ),
@@ -55,7 +56,7 @@ class _YellowLoungeState extends State<YellowLounge> {
                       Navigator.pushNamed(context, "/bookingcalendar");
                     },
                     child: Text('Book',
-                        style: TextStyle(color: Colors.white, fontSize: 18))),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: 18))),
               )),
         ],
       ),

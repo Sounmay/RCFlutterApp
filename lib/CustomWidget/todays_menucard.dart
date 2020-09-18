@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TodayFoodCard extends StatelessWidget {
   final String categoryName;
@@ -24,11 +25,11 @@ class TodayFoodCard extends StatelessWidget {
           children: <Widget>[
             Text(
               categoryName,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.white),
+              style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.white),
             ),
             Text(
               '₹' + '$itemprice',
-              style: TextStyle(color: Colors.white),
+              style: GoogleFonts.inter(color: Colors.white),
             )
           ],
         ));

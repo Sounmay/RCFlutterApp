@@ -1,5 +1,6 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/pages/loadingspinner.dart';
 import 'package:rcapp/services/auth.dart';
 
@@ -120,7 +121,7 @@ class _LoginState extends State<Login> {
                                 horizontal: 40, vertical: 15),
                             child: Text(
                               'Login',
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 25),
@@ -150,7 +151,7 @@ class _LoginState extends State<Login> {
                           SizedBox(height: 10.0),
                           Text(
                             error,
-                            style: TextStyle(color: Colors.red, fontSize: 14.0),
+                            style: GoogleFonts.inter(color: Colors.red, fontSize: 14.0),
                           ),
                           SizedBox(height: 15.0),
                           Row(
@@ -158,7 +159,7 @@ class _LoginState extends State<Login> {
                               children: <Widget>[
                                 Text(
                                   'Or, If you are a new user, ',
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       color: Colors.deepOrange, fontSize: 15),
                                 ),
                                 InkWell(
@@ -166,7 +167,7 @@ class _LoginState extends State<Login> {
                                     widget.toggleView();
                                   },
                                   child: Text('Register',
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.blue,
                                           decoration: TextDecoration.underline,
                                           fontSize: 15)),

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/pages/Food.dart';
 import 'package:rcapp/pages/order_cart.dart';
 import 'package:rcapp/pages/storeData.dart';
@@ -105,7 +106,7 @@ class _CartState extends State<Cart> {
                     margin: EdgeInsets.only(left: 20),
                     child: Text(
                       'Deliver To:',
-                      style: TextStyle(
+                      style: GoogleFonts.inter(
                           color: Colors.deepOrange,
                           fontWeight: FontWeight.bold),
                     ),
@@ -114,7 +115,7 @@ class _CartState extends State<Cart> {
                     Container(
                       child: Text(
                         'Change/Add',
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                             decoration: TextDecoration.underline,
                             color: Colors.deepOrange,
                             fontWeight: FontWeight.bold),
@@ -137,7 +138,7 @@ class _CartState extends State<Cart> {
                   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                   child: Text(
                     '$address',
-                    style: TextStyle(fontSize: 16),
+                    style: GoogleFonts.inter(fontSize: 16),
                   ))
             ],
           ),
@@ -174,7 +175,7 @@ class _CartState extends State<Cart> {
                                 ),
                                 Text(
                                   keyname,
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       fontSize: 17,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -198,7 +199,7 @@ class _CartState extends State<Cart> {
                                   new EdgeInsets.symmetric(horizontal: 50.0),
                               child: Text(
                                 '₹' + '$price' + '   Quantity: ' + '$qty',
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -269,7 +270,7 @@ class _QuantityInCartState extends State<QuantityInCart> {
           height: 25,
           width: 62,
           child: Center(
-              child: Text('Add', style: TextStyle(color: Colors.deepOrange))),
+              child: Text('Add', style: GoogleFonts.inter(color: Colors.deepOrange))),
         ),
       );
     } else {
@@ -325,12 +326,12 @@ class _QuantityInCartState extends State<QuantityInCart> {
             width: 33,
             child: Text(
               '${widget.qty}',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.bold),
             ),
           ),
           // Text(
           //   '$FQty',
-          //   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          //   style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.bold),
           // ),
           Container(
             alignment: Alignment.center,
@@ -390,7 +391,7 @@ class _ProceedAccessState extends State<ProceedAccess> {
               },
               child: Text(
                 'Add address to proceed',
-                style: TextStyle(color: Colors.white),
+                style: GoogleFonts.inter(color: Colors.white),
               )));
     } else if (widget.address != '') {
       return Container(
@@ -405,7 +406,7 @@ class _ProceedAccessState extends State<ProceedAccess> {
               },
               child: Text(
                 'Proceed to Pay',
-                style: TextStyle(color: Colors.white),
+                style: GoogleFonts.inter(color: Colors.white),
               )));
     } else if (widget.address == null) {
       return Container(
@@ -438,14 +439,14 @@ class BottomItemView extends StatelessWidget {
             Text(
               '${qty} ' + '  item ' + '|' + ' ' + '₹ ' + '${total}',
               style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
             ),
             InkWell(
               onTap: (() => Navigator.pushNamed(context, '/cart')),
               child: Text(
                 'VIEW CART',
                 style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             )
           ],

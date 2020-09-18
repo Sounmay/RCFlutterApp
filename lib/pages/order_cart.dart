@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OrderCard extends StatefulWidget {
   int total;
@@ -22,7 +23,7 @@ class _OrderCardState extends State<OrderCard> {
           child: new Center(
               child: new Text(
                 "Total Amount: " + '${widget.total}',
-                style: TextStyle(color: Colors.white, fontSize: 22),
+                style: GoogleFonts.inter(color: Colors.white, fontSize: 22),
               ))),
     );
   }

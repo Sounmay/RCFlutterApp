@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/models/user.dart';
 import 'package:rcapp/pages/storeData.dart';
 import 'food_card.dart';
@@ -40,7 +41,7 @@ class FoodCategory extends StatelessWidget {
                 size: 45,
               ),
               SizedBox(height: 20),
-              Text('LOADING', style: TextStyle(fontWeight: FontWeight.w400))
+              Text('LOADING', style: GoogleFonts.inter(fontWeight: FontWeight.w400))
             ]),
       );
     } else {

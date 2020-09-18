@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/models/user.dart';
 
@@ -107,7 +108,7 @@ class _AdminOrderState extends State<AdminOrder> {
                             children: <Widget>[
                               Text(
                                 "Order No: $orderNo",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
                                     color: Colors.deepOrange, fontSize: 22),
                               ),
                               Flexible(child: Text('${orders[index]["date"]}')),
@@ -123,7 +124,7 @@ class _AdminOrderState extends State<AdminOrder> {
                                   children: <Widget>[
                                     Text(
                                       "Name : " + "${orders[index]["name"]}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
@@ -138,7 +139,7 @@ class _AdminOrderState extends State<AdminOrder> {
                                     Text(
                                       "Personal No : " +
                                           "${orders[index]["number"]}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
@@ -153,7 +154,7 @@ class _AdminOrderState extends State<AdminOrder> {
                                     children: <Widget>[
                                       Text(
                                         "Status: Confirmed",
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                             color: Colors.black,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w400),
@@ -167,7 +168,7 @@ class _AdminOrderState extends State<AdminOrder> {
                                     children: <Widget>[
                                       Text(
                                         "Status: Not Confirmed",
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                             color: Colors.black,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w400),
@@ -182,7 +183,7 @@ class _AdminOrderState extends State<AdminOrder> {
                               children: <Widget>[
                                 Text(
                                   "Cost : ₹" + "${orders[index]["total"]} ",
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       color: Colors.black, fontSize: 22),
                                 ),
                                 Row(children: <Widget>[
@@ -218,7 +219,7 @@ class _AdminOrderState extends State<AdminOrder> {
                                           borderRadius:
                                               BorderRadius.circular(5)),
                                       child: Text('View',
-                                          style: TextStyle(
+                                          style: GoogleFonts.inter(
                                             color: Colors.white,
                                           )),
                                     ),
@@ -240,7 +241,7 @@ class _AdminOrderState extends State<AdminOrder> {
                                             borderRadius:
                                                 BorderRadius.circular(5)),
                                         child: Text('Confirm',
-                                            style: TextStyle(
+                                            style: GoogleFonts.inter(
                                               color: Colors.white,
                                             )),
                                       ),
@@ -261,7 +262,7 @@ class _AdminOrderState extends State<AdminOrder> {
                                             borderRadius:
                                                 BorderRadius.circular(5)),
                                         child: Text('Delete',
-                                            style: TextStyle(
+                                            style: GoogleFonts.inter(
                                               color: Colors.white,
                                             )),
                                       ),
@@ -354,7 +355,7 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
             contentPadding: EdgeInsets.all(10),
             title: Container(
               decoration: BoxDecoration(
-                  color: Colors.blue[50],
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey)),
               child: Column(
@@ -365,7 +366,7 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                     height: 500.0,
                     width: 370.0,
                     decoration: BoxDecoration(
-                      color: Colors.blue[50],
+                      color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     ),
                     child: Column(
@@ -375,7 +376,7 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                           children: <Widget>[
                             Text(
                               "#${widget.orderNo}",
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   color: Colors.deepOrange, fontSize: 22),
                             ),
                             Flexible(child: Text('${widget.date}')),
@@ -390,7 +391,7 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                               children: <Widget>[
                                 Text(
                                   "${widget.name}",
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       color: Colors.black,
                                       fontSize: 22,
                                       fontWeight: FontWeight.w500),
@@ -403,7 +404,7 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                               children: <Widget>[
                                 Text(
                                   "Personal No. :",
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       color: Colors.grey,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500),
@@ -413,7 +414,7 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                                   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                                   child: Text(
                                     "${widget.number}",
-                                    style: TextStyle(
+                                    style: GoogleFonts.inter(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.w400),
@@ -431,7 +432,7 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                                     children: <Widget>[
                                       Text(
                                         "Delivered To : ",
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                             color: Colors.grey,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500),
@@ -443,7 +444,7 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                                               EdgeInsets.fromLTRB(10, 0, 0, 0),
                                           child: Text(
                                             "${widget.address}",
-                                            style: TextStyle(
+                                            style: GoogleFonts.inter(
                                                 color: Colors.black,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.w400),
@@ -460,7 +461,7 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               'Menu :',
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   color: Colors.grey,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500),
@@ -471,12 +472,12 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text('Item Name',
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400,
                                       decoration: TextDecoration.underline)),
                               Text('Quantity',
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400,
                                       decoration: TextDecoration.underline))
@@ -492,12 +493,12 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                             children: <Widget>[
                               Text(
                                 "Cost : ",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
                                     color: Colors.black, fontSize: 22),
                               ),
                               Text(
                                 "₹${widget.total} ",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
                                     color: Colors.black, fontSize: 22),
                               ),
                             ]),

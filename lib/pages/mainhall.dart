@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class MainHall extends StatefulWidget {
@@ -33,7 +34,7 @@ class _MainHallState extends State<MainHall> {
             ),
           ),
           Text("The Main Banquet Hall",
-            style: TextStyle(
+            style: GoogleFonts.inter(
                 color: Colors.redAccent,
                 fontSize: 30
             ),),
@@ -41,7 +42,7 @@ class _MainHallState extends State<MainHall> {
             padding: EdgeInsets.all(10),
             child:Text("Present in front of the entrance, the main Banquet Hall is for major occasion s and for big group gatherings, such as musical events, social gatherings, large office parties, marriage receptions, etc \n \n"
                 "Capacity - 250 people",
-              style: TextStyle(
+              style: GoogleFonts.inter(
                   color: Colors.black,
                   fontSize: 20
               ),),
@@ -56,7 +57,7 @@ class _MainHallState extends State<MainHall> {
                       Navigator.pushNamed(context, "/bookingcalendar");
                     },
                     child: Text('Book',
-                        style: TextStyle(color: Colors.white, fontSize: 18))),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: 18))),
               )),
         ],
       ),

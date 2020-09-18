@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -35,14 +36,14 @@ class _MilapLoungeState extends State<MilapLounge> {
           ),
           Text(
             "Milap Reception Hall",
-            style: TextStyle(
+            style: GoogleFonts.inter(
               color: Colors.blueAccent,
               fontSize: 40,
             ),
           ),
           Text(
             "The Milap Reception Hall is a large hall present in the first floor of the club. Perfect for medium group gatherings like office parties, departmental dinners etc \n \nCapacity : 70 people\n \n \n \n ",
-            style: TextStyle(
+            style: GoogleFonts.inter(
                 fontSize: 20
             ),
           ),
@@ -56,7 +57,7 @@ class _MilapLoungeState extends State<MilapLounge> {
                       Navigator.pushNamed(context, "/bookingcalendar");
                     },
                     child: Text('Book',
-                        style: TextStyle(color: Colors.white, fontSize: 18))),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: 18))),
               )),
         ],
       ),

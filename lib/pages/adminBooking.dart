@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/models/event.dart';
 import 'package:rcapp/models/user.dart';
@@ -140,8 +141,8 @@ class _AdminBookingState extends State<AdminBooking> {
                     SizedBox(height: 10.0),
                     Container(
                       padding: EdgeInsets.all(10),
-                      height: 220.0,
-                      width: 370.0,
+                      height: 240.0,
+                      width: 380.0,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -153,7 +154,7 @@ class _AdminBookingState extends State<AdminBooking> {
                             children: <Widget>[
                               Text(
                                 "#$orderNo",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
                                     color: Colors.deepOrange, fontSize: 22),
                               ),
                               Flexible(
@@ -170,7 +171,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                   children: <Widget>[
                                     Text(
                                       "Name : " + "${bookings[index]["name"]}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
@@ -185,7 +186,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                     Text(
                                       "Personal No. : " +
                                           "${bookings[index]["number"]}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
@@ -200,7 +201,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                     Text(
                                       "Lounge : " +
                                           "${bookings[index]["lounge"]}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
@@ -214,7 +215,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                   children: <Widget>[
                                     Text(
                                       'Slot: ${bookings[index]["slot"]}',
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
@@ -223,7 +224,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                         bookings[index]["isConfirmed"]
                                             ? 'Status: Confirmed'
                                             : 'Status: Not Confirmed',
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                             color: Colors.black,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w400)),
@@ -239,7 +240,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                   Row(children: <Widget>[
                                     Container(
                                       height: 30,
-                                      width: 100,
+                                      width: 110,
                                       child: FlatButton(
                                         onPressed: () {
                                           rejectBookinHistory(
@@ -257,7 +258,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                               ),
                                               Text(
                                                 'Reject',
-                                                style: TextStyle(
+                                                style: GoogleFonts.inter(
                                                     color: Colors.white),
                                               ),
                                             ]),
@@ -269,7 +270,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                     SizedBox(width: 5),
                                     Container(
                                       height: 30,
-                                      width: 100,
+                                      width: 110,
                                       child: FlatButton(
                                         onPressed: () {
                                           confirmBooking(
@@ -294,7 +295,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                               ),
                                               Text(
                                                 'Confirm',
-                                                style: TextStyle(
+                                                style: GoogleFonts.inter(
                                                     color: Colors.white),
                                               ),
                                             ]),
@@ -329,7 +330,7 @@ class _AdminBookingState extends State<AdminBooking> {
                                             ),
                                             Text(
                                               'Delete',
-                                              style: TextStyle(
+                                              style: GoogleFonts.inter(
                                                   color: Colors.white),
                                             ),
                                           ]),

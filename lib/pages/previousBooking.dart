@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/models/user.dart';
 
@@ -61,6 +62,10 @@ class _PreviousBookingState extends State<PreviousBooking> {
       );
     } else if (documentlength == 0) {
       return Scaffold(
+        appBar: AppBar(
+            title: Text('Your Booking',
+                style: GoogleFonts.inter(color: Colors.white)),
+            backgroundColor: Colors.deepOrange),
         body: Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -104,7 +109,7 @@ class _PreviousBookingState extends State<PreviousBooking> {
                             children: <Widget>[
                               Text(
                                 "#$orderNo",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
                                     color: Colors.deepOrange, fontSize: 22),
                               ),
                               Flexible(
@@ -121,7 +126,7 @@ class _PreviousBookingState extends State<PreviousBooking> {
                                   children: <Widget>[
                                     Text(
                                       "Name : " + "${bookings[index]["name"]}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
@@ -136,7 +141,7 @@ class _PreviousBookingState extends State<PreviousBooking> {
                                     Text(
                                       "Personal No. : " +
                                           "${bookings[index]["number"]}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
@@ -151,7 +156,7 @@ class _PreviousBookingState extends State<PreviousBooking> {
                                     Text(
                                       "Lounge : " +
                                           "${bookings[index]["lounge"]}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
@@ -165,12 +170,11 @@ class _PreviousBookingState extends State<PreviousBooking> {
                                   children: <Widget>[
                                     Text(
                                       'Slot: ${bookings[index]["slot"]}',
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
                                     ),
-                                   
                                   ],
                                 ),
                               ]),

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/models/user.dart';
 
@@ -15,6 +16,7 @@ class _PreviousOrderState extends State<PreviousOrder> {
   List<dynamic> item = [];
   List<dynamic> quantity = [];
   List<dynamic> total = [];
+  var _result = 1;
 
   void initialData() async {
     var uid = (await FirebaseAuth.instance.currentUser()).uid;
@@ -23,6 +25,9 @@ class _PreviousOrderState extends State<PreviousOrder> {
         .collection('confirmedOrders')
         .where('id', isEqualTo: uid)
         .getDocuments();
+    setState(() {
+      _result = result.documents.length;
+    });
     result.documents.forEach((res) {
       setState(() {
         orders.add(res.data);
@@ -43,7 +48,10 @@ class _PreviousOrderState extends State<PreviousOrder> {
   @override
   Widget build(BuildContext context) {
     int orderNo = 110;
-    if (orders.length == 0 && item.length == 0 && quantity.length == 0) {
+    if (orders.length == 0 &&
+        item.length == 0 &&
+        quantity.length == 0 &&
+        _result == 1) {
       return Scaffold(
         body: Center(
             child: Column(
@@ -51,6 +59,21 @@ class _PreviousOrderState extends State<PreviousOrder> {
                 children: <Widget>[
               SpinKitCircle(color: Colors.deepOrange, size: 65),
               Text('Loading data')
+            ])),
+      );
+    }
+    if (_result == 0) {
+      return Scaffold(
+        appBar: AppBar(
+            title: Text('Previous Orders'), backgroundColor: Colors.deepOrange),
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              Icon(Icons.add_shopping_cart, size: 40, color: Colors.deepOrange),
+              Text('No Previous Order Pending',
+                  style: GoogleFonts.inter(
+                      color: Colors.black, fontWeight: FontWeight.bold))
             ])),
       );
     } else {
@@ -87,7 +110,7 @@ class _PreviousOrderState extends State<PreviousOrder> {
                             children: <Widget>[
                               Text(
                                 "#$orderNo",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
                                     color: Colors.deepOrange, fontSize: 22),
                               ),
                               Flexible(child: Text('${orders[index]["date"]}')),
@@ -103,7 +126,7 @@ class _PreviousOrderState extends State<PreviousOrder> {
                                   children: <Widget>[
                                     Text(
                                       "Name : " + "${orders[index]["name"]}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
@@ -118,7 +141,7 @@ class _PreviousOrderState extends State<PreviousOrder> {
                               children: <Widget>[
                                 Text(
                                   "Cost : ₹" + "${orders[index]["total"]} ",
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       color: Colors.black, fontSize: 22),
                                 ),
                                 InkWell(
@@ -143,7 +166,7 @@ class _PreviousOrderState extends State<PreviousOrder> {
                                   },
                                   child: Container(
                                     child: Text('Know More',
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                             color: Colors.deepOrange,
                                             decoration:
                                                 TextDecoration.underline)),
@@ -255,7 +278,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                           children: <Widget>[
                             Text(
                               "#${widget.orderNo}",
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   color: Colors.deepOrange, fontSize: 22),
                             ),
                             Flexible(child: Text('${widget.date}')),
@@ -270,7 +293,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                               children: <Widget>[
                                 Text(
                                   "${widget.name}",
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       color: Colors.black,
                                       fontSize: 22,
                                       fontWeight: FontWeight.w500),
@@ -283,7 +306,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                               children: <Widget>[
                                 Text(
                                   "Personal No. :",
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       color: Colors.grey,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500),
@@ -293,7 +316,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                                   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                                   child: Text(
                                     "${widget.number}",
-                                    style: TextStyle(
+                                    style: GoogleFonts.inter(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.w400),
@@ -311,7 +334,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                                     children: <Widget>[
                                       Text(
                                         "Delivered To : ",
-                                        style: TextStyle(
+                                        style: GoogleFonts.inter(
                                             color: Colors.grey,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500),
@@ -323,7 +346,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                                               EdgeInsets.fromLTRB(10, 0, 0, 0),
                                           child: Text(
                                             "${widget.address}",
-                                            style: TextStyle(
+                                            style: GoogleFonts.inter(
                                                 color: Colors.black,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.w400),
@@ -340,7 +363,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               'Menu :',
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   color: Colors.grey,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500),
@@ -351,12 +374,12 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text('Item Name',
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400,
                                       decoration: TextDecoration.underline)),
                               Text('Quantity',
-                                  style: TextStyle(
+                                  style: GoogleFonts.inter(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400,
                                       decoration: TextDecoration.underline))
@@ -372,7 +395,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                             children: <Widget>[
                               Text(
                                 "Cost : ₹" + "${widget.total} ",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
                                     color: Colors.black, fontSize: 22),
                               ),
                               InkWell(
@@ -385,7 +408,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                                 },
                                 child: Container(
                                   child: Text('Know More',
-                                      style: TextStyle(
+                                      style: GoogleFonts.inter(
                                           color: Colors.deepOrange,
                                           decoration:
                                               TextDecoration.underline)),

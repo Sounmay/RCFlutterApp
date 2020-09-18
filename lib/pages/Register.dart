@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/pages/loadingspinner.dart';
 import 'package:rcapp/services/auth.dart';
 
@@ -18,7 +19,6 @@ class _RegisterState extends State<Register> {
 
   // test field state
   String name = '';
-  String email = '';
   String password = '';
   String error = '';
   String number = '';
@@ -94,25 +94,6 @@ class _RegisterState extends State<Register> {
                       SizedBox(height: 18.0),
                       TextFormField(
                           decoration: InputDecoration(
-                              hintText: 'Email',
-                              fillColor: Colors.white,
-                              filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.deepOrange, width: 1.0),
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.deepOrange, width: 3.0),
-                                  borderRadius: BorderRadius.circular(10))),
-                          validator: (val) =>
-                              val.isEmpty ? 'Enter an email' : null,
-                          onChanged: (val) {
-                            setState(() => email = val);
-                          }),
-                      SizedBox(height: 18.0),
-                      TextFormField(
-                          decoration: InputDecoration(
                               hintText: 'Password',
                               fillColor: Colors.white,
                               filled: true,
@@ -138,7 +119,7 @@ class _RegisterState extends State<Register> {
                             horizontal: 40, vertical: 15),
                         child: Text(
                           'Register',
-                          style: TextStyle(
+                          style: GoogleFonts.inter(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
                               fontSize: 25),
@@ -153,7 +134,7 @@ class _RegisterState extends State<Register> {
                             });
                             dynamic result =
                                 await _auth.registerWithEmailAndPassword(
-                                    name, false, number, email, password);
+                                    name, false, number, password);
                             if (result == null) {
                               setState(() {
                                 error = 'please supply a valid email';
@@ -166,7 +147,7 @@ class _RegisterState extends State<Register> {
                       SizedBox(height: 20.0),
                       Text(
                         error,
-                        style: TextStyle(color: Colors.red, fontSize: 14.0),
+                        style: GoogleFonts.inter(color: Colors.red, fontSize: 14.0),
                       )
                     ]),
                   )),

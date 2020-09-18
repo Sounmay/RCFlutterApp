@@ -55,8 +55,7 @@ class AuthService {
   }
 
   //register with email and pass
-  Future registerWithEmailAndPassword(String name, bool isAuth, String number,
-      String email, String password) async {
+  Future registerWithEmailAndPassword(String name, bool isAuth, String number, String password) async {
     try {
       String numemail = number + "@gmail.com";
       AuthResult result = await _auth.createUserWithEmailAndPassword(

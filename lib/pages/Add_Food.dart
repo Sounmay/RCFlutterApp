@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddFood extends StatefulWidget {
   final String id;
@@ -30,7 +31,7 @@ class _AddFoodState extends State<AddFood> {
                 ),
                 Text(
                   widget.Name,
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -50,7 +51,7 @@ class _AddFoodState extends State<AddFood> {
                 ),
                 Text(
                   '$FQty',
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.bold),
                 ),
                 IconButton(
                   icon: Icon(
@@ -72,7 +73,7 @@ class _AddFoodState extends State<AddFood> {
               margin: new EdgeInsets.symmetric(horizontal:50.0),
               child:Text(
                 '₹' + widget.price.toString(),
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.bold),
               ),
             ),
           ],

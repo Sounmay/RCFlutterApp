@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/services/database.dart';
 
 class MenuCard extends StatelessWidget {
@@ -32,7 +33,7 @@ class MenuCard extends StatelessWidget {
           children: <Widget>[
             Text(
               '$categoryName',
-              style: TextStyle(
+              style: GoogleFonts.inter(
                 fontWeight: FontWeight.bold,
               ),
             )

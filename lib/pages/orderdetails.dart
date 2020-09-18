@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class OrderDetails extends StatefulWidget {
@@ -42,7 +43,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                       padding: const EdgeInsets.all(10),
                       child:  Text(
                         "Order Number : " + "111",
-                        style: TextStyle(color: Colors.deepOrange, fontSize: 22),
+                        style: GoogleFonts.inter(color: Colors.deepOrange, fontSize: 22),
                       ),
                     ),
                     Padding(
@@ -60,7 +61,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                       padding: const EdgeInsets.all(10),
                       child:  Text(
                         "Name : " + "Aswin Kumar Raju",
-                        style: TextStyle(color: Colors.black, fontSize: 15),
+                        style: GoogleFonts.inter(color: Colors.black, fontSize: 15),
                       ),
                     ),
                   ],
@@ -72,7 +73,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                       padding: const EdgeInsets.all(10),
                       child:  Text(
                         "Personal No. : " + "999999",
-                        style: TextStyle(color: Colors.black, fontSize: 15),
+                        style: GoogleFonts.inter(color: Colors.black, fontSize: 15),
                       ),
                     ),
                   ],

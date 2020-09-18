@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/services/database.dart';
 
 class AddressForm extends StatefulWidget {
@@ -151,7 +152,7 @@ class _AddressFormState extends State<AddressForm> {
                           horizontal: 40, vertical: 15),
                       child: Text(
                         'Save',
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                             color: Colors.white,
                             fontWeight: FontWeight.w400,
                             fontSize: 25),
@@ -189,7 +190,7 @@ class _AddressFormState extends State<AddressForm> {
                     SizedBox(height: 20.0),
                     Text(
                       error,
-                      style: TextStyle(color: Colors.red, fontSize: 14.0),
+                      style: GoogleFonts.inter(color: Colors.red, fontSize: 14.0),
                     )
                   ]),
             )),

@@ -511,7 +511,7 @@ class _LoadingDataState extends State<LoadingData> {
                         ),
                         SizedBox(height: 20),
                         Text('LOADING',
-                            style: TextStyle(fontWeight: FontWeight.w500))
+                            style: GoogleFonts.inter(fontWeight: FontWeight.w500))
                       ]),
                 );
               } else {

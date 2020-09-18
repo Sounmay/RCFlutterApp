@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class welcome extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _welcomeState extends State<welcome> {
           Center(
             child: Text(
               'ROURKELA CLUB',
-              style: TextStyle(
+              style: GoogleFonts.inter(
                 color: Colors.white,
                 fontSize: 40.0,
               ),

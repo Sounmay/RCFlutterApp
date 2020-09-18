@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/models/user.dart';
 import 'package:rcapp/pages/CategoryMenuList/flushbar.dart';
 import 'package:rcapp/pages/storeData.dart';
@@ -104,7 +105,7 @@ class FoodCard extends StatelessWidget {
                             width: 60,
                             child: Text(
                               categoryName,
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16.0,
                                   color: Colors.white),
@@ -112,7 +113,7 @@ class FoodCard extends StatelessWidget {
                           ),
                           Text(
                             '₹' + '$itemprice',
-                            style: TextStyle(color: Colors.white),
+                            style: GoogleFonts.inter(color: Colors.white),
                           )
                         ],
                       ),
@@ -132,7 +133,7 @@ class FoodCard extends StatelessWidget {
                           child: Center(
                             child: Text(
                               'Add',
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   fontWeight: FontWeight.w400,
                                   color: Colors.white),
                             ),
@@ -169,7 +170,7 @@ class FoodCard extends StatelessWidget {
                             width: 60,
                             child: Text(
                               categoryName,
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16.0,
                                   color: Colors.white),
@@ -177,7 +178,7 @@ class FoodCard extends StatelessWidget {
                           ),
                           Text(
                             '₹' + '$itemprice',
-                            style: TextStyle(color: Colors.white),
+                            style: GoogleFonts.inter(color: Colors.white),
                           )
                         ],
                       ),
@@ -197,7 +198,7 @@ class FoodCard extends StatelessWidget {
                           child: Center(
                             child: Text(
                               'Add',
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                   fontWeight: FontWeight.w400,
                                   color: Colors.white),
                             ),

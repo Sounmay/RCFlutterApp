@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:rcapp/services/database.dart';
@@ -32,7 +33,8 @@ class _PdfCaptureState extends State<PdfCapture> {
   String subtitle = '';
 
   void _pickPdf() async {
-    File pickedPdfFile = await FilePicker.getFile(type: FileType.custom, allowedExtensions: ['pdf']);
+    File pickedPdfFile = await FilePicker.getFile(
+        type: FileType.custom, allowedExtensions: ['pdf']);
     setState(() {
       _pickedPdf = pickedPdfFile;
     });
@@ -60,11 +62,19 @@ class _PdfCaptureState extends State<PdfCapture> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               if (showOptions == true) ...[
-                IconButton(
-                  iconSize: 40,
-                  color: Colors.deepOrange,
-                  icon: Icon(Icons.photo_library),
-                  onPressed: () => _pickPdf(),
+                Container(
+                  height: 90,
+                  child: Column(children: <Widget>[
+                    IconButton(
+                      iconSize: 40,
+                      color: Colors.deepOrange,
+                      icon: Icon(Icons.photo_library),
+                      onPressed: () => _pickPdf(),
+                    ),
+                    Text('File Explorer',
+                        style: GoogleFonts.inter(
+                            color: Colors.black, fontWeight: FontWeight.bold))
+                  ]),
                 ),
               ]
             ],
@@ -95,7 +105,7 @@ class _PdfCaptureState extends State<PdfCapture> {
                         ),
                         SizedBox(height: 5),
                         Text('Click to Add Pdf',
-                            style: TextStyle(
+                            style: GoogleFonts.inter(
                                 fontWeight: FontWeight.w500, fontSize: 20))
                       ],
                     ),
@@ -207,7 +217,6 @@ class Uploader extends StatefulWidget {
 }
 
 class _UploaderState extends State<Uploader> {
-
   var _uploadTask;
 
   final DatabaseService _pdfUploader = DatabaseService();
@@ -259,7 +268,7 @@ class _UploaderState extends State<Uploader> {
         icon: Icon(Icons.cloud_upload),
         label: Text(
           'Save Data To List',
-          style: TextStyle(fontSize: 17),
+          style: GoogleFonts.inter(fontSize: 17),
         ),
         shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(10.0)),

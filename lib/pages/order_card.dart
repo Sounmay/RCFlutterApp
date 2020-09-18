@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rcapp/pages/Food.dart';
 
 
@@ -27,11 +28,11 @@ class _OrderCardState extends State<OrderCard> {
                         children: <Widget>[
                           Text(
                             "Total Amount:",
-                            style: TextStyle(color: Colors.white, fontSize: 22),
+                            style: GoogleFonts.inter(color: Colors.white, fontSize: 22),
                           ),
                           Text(
                             "₹80",
-                            style: TextStyle(color: Colors.white, fontSize: 22),
+                            style: GoogleFonts.inter(color: Colors.white, fontSize: 22),
                           ),
                         ],
                 ),

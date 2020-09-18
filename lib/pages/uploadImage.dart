@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:rcapp/services/database.dart';
@@ -60,17 +61,35 @@ class _ImageCaptureState extends State<ImageCapture> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               if (showOptions == true) ...[
-                IconButton(
-                  iconSize: 40,
-                  color: Colors.deepOrange,
-                  icon: Icon(Icons.photo_library),
-                  onPressed: () => _pickImage(ImageSource.gallery),
+                Container(
+                  height: 90,
+                  child: Column(children: <Widget>[
+                    IconButton(
+                      iconSize: 40,
+                      color: Colors.deepOrange,
+                      icon: Icon(Icons.photo_library),
+                      onPressed: () => _pickImage(ImageSource.gallery),
+                    ),
+                    Text(
+                      'File Explorer',
+                      style: GoogleFonts.inter(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    )
+                  ]),
                 ),
-                IconButton(
-                  iconSize: 40,
-                  color: Colors.deepOrange,
-                  icon: Icon(Icons.camera),
-                  onPressed: () => _pickImage(ImageSource.camera),
+                Container(
+                  height: 90,
+                  child: Column(children: <Widget>[
+                    IconButton(
+                      iconSize: 40,
+                      color: Colors.deepOrange,
+                      icon: Icon(Icons.camera),
+                      onPressed: () => _pickImage(ImageSource.camera),
+                    ),
+                    Text('Camera',
+                        style: GoogleFonts.inter(
+                            color: Colors.black, fontWeight: FontWeight.bold))
+                  ]),
                 )
               ]
             ],
@@ -101,7 +120,7 @@ class _ImageCaptureState extends State<ImageCapture> {
                         ),
                         SizedBox(height: 5),
                         Text('ADD AN IMAGE',
-                            style: TextStyle(
+                            style: GoogleFonts.inter(
                                 fontWeight: FontWeight.w500, fontSize: 20))
                       ],
                     ),
@@ -268,7 +287,7 @@ class _UploaderState extends State<Uploader> {
         icon: Icon(Icons.cloud_upload),
         label: Text(
           'Save Data To List',
-          style: TextStyle(fontSize: 17),
+          style: GoogleFonts.inter(fontSize: 17),
         ),
         shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(10.0)),
