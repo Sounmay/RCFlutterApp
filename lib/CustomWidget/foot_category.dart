@@ -46,7 +46,7 @@ class FoodCategory extends StatelessWidget {
       );
     } else {
       return Container(
-        height: 100.0,
+        height: 105.0,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: _menuList.length,

@@ -61,7 +61,7 @@ class FoodCard extends StatelessWidget {
             })
       ],
       child: Container(
-          width: 160,
+          width: 168,
           margin: EdgeInsets.only(right: 10.0),
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -102,7 +102,7 @@ class FoodCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            width: 60,
+                            width: 66,
                             child: Text(
                               categoryName,
                               style: GoogleFonts.inter(
