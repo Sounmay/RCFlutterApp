@@ -13,6 +13,7 @@ import 'package:rcapp/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:rcapp/services/database.dart';
 import 'package:path/path.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -44,26 +45,26 @@ class _HomeState extends State<Home> {
     }
   }
 
-  void exp() async {
-    // var date = 1600288449003;
-    // var result = await Firestore.instance
-    //     .collection('events')
-    //     .where('slot', isEqualTo: 1)
-    //     .getDocuments();
-    // result.documents.forEach((element) {
-    //   print(DateTime.fromMillisecondsSinceEpoch(date));
-    // });
-    DateTime currentPhoneDate = DateTime.now();
-    Timestamp myTimeStamp = Timestamp.fromDate(currentPhoneDate);
-    DateTime myDateTime = myTimeStamp.toDate();
-    print("$currentPhoneDate");
-    print("$myDateTime");
-    var result = await Firestore.instance
-        .collection('events')
-        .where("slot", isEqualTo: 1)
-        .getDocuments();
-    print(result.documents[0]["event_date"].toDate());
-  }
+  // void exp() async {
+  //   // var date = 1600288449003;
+  //   // var result = await Firestore.instance
+  //   //     .collection('events')
+  //   //     .where('slot', isEqualTo: 1)
+  //   //     .getDocuments();
+  //   // result.documents.forEach((element) {
+  //   //   print(DateTime.fromMillisecondsSinceEpoch(date));
+  //   // });
+  //   DateTime currentPhoneDate = DateTime.now();
+  //   Timestamp myTimeStamp = Timestamp.fromDate(currentPhoneDate);
+  //   DateTime myDateTime = myTimeStamp.toDate();
+  //   print("$currentPhoneDate");
+  //   print("$myDateTime");
+  //   var result = await Firestore.instance
+  //       .collection('events')
+  //       .where("slot", isEqualTo: 1)
+  //       .getDocuments();
+  //   print(result.documents[0]["event_date"].toDate());
+  // }
 
   @override
   void initState() {
@@ -113,13 +114,12 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
-              // tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           }),
           title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('Home'),
+                Text('Home', style: GoogleFonts.inter()),
               ]),
         ),
         drawer: Drawer(
@@ -156,10 +156,11 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Text(
                       'Rourkela Club Menu',
-                      style: TextStyle(
-                          color: Colors.deepOrange,
-                          fontSize: 14,
-                          decoration: TextDecoration.underline),
+                      style: GoogleFonts.inter(
+                        color: Colors.deepOrange,
+                        fontSize: 14,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                     IconButton(
                       padding: EdgeInsets.all(0),
@@ -178,7 +179,7 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   Text(
                     "  Notice Board",
-                    style: TextStyle(
+                    style: GoogleFonts.inter(
                       color: Colors.grey,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -518,12 +519,33 @@ class _LoadingDataState extends State<LoadingData> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Row(children: <Widget>[
-                        CircleAvatar(
-                          radius: 60.0,
-                          backgroundImage: NetworkImage(
-                              'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
-                          backgroundColor: Colors.transparent,
-                        ),
+                        if (snapshot.data["avatar"] == "") ...[
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, '/uploadAvatarImage');
+                            },
+                            child: CircleAvatar(
+                              radius: 60.0,
+                              backgroundImage: NetworkImage(
+                                  'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
+                              backgroundColor: Colors.transparent,
+                            ),
+                          ),
+                        ] else ...[
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, '/uploadAvatarImage');
+                            },
+                            child: CircleAvatar(
+                              radius: 60.0,
+                              backgroundImage:
+                                  NetworkImage('${snapshot.data["avatar"]}'),
+                              backgroundColor: Colors.transparent,
+                            ),
+                          ),
+                        ],
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[

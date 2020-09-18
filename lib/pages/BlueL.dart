@@ -32,6 +32,19 @@ class _BlueLoungeState extends State<BlueLounge> {
                     fit: BoxFit.fill)),
           ),
         ),
+        Text(
+          "Blue Lounge",
+          style: TextStyle(
+            color: Colors.blueAccent,
+            fontSize: 40,
+          ),
+        ),
+        Text(
+          "The Blue Lounge is a comfortable lounge present in the ground floor of the club. Perfect for small group gatherings like office parties, get togethers amongst friends etc \n \nCapacity : 15 people\n \n \n \n ",
+          style: TextStyle(
+            fontSize: 20
+          ),
+        ),
         SizedBox(
             width: double.infinity,
             height: 60,

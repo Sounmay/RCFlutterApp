@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rcapp/models/category.dart';
 import 'package:rcapp/models/user.dart';
 
@@ -61,6 +62,7 @@ class DatabaseService {
       'isAdmin': isAdmin,
       'number': number,
       'address': '',
+      'avatar': '',
     });
   }
 
@@ -80,6 +82,10 @@ class DatabaseService {
     return await today_Menu_Data
         .document()
         .setData({'category_menu': food, 'itemprice': price, 'imagepath': url});
+  }
+
+  Future updateAvatar(String url, String uid) async {
+    return await userInfo.document(uid).updateData({'avatar': url});
   }
 
   Future updatePdf(String title, String subtitle, String url) async {

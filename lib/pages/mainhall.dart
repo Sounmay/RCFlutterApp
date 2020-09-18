@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 
-class Coluseum extends StatefulWidget {
+class MainHall extends StatefulWidget {
   @override
-  _ColuseumState createState() => _ColuseumState();
+  _MainHallState createState() => _MainHallState();
 }
 
-class _ColuseumState extends State<Coluseum> {
+class _MainHallState extends State<MainHall> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 10.0,
         backgroundColor: Colors.deepOrange,
-        title: Text('Coluseum'),
+        title: Text('Main Recption Hall'),
       ),
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,18 +32,19 @@ class _ColuseumState extends State<Coluseum> {
                       fit: BoxFit.fill)),
             ),
           ),
-          Text(
-            "Coluseum",
+          Text("The Main Banquet Hall",
             style: TextStyle(
-              color: Colors.blueAccent,
-              fontSize: 40,
-            ),
-          ),
-          Text(
-            "The Blue Lounge is a comfortable lounge present in the ground floor of the club. Perfect for small group gatherings like office parties, get togethers amongst friends etc \n \nCapacity : 15 people\n \n \n \n ",
-            style: TextStyle(
-                fontSize: 20
-            ),
+                color: Colors.redAccent,
+                fontSize: 30
+            ),),
+          Container(
+            padding: EdgeInsets.all(10),
+            child:Text("Present in front of the entrance, the main Banquet Hall is for major occasion s and for big group gatherings, such as musical events, social gatherings, large office parties, marriage receptions, etc \n \n"
+                "Capacity - 250 people",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20
+              ),),
           ),
           SizedBox(
               width: double.infinity,
