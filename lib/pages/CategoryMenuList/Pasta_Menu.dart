@@ -26,7 +26,7 @@ class _Pasta_MenuListState extends State<Pasta_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: Pasta'),
+          title: Text('Pasta'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -35,7 +35,6 @@ class _Pasta_MenuListState extends State<Pasta_MenuList> {
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/cart');
-                // Navigator.popAndPushNamed(context, '/cart');
               },
             )
           ],
@@ -43,7 +42,7 @@ class _Pasta_MenuListState extends State<Pasta_MenuList> {
         body: Column(
           children: <Widget>[
             Expanded(
-              child: PaneerMenuListListPage(),
+              child: PastaMenuListListPage(),
             )
           ],
         ),
@@ -52,12 +51,12 @@ class _Pasta_MenuListState extends State<Pasta_MenuList> {
   }
 }
 
-class PaneerMenuListListPage extends StatefulWidget {
+class PastaMenuListListPage extends StatefulWidget {
   @override
-  _PaneerMenuListListPageState createState() => _PaneerMenuListListPageState();
+  _PastaMenuListListPageState createState() => _PastaMenuListListPageState();
 }
 
-class _PaneerMenuListListPageState extends State<PaneerMenuListListPage> {
+class _PastaMenuListListPageState extends State<PastaMenuListListPage> {
   StoreData storeData = StoreData();
   int total = 0;
   bool checked = false;
@@ -101,7 +100,7 @@ class _PaneerMenuListListPageState extends State<PaneerMenuListListPage> {
     });
   }
 
-  void addToCart(PaneerMenu post) {
+  void addToCart(PastaMenu post) {
     String item = post.item;
     int price = post.price;
 
@@ -125,7 +124,7 @@ class _PaneerMenuListListPageState extends State<PaneerMenuListListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _menuList = Provider.of<List<PaneerMenu>>(context) ?? [];
+    final _menuList = Provider.of<List<PastaMenu>>(context) ?? [];
     if (_menuList.length == 0) {
       return Container(
         height: 200,
@@ -159,18 +158,7 @@ class _PaneerMenuListListPageState extends State<PaneerMenuListListPage> {
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          checked = !checked;
-                                        });
-                                        addToCart(_menuList[index]);
-                                      },
-                                      icon: Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: Colors.green,
-                                      ),
-                                    ),
+                                    SizedBox(width: 15),
                                     Text(
                                       '${_menuList[index].item}',
                                       style: TextStyle(
@@ -188,13 +176,15 @@ class _PaneerMenuListListPageState extends State<PaneerMenuListListPage> {
                                     width: 43,
                                     margin: EdgeInsets.only(top: 6),
                                     alignment: Alignment.center,
-                                    decoration:
-                                        BoxDecoration(color: Colors.deepOrange),
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepOrange,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: IconButton(
                                       onPressed: () {
-                                      showFlushbar(context);
-                                      addToCart(_menuList[index]);
-                                      setState(() {
+                                        showFlushbar(context);
+                                        addToCart(_menuList[index]);
+                                        setState(() {
                                           checked = !checked;
                                         });
                                       },
@@ -211,7 +201,7 @@ class _PaneerMenuListListPageState extends State<PaneerMenuListListPage> {
                               children: <Widget>[
                                 Container(
                                   margin: new EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 50.0),
+                                      vertical: 3, horizontal: 16.0),
                                   child: Text(
                                     '₹' + '${_menuList[index].price}',
                                     style: TextStyle(

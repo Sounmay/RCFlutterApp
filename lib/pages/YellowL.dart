@@ -32,6 +32,19 @@ class _YellowLoungeState extends State<YellowLounge> {
                       fit: BoxFit.fill)),
             ),
           ),
+          Text(
+            "Yellow Lounge",
+            style: TextStyle(
+              color: Colors.blueAccent,
+              fontSize: 40,
+            ),
+          ),
+          Text(
+            "The Yellow Lounge is a large, comfortable lounge in the ground floor of the club. It is decorated with plush sofas and a warm ambience. Perfect for medium gatherings like office gettogethers, birthday parties etc \n \nCapacity : 25 people",
+            style: TextStyle(
+                fontSize: 20
+            ),
+          ),
           SizedBox(
               width: double.infinity,
               height: 60,

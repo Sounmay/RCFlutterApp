@@ -32,6 +32,19 @@ class _MilanLoungeState extends State<MilanLounge> {
                       fit: BoxFit.fill)),
             ),
           ),
+          Text(
+            "Milan Lounge",
+            style: TextStyle(
+              color: Colors.blueAccent,
+              fontSize: 40,
+            ),
+          ),
+          Text(
+            "The Milan Lounge is a cozy lounge. Perfect for small group gatherings like office parties, get togethers amongst friends etc \n \nCapacity : 15 people\n \n \n \n ",
+            style: TextStyle(
+                fontSize: 20
+            ),
+          ),
           SizedBox(
               width: double.infinity,
               height: 60,

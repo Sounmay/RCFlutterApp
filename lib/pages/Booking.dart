@@ -10,191 +10,6 @@ class Booking extends StatefulWidget {
 class _BookingState extends State<Booking> {
   @override
   Widget build(BuildContext context) {
-    Widget image_carousel1 = new Container(
-      margin: EdgeInsets.all(5),
-      height: 180.0,
-      child: new Carousel(
-        boxFit: BoxFit.cover,
-        images: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, "/bluelounge");
-            },
-            child: Card(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/12.jpg'),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                child: Text(
-                  "The Blue Lounge",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, "/yellowlounge");
-            },
-            child: Card(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/13.jpg'),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                child: Text(
-                  "The Yellow Lounge",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, "/milaplounge");
-            },
-            child: Card(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/17.jpg'),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                child: Text(
-                  "Milap Reception Hall",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, "/milanlounge");
-            },
-            child: Card(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/18.jpg'),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                child: Text(
-                  "Milan Reception Hall",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, "/coluseum");
-            },
-            child: Card(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/15.jpg'),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                child: Text(
-                  "Coluseum",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-        autoplay: false,
-        dotBgColor: Colors.transparent,
-        borderRadius: true,
-        dotSize: 0,
-      ),
-    );
-
-    Widget image_carousel2 = new Container(
-      margin: EdgeInsets.all(5),
-      height: 180.0,
-      child: new Carousel(
-        boxFit: BoxFit.cover,
-        images: [
-          Card(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/15.jpg'),
-                  fit: BoxFit.fitWidth,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-              child: Text(
-                "Main Banquet",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Card(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/16.jpg'),
-                  fit: BoxFit.fitWidth,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-              child: Text(
-                "Wedding Reception Hall",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
-        autoplay: false,
-        dotSize: 0,
-        borderRadius: true,
-        dotBgColor: Colors.transparent,
-      ),
-    );
 
     return Scaffold(
       appBar: AppBar(
@@ -228,8 +43,117 @@ class _BookingState extends State<Booking> {
             ],
           ),
           SizedBox(height: 10.0),
-          image_carousel1,
-          SizedBox(height: 50.0),
+          Container(
+    margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+    height: 150.0,
+    width: double.infinity,
+    child: new Column(
+    children: <Widget>[
+    Expanded(
+    child: ListView(
+    shrinkWrap: true,
+    physics: ClampingScrollPhysics(),
+    scrollDirection: Axis.horizontal,
+    children: <Widget>[
+    InkWell(
+    onTap: () {
+    Navigator.pushNamed(context, "/bluelounge");
+    },
+    child: Container(
+    height: 100.0,
+    width: 150.0,
+    child: Align(
+    alignment: Alignment.bottomCenter,
+    child: Text(
+    'Blue Lounge',
+    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    ),
+    ),
+    decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(10),
+    color: Colors.blue,
+    image: DecorationImage(
+    image: new AssetImage("assets/12.jpg"),
+    fit: BoxFit.fill)),
+    ),
+    ),
+    SizedBox(width: 20),
+    InkWell(
+    onTap: () {
+    Navigator.pushNamed(context, "/yellowlounge");
+    },
+    child: Container(
+    height: 100.0,
+    width: 150.0,
+    child: Align(
+    alignment: Alignment.bottomCenter,
+    child: Text(
+    'Yellow Lounge',
+    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    ),
+    ),
+    decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(10),
+    color: Colors.blue,
+    image: DecorationImage(
+    image: new AssetImage("assets/13.jpg"),
+    fit: BoxFit.fill)),
+    ),
+    ),
+    SizedBox(width: 20),
+    InkWell(
+    onTap: () {
+    Navigator.pushNamed(context, "/milaplounge");
+    },
+    child: Container(
+    height: 100.0,
+    width: 150.0,
+    child: Align(
+    alignment: Alignment.bottomCenter,
+    child: Text(
+    'Milap Hall',
+    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    ),
+    ),
+    decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(10),
+    color: Colors.blue,
+    image: DecorationImage(
+    image: new AssetImage("assets/17.jpg"),
+    fit: BoxFit.fill)),
+    ),
+    ),
+    SizedBox(width: 20),
+      InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, "/milanlounge");
+        },
+        child: Container(
+          height: 100.0,
+          width: 150.0,
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Text(
+              'Milan Lounge',
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.blue,
+              image: DecorationImage(
+                  image: new AssetImage("assets/18.jpg"),
+                  fit: BoxFit.fill)),
+        ),
+      ),
+    SizedBox(width: 20),
+    ],
+    ),
+    ),
+    SizedBox(height: 20),
+    ],
+    )),
+          SizedBox(height: 30.0),
           Text(
             " Banquet Halls",
             style: TextStyle(
@@ -239,7 +163,70 @@ class _BookingState extends State<Booking> {
             ),
           ),
           SizedBox(height: 10.0),
-          image_carousel2,
+          Container(
+              margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+              height: 150.0,
+              width: double.infinity,
+              child: new Column(
+                children: <Widget>[
+                  Expanded(
+                    child: ListView(
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/mainhall");
+                          },
+                          child: Container(
+                            height: 100.0,
+                            width: 150.0,
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Text(
+                                'Main Hall',
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.blue,
+                                image: DecorationImage(
+                                    image: new AssetImage("assets/15.jpg"),
+                                    fit: BoxFit.fill)),
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/yellowlounge");
+                          },
+                          child: Container(
+                            height: 100.0,
+                            width: 150.0,
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Text(
+                                'Wedding Hall',
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.blue,
+                                image: DecorationImage(
+                                    image: new AssetImage("assets/16.jpg"),
+                                    fit: BoxFit.fill)),
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                ],
+              )),
         ],
       ),
     );

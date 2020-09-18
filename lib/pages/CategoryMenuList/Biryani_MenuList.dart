@@ -26,7 +26,7 @@ class _Biryani_MenuListState extends State<Biryani_MenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: Rice and Biryani'),
+          title: Text('Rice and Biryani'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -159,18 +159,7 @@ class _BiryaniMenuListListPageState extends State<BiryaniMenuListListPage> {
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          checked = !checked;
-                                        });
-                                        addToCart(_menuList[index]);
-                                      },
-                                      icon: Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: Colors.green,
-                                      ),
-                                    ),
+                                    SizedBox(width: 15),
                                     Text(
                                       '${_menuList[index].item}',
                                       style: TextStyle(
@@ -189,7 +178,7 @@ class _BiryaniMenuListListPageState extends State<BiryaniMenuListListPage> {
                                     margin: EdgeInsets.only(top: 6),
                                     alignment: Alignment.center,
                                     decoration:
-                                        BoxDecoration(color: Colors.deepOrange),
+                                        BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.circular(10)),
                                     child: IconButton(
                                       onPressed: () {
                                         showFlushbar(context);
@@ -211,7 +200,7 @@ class _BiryaniMenuListListPageState extends State<BiryaniMenuListListPage> {
                               children: <Widget>[
                                 Container(
                                   margin: new EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 50.0),
+                                      vertical: 3, horizontal: 16.0),
                                   child: Text(
                                     '₹' + '${_menuList[index].price}',
                                     style: TextStyle(

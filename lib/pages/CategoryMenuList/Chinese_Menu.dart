@@ -26,7 +26,7 @@ class _ChineseMenuListState extends State<ChineseMenuList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Category: Chinese'),
+          title: Text('Chinese'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -35,7 +35,6 @@ class _ChineseMenuListState extends State<ChineseMenuList> {
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/cart');
-                // Navigator.popAndPushNamed(context, '/cart');
               },
             )
           ],
@@ -159,18 +158,7 @@ class _ChineseMenuListPageState extends State<ChineseMenuListPage> {
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          checked = !checked;
-                                        });
-                                        addToCart(_menuList[index]);
-                                      },
-                                      icon: Icon(
-                                        Icons.radio_button_unchecked,
-                                        color: Colors.green,
-                                      ),
-                                    ),
+                                    SizedBox(width: 15),
                                     Text(
                                       '${_menuList[index].item}',
                                       style: TextStyle(
@@ -184,8 +172,9 @@ class _ChineseMenuListPageState extends State<ChineseMenuListPage> {
                                   width: 43,
                                   margin: EdgeInsets.only(top: 6),
                                   alignment: Alignment.center,
-                                  decoration:
-                                      BoxDecoration(color: Colors.deepOrange),
+                                  decoration: BoxDecoration(
+                                      color: Colors.deepOrange,
+                                      borderRadius: BorderRadius.circular(10)),
                                   child: IconButton(
                                     onPressed: () {
                                       showFlushbar(context);
@@ -206,7 +195,7 @@ class _ChineseMenuListPageState extends State<ChineseMenuListPage> {
                               children: <Widget>[
                                 Container(
                                   margin: new EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 50.0),
+                                      vertical: 3, horizontal: 16.0),
                                   child: Text(
                                     '₹' + '${_menuList[index].price}',
                                     style: TextStyle(

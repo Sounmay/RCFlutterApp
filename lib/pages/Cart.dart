@@ -5,6 +5,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rcapp/pages/Food.dart';
 import 'package:rcapp/pages/order_cart.dart';
 import 'package:rcapp/pages/storeData.dart';
+import 'package:rcapp/services/database.dart';
+import './confirmOrder.dart';
 
 class Cart extends StatefulWidget {
   @override
@@ -46,7 +48,6 @@ class _CartState extends State<Cart> {
     Map<String, int> foodDetail = storeDataforCart.retrieveFoodDetails();
     Map<String, int> qtyDetail = storeDataforCart.retrieveQtyDetails();
 
-    
     total = 0;
     totalquantity = 0;
 
@@ -132,9 +133,15 @@ class _CartState extends State<Cart> {
                   ])
                 ],
               ),
-              Text('$address')
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                  child: Text(
+                    '$address',
+                    style: TextStyle(fontSize: 16),
+                  ))
             ],
           ),
+          SizedBox(height: 20),
           OrderCard(total: total),
           Expanded(
             child: ListView.builder(
@@ -392,7 +399,9 @@ class _ProceedAccessState extends State<ProceedAccess> {
           child: FlatButton(
               color: Colors.deepOrange,
               onPressed: () {
-                Navigator.pushNamed(context, '/confirmOrder');
+                updateTotal();
+                confirmOrder();
+                Navigator.pushReplacementNamed(context, '/navigationbar');
               },
               child: Text(
                 'Proceed to Pay',
@@ -427,12 +436,7 @@ class BottomItemView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
-              '${qty} ' +
-                  '  item ' +
-                  '|' +
-                  ' ' +
-                  '₹ ' +
-                  '${total}',
+              '${qty} ' + '  item ' + '|' + ' ' + '₹ ' + '${total}',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),

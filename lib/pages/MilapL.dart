@@ -33,6 +33,19 @@ class _MilapLoungeState extends State<MilapLounge> {
                       fit: BoxFit.fill)),
             ),
           ),
+          Text(
+            "Milap Reception Hall",
+            style: TextStyle(
+              color: Colors.blueAccent,
+              fontSize: 40,
+            ),
+          ),
+          Text(
+            "The Milap Reception Hall is a large hall present in the first floor of the club. Perfect for medium group gatherings like office parties, departmental dinners etc \n \nCapacity : 70 people\n \n \n \n ",
+            style: TextStyle(
+                fontSize: 20
+            ),
+          ),
           SizedBox(
               width: double.infinity,
               height: 60,
