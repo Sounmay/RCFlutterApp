@@ -34,18 +34,18 @@ class _NavigationBarState extends State<NavigationBar> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            label: 'Home',
             backgroundColor: Colors.deepOrange,
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.fastfood),
-              title: Text('Food'),
+              label: 'Food',
               backgroundColor: Colors.deepOrange,
               activeIcon: Icon(Icons.fastfood, color: Colors.deepOrange),
     ),
           BottomNavigationBarItem(
               icon: Icon(Icons.book),
-              title: Text('Booking'),
+              label: 'Booking',
               backgroundColor: Colors.deepOrange,
           ),
         ],
