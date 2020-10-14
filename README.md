@@ -1,6 +1,6 @@
 # rcapp
 
-A new Flutter application.
+Initial build of rcapp_final. Built on personal Firebase backend.
 
 ## Getting Started
 
