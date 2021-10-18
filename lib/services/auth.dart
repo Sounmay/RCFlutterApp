@@ -7,6 +7,8 @@ var isAdminglobal = false;
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  //can comment the line if you want 
+  final uid = FirebaseAuth.instance.currentUser.uid;
 
   //create a user object based on firebaseUser
   User _userFromFirebaseUser(FirebaseUser user) {
