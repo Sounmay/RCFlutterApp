@@ -4,7 +4,7 @@ A new Flutter application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application(with advanced firebase utilitites)...
+This project is a starting point for a Flutter application(with advanced firebase utilitites).....
 
 A few resources to get you started with if this is your first Flutter project:
 
