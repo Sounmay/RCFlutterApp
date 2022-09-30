@@ -1,6 +1,6 @@
 # RCapp
 
-A new Flutter application.
+A new Flutter based application.
 
 ## Getting Started
 
