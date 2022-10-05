@@ -1,4 +1,4 @@
-# RCapp
+# RC app
 
 A new Flutter based application.
 
