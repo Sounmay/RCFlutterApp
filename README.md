@@ -1,6 +1,6 @@
 # RC app
 
-A new Flutter based application for food delivery.
+A new Flutter based application.
 
 ## Getting Started
 
